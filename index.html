@@ -41,7 +41,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<!-- Schema.org: BeautySalon + LocalBusiness — расширенная разметка для локального SEO -->
+<!-- Schema.org: BeautySalon + LocalBusiness -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -140,12 +140,15 @@
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
   }
-  body.menu-open, body.modal-open{ overflow:hidden; }
+  body.menu-open{ overflow:hidden; }
   h1,h2,h3,.serif{font-family:'Cormorant Garamond', serif; font-weight:400; letter-spacing:-0.01em; line-height:1.08}
   img{max-width:100%; display:block}
 
   .container{ width:100%; padding-left:var(--pad); padding-right:var(--pad); margin:0 auto }
   @media(min-width:1600px){ .container{max-width:1800px} }
+
+  /* Ссылки-кнопки — убираем подчёркивание */
+  a.nav-cta, a.btn{ text-decoration:none }
 
   /* ================= HEADER ================= */
   header{
@@ -186,8 +189,10 @@
     letter-spacing:.14em; text-transform:uppercase;
     transition:all .3s; line-height:1; white-space:nowrap;
     background:transparent; cursor:pointer; font-family:inherit;
+    align-items:center; justify-content:center;
   }
   .nav-cta:hover{background:var(--ink); color:var(--bg)}
+  @media(min-width:900px){ a.nav-cta{display:inline-flex} }
   .burger{
     width:44px; height:44px;
     display:flex; flex-direction:column;
@@ -205,7 +210,7 @@
   .burger.active span:nth-child(1){transform:translateY(3.25px) rotate(45deg); width:26px}
   .burger.active span:nth-child(2){transform:translateY(-3.25px) rotate(-45deg); width:26px}
   @media(min-width:900px){
-    .nav-links, .nav-cta{display:flex}
+    .nav-links{display:flex}
     .burger{display:none}
   }
 
@@ -557,6 +562,8 @@
   .seo-block h3:first-child{margin-top:0}
   .seo-block p{margin-bottom:12px}
   .seo-block strong{color:var(--ink); font-weight:500}
+  .seo-block a{color:var(--accent-deep); text-decoration:none}
+  .seo-block a:hover{text-decoration:underline}
 
   /* ================= PHILOSOPHY ================= */
   .philosophy{background:var(--bg-soft)}
@@ -881,122 +888,6 @@
   .cta-inner .btn{width:100%}
   @media(min-width:640px){ .cta-inner .btn{width:auto} }
 
-  /* ================= MODAL ================= */
-  .modal{
-    position:fixed; inset:0; z-index:200;
-    display:flex; align-items:center; justify-content:center;
-    padding:16px;
-    opacity:0; visibility:hidden;
-    transition:opacity .4s ease, visibility .4s;
-  }
-  .modal.open{opacity:1; visibility:visible}
-  .modal-backdrop{
-    position:absolute; inset:0;
-    background:rgba(42,39,36,.5);
-    backdrop-filter:blur(10px) saturate(1.2);
-    -webkit-backdrop-filter:blur(10px) saturate(1.2);
-    cursor:pointer;
-  }
-  .modal-dialog{
-    position:relative; width:100%; max-width:520px;
-    max-height:calc(100dvh - 32px);
-    background:var(--bg); border-radius:28px;
-    overflow:hidden;
-    box-shadow:0 40px 100px -30px rgba(42,39,36,.5);
-    display:flex; flex-direction:column;
-    transform:translateY(24px) scale(.97);
-    opacity:0;
-    transition:transform .5s cubic-bezier(.2,.8,.3,1), opacity .4s ease;
-  }
-  .modal.open .modal-dialog{transform:translateY(0) scale(1); opacity:1}
-  .modal-close{
-    position:absolute; top:16px; right:16px;
-    width:44px; height:44px; border-radius:50%;
-    background:rgba(255,255,255,.75);
-    backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
-    border:1px solid var(--line);
-    display:flex; align-items:center; justify-content:center;
-    cursor:pointer; z-index:5;
-    transition:all .3s; padding:0; color:var(--ink);
-    font-family:inherit;
-  }
-  @media(min-width:640px){ .modal-close{top:20px; right:20px} }
-  .modal-close:hover{
-    background:var(--ink); color:var(--bg);
-    border-color:var(--ink); transform:rotate(90deg);
-  }
-  .modal-close svg{width:16px; height:16px}
-  .modal-content{
-    padding:40px 24px 32px;
-    overflow-y:auto; -webkit-overflow-scrolling:touch;
-  }
-  @media(min-width:640px){ .modal-content{padding:48px 40px 40px} }
-  .modal .eyebrow{margin-bottom:12px}
-  .modal-title{
-    font-size:30px; line-height:1.1;
-    letter-spacing:-.02em; margin-bottom:12px;
-    text-wrap:balance; padding-right:40px;
-  }
-  @media(min-width:640px){ .modal-title{font-size:38px; margin-bottom:16px} }
-  .modal-title em{font-style:italic; color:var(--accent-deep)}
-  .modal-lead{
-    color:var(--ink-soft); font-size:14px;
-    line-height:1.6; font-weight:300;
-    margin-bottom:28px;
-  }
-  @media(min-width:640px){ .modal-lead{font-size:15px; margin-bottom:32px} }
-
-  .form{display:flex; flex-direction:column; gap:12px; text-align:left}
-  .field{position:relative}
-  .field input, .field select{
-    width:100%; padding:18px 20px;
-    font-size:16px; font-family:inherit;
-    color:var(--ink); background:var(--card);
-    border:1px solid var(--line); border-radius:14px;
-    outline:none; transition:all .3s;
-    appearance:none; -webkit-appearance:none;
-    min-height:56px; line-height:1.4;
-  }
-  .field input:focus, .field select:focus{
-    border-color:var(--accent);
-    box-shadow:0 0 0 4px rgba(184,148,95,.1);
-  }
-  .field input::placeholder{color:var(--ink-faint)}
-  .field.select::after{
-    content:''; position:absolute; right:22px; top:50%;
-    transform:translateY(-50%) rotate(45deg);
-    width:8px; height:8px;
-    border-right:1.5px solid var(--ink-soft);
-    border-bottom:1.5px solid var(--ink-soft);
-    pointer-events:none; margin-top:-3px;
-  }
-  .field select{padding-right:48px; color:var(--ink)}
-  .field select:invalid{color:var(--ink-faint)}
-  .form .btn{width:100%; margin-top:6px}
-  .form-note{
-    display:flex; align-items:flex-start;
-    justify-content:center; gap:8px;
-    font-size:12px; color:var(--ink-soft);
-    margin-top:16px; letter-spacing:.02em;
-    line-height:1.5; text-align:left;
-  }
-  .form-note svg{width:14px; height:14px; color:var(--accent-deep); flex-shrink:0; margin-top:2px}
-  .form-success{
-    padding:32px 24px; background:var(--card);
-    border-radius:var(--radius);
-    border:1px solid var(--line);
-    display:none; text-align:center;
-  }
-  .form-success.show{display:block}
-  .form-success-icon{
-    width:56px; height:56px; margin:0 auto 20px;
-    border-radius:50%;
-    background:linear-gradient(135deg, #E8CDB0, #C4AD98);
-    display:flex; align-items:center; justify-content:center;
-    color:#fff;
-  }
-  .form-success-icon svg{width:24px; height:24px}
-
   /* ================= FOOTER ================= */
   footer{
     background:var(--ink); color:#B8B3AC;
@@ -1085,9 +976,9 @@
         Рыбацкое, Санкт-Петербург<br>
         Пн — Вс · 10:00 — 21:00
       </div>
-      <button type="button" class="btn btn-primary" data-open-modal data-close-menu>
+      <a href="https://dikidi.ru/#widget=218266" class="btn btn-primary" data-close-menu>
         Записаться на консультацию
-      </button>
+      </a>
     </div>
   </div>
 </div>
@@ -1102,7 +993,7 @@
       <a href="#process">Как мы работаем</a>
       <a href="#reviews">Отзывы</a>
     </nav>
-    <button type="button" class="nav-cta" data-open-modal>Записаться</button>
+    <a href="https://dikidi.ru/#widget=218266" class="nav-cta">Записаться</a>
     <button class="burger" id="burger" aria-label="Меню" aria-expanded="false">
       <span></span><span></span>
     </button>
@@ -1133,10 +1024,10 @@
       </p>
 
       <div class="hero-actions">
-        <button type="button" class="btn btn-primary" data-open-modal>
+        <a href="https://dikidi.ru/#widget=218266" class="btn btn-primary">
           Записаться
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </button>
+        </a>
         <a href="#services" class="btn btn-ghost">Услуги и цены</a>
       </div>
 
@@ -1542,11 +1433,11 @@
     <div class="cta-inner reveal">
       <div class="eyebrow" style="justify-content:center">Запись</div>
       <h2 class="cta-title">Начните путь <em>к себе</em></h2>
-      <p class="cta-lead">Оставьте заявку — администратор свяжется в течение 15 минут и подберёт удобное время для визита.</p>
-      <button type="button" class="btn btn-primary" data-open-modal>
-        Записаться на консультацию
+      <p class="cta-lead">Запишитесь онлайн — выберите удобное время и мастера прямо сейчас.</p>
+      <a href="https://dikidi.ru/#widget=218266" class="btn btn-primary">
+        Записаться онлайн
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </button>
+      </a>
     </div>
   </div>
 </section>
@@ -1587,66 +1478,7 @@
 
 <!-- ===== STICKY CTA ===== -->
 <div class="sticky-cta" id="stickyCta">
-  <button type="button" class="btn btn-primary" data-open-modal>Записаться на консультацию</button>
-</div>
-
-<!-- ===== MODAL ===== -->
-<div class="modal" id="leadModal" aria-hidden="true">
-  <div class="modal-backdrop" data-close-modal></div>
-  <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <button type="button" class="modal-close" data-close-modal aria-label="Закрыть">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
-        <path d="M6 6l12 12M18 6L6 18"/>
-      </svg>
-    </button>
-    <div class="modal-content">
-      <div class="eyebrow">Запись</div>
-      <h2 class="modal-title" id="modalTitle">Начните путь <em>к себе</em></h2>
-      <p class="modal-lead">Оставьте контакты — администратор свяжется в течение 15 минут и подберёт удобное время.</p>
-
-      <form class="form" id="leadForm" novalidate>
-        <div class="field">
-          <input type="text" name="name" placeholder="Ваше имя" autocomplete="name" required>
-        </div>
-        <div class="field">
-          <input type="tel" name="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" inputmode="tel" required>
-        </div>
-        <div class="field select">
-          <select name="topic" required>
-            <option value="" disabled selected>Что вас интересует?</option>
-            <option>LPG массаж</option>
-            <option>Лазерная эпиляция</option>
-            <option>Ламинирование ресниц</option>
-            <option>RF-лифтинг лица</option>
-            <option>Женская стрижка</option>
-            <option>Мужская стрижка</option>
-            <option>Детская стрижка</option>
-            <option>Укладка / локоны</option>
-            <option>Восковая депиляция</option>
-            <option>Комбо-программа</option>
-            <option>Массаж</option>
-            <option>Абонемент LPG</option>
-            <option>Другое</option>
-          </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Отправить заявку</button>
-        <div class="form-note">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5l8-3z"/></svg>
-          <span>Ваши данные защищены. Мы не передаём их третьим лицам.</span>
-        </div>
-      </form>
-
-      <div class="form-success" id="formSuccess">
-        <div class="form-success-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 12l5 5L20 6"/>
-          </svg>
-        </div>
-        <h3 class="serif" style="font-size:26px; margin-bottom:10px">Спасибо!</h3>
-        <p style="color:var(--ink-soft); font-size:14px; line-height:1.6">Мы получили вашу заявку. Администратор свяжется с вами в течение 15 минут.</p>
-      </div>
-    </div>
-  </div>
+  <a href="https://dikidi.ru/#widget=218266" class="btn btn-primary">Записаться на консультацию</a>
 </div>
 
 <script>
@@ -1679,39 +1511,8 @@
   mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
   mobileMenu.querySelectorAll('[data-close-menu]').forEach(b => b.addEventListener('click', () => toggleMenu(false)));
 
-  /* ===== Modal ===== */
-  const modal = document.getElementById('leadModal');
-  const form = document.getElementById('leadForm');
-  const success = document.getElementById('formSuccess');
-  const openBtns = document.querySelectorAll('[data-open-modal]');
-  const closeBtns = document.querySelectorAll('[data-close-modal]');
-
-  function openModal(){
-    modal.classList.add('open');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('modal-open');
-    setTimeout(()=>{
-      const first = modal.querySelector('input');
-      if(first) first.focus();
-    }, 350);
-  }
-  function closeModal(){
-    modal.classList.remove('open');
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('modal-open');
-    setTimeout(()=>{
-      form.style.display = '';
-      form.reset();
-      success.classList.remove('show');
-    }, 400);
-  }
-  openBtns.forEach(b => b.addEventListener('click', (e)=>{ e.preventDefault(); openModal() }));
-  closeBtns.forEach(b => b.addEventListener('click', closeModal));
   document.addEventListener('keydown', (e)=>{
-    if(e.key === 'Escape'){
-      if(modal.classList.contains('open')) closeModal();
-      else if(menuOpen) toggleMenu(false);
-    }
+    if(e.key === 'Escape' && menuOpen) toggleMenu(false);
   });
 
   /* ===== Reveal on scroll ===== */
@@ -1772,38 +1573,13 @@
   baWrap.addEventListener('touchstart', start, {passive:true});
   window.addEventListener('touchmove', move, {passive:false});
   window.addEventListener('touchend', end);
-
-  /* ===== Phone mask ===== */
-  const phoneInput = document.querySelector('input[name="phone"]');
-  phoneInput.addEventListener('input', (e) => {
-    let v = e.target.value.replace(/\D/g, '');
-    if(v.startsWith('8')) v = '7' + v.slice(1);
-    if(!v.startsWith('7')) v = '7' + v;
-    v = v.slice(0, 11);
-    let out = '+7';
-    if(v.length > 1) out += ' (' + v.slice(1,4);
-    if(v.length >= 5) out += ') ' + v.slice(4,7);
-    if(v.length >= 8) out += '-' + v.slice(7,9);
-    if(v.length >= 10) out += '-' + v.slice(9,11);
-    e.target.value = out;
-  });
-
-  /* ===== Form submit ===== */
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const name = form.name.value.trim();
-    const phone = form.phone.value.trim();
-    if(!name || phone.replace(/\D/g,'').length < 11){
-      alert('Пожалуйста, укажите имя и телефон');
-      return;
-    }
-    form.style.display = 'none';
-    success.classList.add('show');
-  });
 </script>
 
 <!-- ===== REVIEWLAB WIDGET SCRIPT ===== -->
 <script src="https://app.reviewlab.ru/widget/index-es2015.js" defer></script>
+
+<!-- ===== DIKIDI WIDGET SCRIPT ===== -->
+<script type="text/javascript" src="https://dikidi.ru/assets/js/widget_record/widget2.min.js?v=1773811740"></script>
 
 </body>
 </html>
