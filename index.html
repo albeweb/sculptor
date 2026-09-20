@@ -6,8 +6,8 @@
 <meta name="theme-color" content="#FAF6F0" />
 
 <title>Студия красоты СКУЛЬПТОР в Рыбацком — стрижки, LPG, лазерная эпиляция | СПб</title>
-<meta name="description" content="Студия красоты СКУЛЬПТОР в Рыбацком рядом с метро Рыбацкое. Стрижки, LPG массаж, лазерная эпиляция, ламинирование ресниц, депиляция. Запись онлайн. Советский пр., 16." />
-<meta name="keywords" content="студия красоты Рыбацкое, салон красоты Рыбацкое, парикмахерская Рыбацкое, LPG массаж Рыбацкое, лазерная эпиляция Рыбацкое, ламинирование ресниц Рыбацкое, стрижка Рыбацкое, депиляция Рыбацкое, студия красоты у метро Рыбацкое, студия красоты СПб Рыбацкое" />
+<meta name="description" content="Студия красоты СКУЛЬПТОР в Рыбацком рядом с метро Рыбацкое. Стрижки, LPG массаж, лазерная эпиляция, ламинирование ресниц. Запись онлайн. Советский пр., 16." />
+<meta name="keywords" content="студия красоты Рыбацкое, салон красоты Рыбацкое, парикмахерская Рыбацкое, LPG массаж Рыбацкое, лазерная эпиляция Рыбацкое, ламинирование ресниц Рыбацкое, стрижка Рыбацкое, лазерная эпиляция СПб, студия красоты у метро Рыбацкое, студия красоты СПб Рыбацкое" />
 <meta name="robots" content="index, follow" />
 <meta name="author" content="Студия красоты СКУЛЬПТОР" />
 <meta name="geo.region" content="RU-SPE" />
@@ -60,7 +60,7 @@
   "paymentAccepted": "Cash, Credit Card, Debit Card",
   "image": "https://sculptorspb.ru/og-image.jpg",
   "logo": "https://sculptorspb.ru/favicon-32x32.png",
-  "description": "Студия красоты и массажа СКУЛЬПТОР в Рыбацком, Санкт-Петербург. Стрижки, LPG массаж, лазерная эпиляция, ламинирование ресниц, восковая депиляция, RF-лифтинг. Удобное расположение рядом с метро Рыбацкое.",
+  "description": "Студия красоты и массажа СКУЛЬПТОР в Рыбацком, Санкт-Петербург. Стрижки, LPG массаж, лазерная эпиляция, ламинирование ресниц, RF-лифтинг. Удобное расположение рядом с метро Рыбацкое.",
   "slogan": "Искусство естественного сияния",
   "address": {
     "@type": "PostalAddress",
@@ -99,8 +99,7 @@
       {"@type":"Offer","itemOffered":{"@type":"Service","name":"Женская стрижка","serviceType":"Парикмахерские услуги"}},
       {"@type":"Offer","itemOffered":{"@type":"Service","name":"Мужская стрижка","serviceType":"Парикмахерские услуги"}},
       {"@type":"Offer","itemOffered":{"@type":"Service","name":"Укладка и локоны","serviceType":"Парикмахерские услуги"}},
-      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Восковая депиляция","serviceType":"Депиляция"}},
-      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Комбо-программы депиляции","serviceType":"Депиляция"}}
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Комбо-программы и абонементы","serviceType":"Комплексные услуги"}}
     ]
   },
   "aggregateRating": {
@@ -752,6 +751,34 @@
     color:var(--ink-soft);
   }
 
+  /* Разделитель внутри объединённой карточки Комбо+Абонементы */
+  .combo-subsection{
+    margin-top:24px;
+    padding-top:20px;
+    border-top:1px solid rgba(140,110,63,.3);
+    position:relative; z-index:1;
+  }
+  .combo-subtitle{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:22px;
+    color:var(--accent-deep);
+    margin-bottom:14px;
+    display:block;
+    letter-spacing:-.01em;
+  }
+  .combo-subsection .price-list{
+    margin-top:0;
+    border-top:none;
+  }
+  .combo-subsection .price-list li{
+    border-bottom:1px solid rgba(140,110,63,.25);
+  }
+  .combo-subsection .price-list li:last-child{
+    border-bottom:none;
+  }
+
   .price-list li .meta-name{
     display:flex; flex-direction:column; gap:2px;
   }
@@ -772,6 +799,9 @@
   .service-card--accent .price-list{border-top-color:rgba(140,110,63,.25)}
   .service-card--accent .price-list li{border-bottom-color:rgba(140,110,63,.25)}
   .service-card--accent .price-list li span{color:var(--accent-deep)}
+  .service-card--accent .combo-list{border-top-color:rgba(140,110,63,.25)}
+  .service-card--accent .combo-item{border-bottom-color:rgba(140,110,63,.25)}
+  .service-card--accent .combo-desc{color:var(--accent-deep); opacity:.85}
 
   /* ================= BEFORE / AFTER ================= */
   .transform{background:var(--bg-soft)}
@@ -1102,7 +1132,7 @@
       </h1>
 
       <p class="lead">
-        LPG массаж, лазерная эпиляция, ламинирование ресниц, стрижки и депиляция — в студии СКУЛЬПТОР в Рыбацком.
+        LPG массаж, лазерная эпиляция, ламинирование ресниц, стрижки и укладка — в студии СКУЛЬПТОР в Рыбацком.
       </p>
 
       <div class="hero-actions">
@@ -1203,7 +1233,7 @@
     <div class="section-head reveal">
       <div class="eyebrow">Прайс-лист</div>
       <h2>Услуги и цены</h2>
-      <p>LPG массаж, лазерная эпиляция, ламинирование ресниц, парикмахерские услуги, депиляция и аппаратные методики.</p>
+      <p>LPG массаж, лазерная эпиляция, ламинирование ресниц, парикмахерские услуги и аппаратные методики.</p>
     </div>
 
     <div class="filters reveal">
@@ -1212,9 +1242,7 @@
       <button class="chip" data-filter="laser">Лазер</button>
       <button class="chip" data-filter="lashes">Ресницы</button>
       <button class="chip" data-filter="hair">Стрижки</button>
-      <button class="chip" data-filter="wax">Депиляция</button>
       <button class="chip" data-filter="combo">Комбо</button>
-      <button class="chip" data-filter="sub">Абонементы</button>
     </div>
 
     <div class="services-grid">
@@ -1230,81 +1258,10 @@
         </ul>
       </article>
 
-      <!-- 02. Лазерная эпиляция -->
+      <!-- 02. Лазерная эпиляция — девушки -->
       <article class="service-card reveal" data-cat="laser">
         <div class="service-num">02</div>
-        <h3>Лазерная эпиляция</h3>
-        <ul class="price-list">
-          <li><span>Подмышки</span><strong>600 ₽</strong></li>
-          <li><span>Бикини</span><strong>1 600 ₽</strong></li>
-          <li><span>Руки (до локтя)</span><strong>800 ₽</strong></li>
-          <li><span>Ноги полностью</span><strong>2 300 ₽</strong></li>
-          <li><span>Бикини + голени + подмышки</span><strong>2 700 ₽</strong></li>
-        </ul>
-      </article>
-
-      <!-- 03. Ламинирование ресниц -->
-      <article class="service-card reveal" data-cat="lashes">
-        <div class="service-num">03</div>
-        <h3>Ламинирование ресниц</h3>
-        <ul class="price-list">
-          <li><span>Ламинирование</span><strong>1 500 ₽</strong></li>
-          <li><span>Ламинирование + ботокс</span><strong>1 800 ₽</strong></li>
-          <li><span>Ламинирование + окрашивание</span><strong>1 900 ₽</strong></li>
-          <li><span>Комплекс: ламинирование + ботокс + окрашивание</span><strong>2 200 ₽</strong></li>
-        </ul>
-      </article>
-
-      <!-- 04. RF-лифтинг -->
-      <article class="service-card reveal" data-cat="apparatus">
-        <div class="service-num">04</div>
-        <h3>RF-лифтинг<span class="service-sub">лица</span></h3>
-        <ul class="price-list">
-          <li><div class="meta-name"><span>RF-лифтинг лица</span><small>40 мин · ручной массаж + маска</small></div><strong>1 700 ₽</strong></li>
-        </ul>
-      </article>
-
-      <!-- 05. Женские стрижки -->
-      <article class="service-card reveal" data-cat="hair">
-        <div class="service-num">05</div>
-        <h3>Женские стрижки</h3>
-        <ul class="price-list">
-          <li><span>На короткие волосы</span><strong>700–1 000 ₽</strong></li>
-          <li><span>На средние волосы</span><strong>1 200–1 500 ₽</strong></li>
-          <li><span>На длинные волосы</span><strong>2 500 ₽</strong></li>
-          <li><span>Одним срезом</span><strong>700 ₽</strong></li>
-          <li><span>Стрижка чёлки</span><strong>300 ₽</strong></li>
-        </ul>
-      </article>
-
-      <!-- 06. Мужские и детские стрижки -->
-      <article class="service-card reveal" data-cat="hair">
-        <div class="service-num">06</div>
-        <h3>Мужские и детские<span class="service-sub">стрижки</span></h3>
-        <ul class="price-list">
-          <li><span>Мужская одной насадкой</span><strong>500–600 ₽</strong></li>
-          <li><span>Модельная мужская</span><strong>900 ₽</strong></li>
-          <li><span>Оформление бороды</span><strong>1 000 ₽</strong></li>
-          <li><span>Детская одной насадкой</span><strong>500 ₽</strong></li>
-          <li><span>Детская модельная</span><strong>700 ₽</strong></li>
-        </ul>
-      </article>
-
-      <!-- 07. Укладка и локоны -->
-      <article class="service-card reveal" data-cat="hair">
-        <div class="service-num">07</div>
-        <h3>Укладка и локоны</h3>
-        <ul class="price-list">
-          <li><span>Укладка на короткие волосы</span><strong>1 500 ₽</strong></li>
-          <li><span>Укладка на длинные волосы</span><strong>2 000 ₽</strong></li>
-          <li><span>Локоны</span><strong>2 500–3 500 ₽</strong></li>
-        </ul>
-      </article>
-
-      <!-- 08. Восковая депиляция — Девушки -->
-      <article class="service-card reveal" data-cat="wax">
-        <div class="service-num">08</div>
-        <h3>Восковая депиляция<span class="service-sub">девушки</span></h3>
+        <h3>Лазерная эпиляция<span class="service-sub">девушки</span></h3>
         <ul class="price-list">
           <li><span>Подмышки</span><strong>600 ₽</strong></li>
           <li><span>Ягодицы</span><strong>1 000 ₽</strong></li>
@@ -1321,10 +1278,10 @@
         </ul>
       </article>
 
-      <!-- 09. Восковая депиляция — Парни -->
-      <article class="service-card reveal" data-cat="wax">
-        <div class="service-num">09</div>
-        <h3>Восковая депиляция<span class="service-sub">парни</span></h3>
+      <!-- 03. Лазерная эпиляция — парни -->
+      <article class="service-card reveal" data-cat="laser">
+        <div class="service-num">03</div>
+        <h3>Лазерная эпиляция<span class="service-sub">парни</span></h3>
         <ul class="price-list">
           <li><span>Подмышки</span><strong>600 ₽</strong></li>
           <li><span>Ягодицы</span><strong>1 300 ₽</strong></li>
@@ -1341,10 +1298,10 @@
         </ul>
       </article>
 
-      <!-- 10. Малые зоны и лицо -->
-      <article class="service-card reveal" data-cat="wax">
-        <div class="service-num">10</div>
-        <h3>Малые зоны<span class="service-sub">лицо</span></h3>
+      <!-- 04. Лазерная эпиляция — лицо -->
+      <article class="service-card reveal" data-cat="laser">
+        <div class="service-num">04</div>
+        <h3>Лазерная эпиляция<span class="service-sub">лицо</span></h3>
         <ul class="price-list">
           <li><span>Верхняя губа / подбородок / межбровье</span><strong>400 ₽</strong></li>
           <li><span>Шея / щёки / бакенбарды</span><strong>500 ₽</strong></li>
@@ -1352,10 +1309,70 @@
         </ul>
       </article>
 
-      <!-- 11. Комбо-программы -->
-      <article class="service-card reveal" data-cat="combo">
-        <div class="service-num">11</div>
-        <h3>Комбо-программы</h3>
+      <!-- 05. Ламинирование ресниц -->
+      <article class="service-card reveal" data-cat="lashes">
+        <div class="service-num">05</div>
+        <h3>Ламинирование ресниц</h3>
+        <ul class="price-list">
+          <li><span>Ламинирование</span><strong>1 500 ₽</strong></li>
+          <li><span>Ламинирование + ботокс</span><strong>1 800 ₽</strong></li>
+          <li><span>Ламинирование + окрашивание</span><strong>1 900 ₽</strong></li>
+          <li><span>Комплекс: ламинирование + ботокс + окрашивание</span><strong>2 200 ₽</strong></li>
+        </ul>
+      </article>
+
+      <!-- 06. RF-лифтинг -->
+      <article class="service-card reveal" data-cat="apparatus">
+        <div class="service-num">06</div>
+        <h3>RF-лифтинг<span class="service-sub">лица</span></h3>
+        <ul class="price-list">
+          <li><div class="meta-name"><span>RF-лифтинг лица</span><small>40 мин · ручной массаж + маска</small></div><strong>1 700 ₽</strong></li>
+        </ul>
+      </article>
+
+      <!-- 07. Женские стрижки -->
+      <article class="service-card reveal" data-cat="hair">
+        <div class="service-num">07</div>
+        <h3>Женские стрижки</h3>
+        <ul class="price-list">
+          <li><span>На короткие волосы</span><strong>700–1 000 ₽</strong></li>
+          <li><span>На средние волосы</span><strong>1 200–1 500 ₽</strong></li>
+          <li><span>На длинные волосы</span><strong>2 500 ₽</strong></li>
+          <li><span>Одним срезом</span><strong>700 ₽</strong></li>
+          <li><span>Стрижка чёлки</span><strong>300 ₽</strong></li>
+        </ul>
+      </article>
+
+      <!-- 08. Мужские и детские стрижки -->
+      <article class="service-card reveal" data-cat="hair">
+        <div class="service-num">08</div>
+        <h3>Мужские и детские<span class="service-sub">стрижки</span></h3>
+        <ul class="price-list">
+          <li><span>Мужская одной насадкой</span><strong>500–600 ₽</strong></li>
+          <li><span>Модельная мужская</span><strong>900 ₽</strong></li>
+          <li><span>Оформление бороды</span><strong>1 000 ₽</strong></li>
+          <li><span>Детская одной насадкой</span><strong>500 ₽</strong></li>
+          <li><span>Детская модельная</span><strong>700 ₽</strong></li>
+        </ul>
+      </article>
+
+      <!-- 09. Укладка и локоны -->
+      <article class="service-card reveal" data-cat="hair">
+        <div class="service-num">09</div>
+        <h3>Укладка и локоны</h3>
+        <ul class="price-list">
+          <li><span>Укладка на короткие волосы</span><strong>1 500 ₽</strong></li>
+          <li><span>Укладка на длинные волосы</span><strong>2 000 ₽</strong></li>
+          <li><span>Локоны</span><strong>2 500–3 500 ₽</strong></li>
+        </ul>
+      </article>
+
+      <!-- 10. Комбо-программы и абонементы -->
+      <article class="service-card service-card--accent reveal" data-cat="combo">
+        <div class="service-num">10</div>
+        <h3>Комбо<span class="service-sub">и абонементы</span></h3>
+
+        <!-- Комбо-программы -->
         <div class="combo-list">
           <div class="combo-item">
             <div class="combo-head">
@@ -1386,26 +1403,25 @@
             <p class="combo-desc">Всё тело (total)</p>
           </div>
         </div>
+
+        <!-- Абонементы -->
+        <div class="combo-subsection">
+          <span class="combo-subtitle">Абонементы на LPG</span>
+          <ul class="price-list">
+            <li><span>5 процедур</span><strong>8 000 ₽</strong></li>
+            <li><span>10 процедур</span><strong>15 000 ₽</strong></li>
+          </ul>
+        </div>
       </article>
 
-      <!-- 12. Массаж и уход за волосами -->
+      <!-- 11. Массаж и уход за волосами -->
       <article class="service-card reveal" data-cat="apparatus">
-        <div class="service-num">12</div>
+        <div class="service-num">11</div>
         <h3>Массаж и уход<span class="service-sub">за волосами</span></h3>
         <ul class="price-list">
           <li><div class="meta-name"><span>Расслабляющий массаж + микротоковая терапия лица</span><small>40 мин · экспресс-маска</small></div><strong>2 000 ₽</strong></li>
           <li><div class="meta-name"><span>Массаж ШВЗ</span><small>30 мин · ручной + аппаратный</small></div><strong>1 700 ₽</strong></li>
           <li><div class="meta-name"><span>Кератиновое выпрямление / ботокс для волос</span><small>3,5 ч · от длины и густоты</small></div><strong>от 3 500 ₽</strong></li>
-        </ul>
-      </article>
-
-      <!-- 13. Абонементы LPG -->
-      <article class="service-card service-card--accent reveal" data-cat="sub">
-        <div class="service-num">13</div>
-        <h3>Абонементы<span class="service-sub">на LPG по телу</span></h3>
-        <ul class="price-list">
-          <li><span>5 процедур</span><strong>8 000 ₽</strong></li>
-          <li><span>10 процедур</span><strong>15 000 ₽</strong></li>
         </ul>
       </article>
 
@@ -1418,7 +1434,7 @@
   <div class="container">
     <div class="seo-block reveal">
       <h3>Студия красоты в Рыбацком — СКУЛЬПТОР</h3>
-      <p>Студия красоты <strong>СКУЛЬПТОР</strong> находится в Рыбацком, по адресу Советский проспект, 16 — в шаговой доступности от станции метро <strong>Рыбацкое</strong>. Мы предлагаем полный спектр услуг по уходу за собой: стрижки и укладка, восковая депиляция, LPG массаж, лазерная эпиляция, ламинирование ресниц и аппаратные методики.</p>
+      <p>Студия красоты <strong>СКУЛЬПТОР</strong> находится в Рыбацком, по адресу Советский проспект, 16 — в шаговой доступности от станции метро <strong>Рыбацкое</strong>. Мы предлагаем полный спектр услуг по уходу за собой: стрижки и укладка, лазерная эпиляция, LPG массаж, ламинирование ресниц и аппаратные методики.</p>
 
       <h3>Парикмахерские услуги в Рыбацком</h3>
       <p>В нашей студии работают опытные мастера-парикмахеры. <strong>Женские стрижки</strong> на короткие, средние и длинные волосы, <strong>мужские стрижки</strong> одной насадкой и модельные, <strong>детские стрижки</strong>, оформление бороды и укладка — всё это можно сделать рядом с метро Рыбацкое. Мы используем только профессиональные материалы, безопасные для волос.</p>
@@ -1427,10 +1443,10 @@
       <p>Для тех, кто хочет улучшить контуры тела и избавиться от целлюлита, мы предлагаем <strong>LPG массаж</strong> — одна из самых востребованных процедур в нашей студии. Доступны как отдельные сеансы, так и выгодные <strong>абонементы на 5 и 10 процедур</strong>. Также мы проводим <strong>RF-лифтинг лица</strong> — аппаратную процедуру для подтяжки кожи и улучшения овала лица.</p>
 
       <h3>Лазерная эпиляция в Рыбацком</h3>
-      <p>Избавиться от нежелательных волос можно с помощью <strong>лазерной эпиляции</strong>. Мы обрабатываем все зоны: подмышки, бикини, руки, ноги. Комбинированные программы позволяют обработать несколько зон за один визит по выгодной цене.</p>
+      <p>Избавиться от нежелательных волос можно с помощью <strong>лазерной эпиляции</strong>. Мы обрабатываем все зоны: подмышки, бикини, руки, ноги, спину, живот и лицо. Отдельные прайсы для девушек и парней, а также комбинированные программы, которые позволяют обработать несколько зон за один визит по выгодной цене.</p>
 
-      <h3>Ламинирование ресниц и восковая депиляция</h3>
-      <p>Для выразительного взгляда — <strong>ламинирование ресниц</strong> с ботоксом и окрашиванием. Для гладкой кожи — <strong>восковая депиляция</strong> всех зон, включая глубокое бикини. Мы работаем и с девушками, и с парнями, используя только качественные воски и деликатные составы.</p>
+      <h3>Ламинирование ресниц</h3>
+      <p>Для выразительного взгляда — <strong>ламинирование ресниц</strong> с ботоксом и окрашиванием. Естественный изгиб, объём и блеск — результат держится больше месяца.</p>
 
       <p><strong>СКУЛЬПТОР — студия красоты в Рыбацком, где о вас позаботятся.</strong> Запишитесь онлайн или по телефону <a href="tel:+79934819004">+7 993 481 9004</a>.</p>
     </div>
