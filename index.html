@@ -967,6 +967,46 @@
     .footer-bottom{
       flex-direction:row; justify-content:space-between;
       align-items:center; padding-top:32px; font-size:12px;
+      flex-wrap:wrap;
+    }
+  }
+
+  /* ================= РАЗРАБОТЧИК В ФУТЕРЕ ================= */
+  .footer-bottom .developer{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    color:#7A756F;
+    text-decoration:none;
+    font-size:11px;
+    letter-spacing:.03em;
+    transition:color .3s;
+    line-height:1;
+  }
+  .footer-bottom .developer span{
+    white-space:nowrap;
+  }
+  .footer-bottom .developer img{
+    height:22px;
+    width:auto;
+    display:block;
+    opacity:.85;
+    transition:opacity .3s, transform .3s;
+    border-radius:4px;
+  }
+  .footer-bottom .developer:hover{
+    color:var(--accent);
+  }
+  .footer-bottom .developer:hover img{
+    opacity:1;
+    transform:translateY(-1px);
+  }
+  @media(min-width:900px){
+    .footer-bottom .developer{
+      font-size:12px;
+    }
+    .footer-bottom .developer img{
+      height:24px;
     }
   }
 
@@ -1520,6 +1560,10 @@
       <span>© 2026 Студия красоты СКУЛЬПТОР в Рыбацком. Все права защищены.</span>
       <a href="privacy.html">Политика конфиденциальности</a>
       <span>Санкт-Петербург · Рыбацкое · sculptorspb.ru</span>
+      <a href="https://t.me/albe_web" class="developer" target="_blank" rel="noopener noreferrer" aria-label="Разработано в Albe — перейти в Telegram">
+        <span>Разработано в</span>
+        <img src="images/Albe.webp" alt="Albe" width="24" height="24" />
+      </a>
     </div>
   </div>
 </footer>
