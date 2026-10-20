@@ -135,87 +135,108 @@ body.menu-open header,body.menu-open header.scrolled{z-index:120;background:tran
 .hero-ghost{position:absolute;bottom:8%;left:50%;transform:translateX(-50%);font-family:var(--ff-serif);font-weight:500;font-size:min(18vw,120px);line-height:1;color:transparent;-webkit-text-stroke:.8px rgba(143,150,157,.15);white-space:nowrap;pointer-events:none;user-select:none;z-index:4;letter-spacing:.02em;opacity:.9;text-transform:uppercase}
 @media(min-width:900px){.hero-ghost{top:50%;bottom:auto;transform:translate(-50%,-50%);font-size:clamp(80px,16vw,240px);-webkit-text-stroke:1px rgba(143,150,157,.12);opacity:1}}
 
-/* ===== БЕЙДЖИ: z-index выше hero-контента ===== */
-.hero-badges{position:absolute;inset:0;z-index:6;pointer-events:none;overflow:visible}
+/* ===== БУКВА А ИЗ БЕЙДЖЕЙ-БЛОКОВ ===== */
+.hero-badges{
+  position:absolute;
+  top:0;
+  bottom:0;
+  right:8%;
+  width:min(500px,40vw);
+  z-index:6;
+  pointer-events:none;
+  overflow:visible;
+}
 .hero-badge{
   position:absolute;
-  left:var(--x,0);
-  bottom:var(--y,20px);
-  display:inline-flex;align-items:center;gap:9px;
-  padding:13px 20px;
-  background:rgba(20,21,24,.92);
+  left:var(--x,50%);
+  bottom:var(--y,100px);
+  width:32%;
+  min-height:44px;
+  display:flex;align-items:center;justify-content:center;
+  padding:10px 8px;
+  background:rgba(20,21,24,.95);
   border:1px solid rgba(143,150,157,.55);
   color:#F2F4F7;
   font-family:var(--ff-sans);
-  font-size:12px;font-weight:500;letter-spacing:.12em;
-  text-transform:uppercase;line-height:1;white-space:nowrap;
+  font-size:11px;font-weight:500;letter-spacing:.04em;
+  text-transform:uppercase;line-height:1.2;text-align:center;
+  white-space:normal;
   cursor:pointer;pointer-events:auto;
   opacity:1;
-  transform:translate3d(0,0,0);
+  transform:translateX(-50%) translate3d(0,0,0) rotate(var(--rot,0deg));
+  transform-origin:center center;
   animation:badgeFall 2.8s cubic-bezier(.4,0,.2,1) backwards;
   animation-delay:var(--delay,0s);
-  transition:transform .25s ease,border-color .25s ease,background .25s ease;
+  transition:background .25s ease,border-color .25s ease,box-shadow .25s ease;
+  -webkit-backface-visibility:hidden;
+  backface-visibility:hidden;
 }
 .hero-badge:hover{
-  transform:translate3d(0,-3px,0);
+  background:rgba(255,0,102,.25);
   border-color:var(--accent);
-  background:rgba(255,0,102,.2);
+  box-shadow:0 0 0 1px var(--accent),0 12px 30px -8px rgba(255,0,102,.5);
 }
 .hero-badge:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.hero-badge-dot{
-  display:inline-block;width:6px;height:6px;
-  background:var(--accent);
-  transform:rotate(45deg);
-  flex-shrink:0;
-  animation:badgeDotPulse 2s ease-in-out infinite;
-}
-@keyframes badgeDotPulse{0%,100%{opacity:1}50%{opacity:.35}}
 @keyframes badgeFall{
-  0%{opacity:0;transform:translate3d(0,-100vh,0)}
-  12%{opacity:1}
-  100%{opacity:1;transform:translate3d(0,0,0)}
+  0%{opacity:0;transform:translateX(-50%) translate3d(0,-100vh,0) rotate(var(--startRot,0deg))}
+  14%{opacity:1}
+  100%{opacity:1;transform:translateX(-50%) translate3d(0,0,0) rotate(var(--rot,0deg))}
 }
 
-/* ==== DESKTOP ==== */
-.hero-badge:nth-child(1){--x:3%;--y:30px;--delay:.3s}
-.hero-badge:nth-child(2){--x:18%;--y:10px;--delay:.55s}
-.hero-badge:nth-child(3){--x:34%;--y:44px;--delay:.75s}
-.hero-badge:nth-child(4){--x:48%;--y:14px;--delay:1s}
-.hero-badge:nth-child(5){--x:62%;--y:38px;--delay:1.2s}
-.hero-badge:nth-child(6){--x:75%;--y:16px;--delay:1.45s}
-.hero-badge:nth-child(7){--x:87%;--y:36px;--delay:1.65s}
-.hero-badge:nth-child(8){--y:92px;--delay:1.9s;left:auto;right:3%}
+/* ==== ДЕСКТОП: БУКВА А ==== */
+/* 1 — вершина */
+.hero-badge:nth-child(1){--x:50%;--y:380px;--rot:0deg;--startRot:-25deg;--delay:.2s}
+/* 2 — левая верхняя ножка */
+.hero-badge:nth-child(2){--x:33%;--y:300px;--rot:-3deg;--startRot:-40deg;--delay:.4s}
+/* 3 — правая верхняя ножка */
+.hero-badge:nth-child(3){--x:67%;--y:300px;--rot:3deg;--startRot:35deg;--delay:.6s}
+/* 4 — левая середина (перекладина) */
+.hero-badge:nth-child(4){--x:17%;--y:220px;--rot:-1deg;--startRot:-35deg;--delay:.8s}
+/* 5 — центр перекладины */
+.hero-badge:nth-child(5){--x:50%;--y:220px;--rot:0deg;--startRot:20deg;--delay:1s}
+/* 6 — правая середина (перекладина) */
+.hero-badge:nth-child(6){--x:83%;--y:220px;--rot:1deg;--startRot:35deg;--delay:1.2s}
+/* 7 — левая нижняя ножка */
+.hero-badge:nth-child(7){--x:16%;--y:140px;--rot:-4deg;--startRot:-45deg;--delay:1.4s}
+/* 8 — правая нижняя ножка */
+.hero-badge:nth-child(8){--x:84%;--y:140px;--rot:4deg;--startRot:45deg;--delay:1.6s}
 
-/* ==== MOBILE: 4×2, #8 (Массаж и уход) — справа у края ==== */
+/* ==== МОБИЛЬНЫЕ ==== */
 @media(max-width:767px){
-  .hero-badge{font-size:10.5px;padding:9px 12px;letter-spacing:.08em;gap:6px;animation-duration:2.5s}
-  .hero-badge-dot{width:5px;height:5px}
-  .hero-badge:nth-child(1){--x:3%;--y:14px;--delay:.25s}
-  .hero-badge:nth-child(2){--x:52%;--y:14px;--delay:.45s}
-  .hero-badge:nth-child(3){--x:3%;--y:52px;--delay:.7s}
-  .hero-badge:nth-child(4){--x:52%;--y:52px;--delay:.9s}
-  .hero-badge:nth-child(5){--x:3%;--y:90px;--delay:1.15s}
-  .hero-badge:nth-child(6){--x:52%;--y:90px;--delay:1.35s}
-  .hero-badge:nth-child(7){--x:3%;--y:128px;--delay:1.6s}
-  .hero-badge:nth-child(8){--y:128px;--delay:1.8s;left:auto;right:3%}
+  .hero-badges{right:3%;width:94%;max-width:none}
+  .hero-badge{
+    width:30%;
+    min-height:36px;
+    padding:7px 6px;
+    font-size:9px;
+    letter-spacing:.03em;
+    animation-duration:2.5s;
+  }
+  .hero-badge:nth-child(1){--x:50%;--y:280px;--delay:.2s}
+  .hero-badge:nth-child(2){--x:33%;--y:220px;--delay:.35s}
+  .hero-badge:nth-child(3){--x:67%;--y:220px;--delay:.5s}
+  .hero-badge:nth-child(4){--x:17%;--y:160px;--delay:.65s}
+  .hero-badge:nth-child(5){--x:50%;--y:160px;--delay:.8s}
+  .hero-badge:nth-child(6){--x:83%;--y:160px;--delay:.95s}
+  .hero-badge:nth-child(7){--x:16%;--y:100px;--delay:1.1s}
+  .hero-badge:nth-child(8){--x:84%;--y:100px;--delay:1.25s}
 }
 @media(max-width:767px) and (max-height:700px){
-  .hero-badge{font-size:10px;padding:7px 10px}
-  .hero-badge:nth-child(1){--y:10px}
-  .hero-badge:nth-child(2){--y:10px}
-  .hero-badge:nth-child(3){--y:44px}
-  .hero-badge:nth-child(4){--y:44px}
-  .hero-badge:nth-child(5){--y:78px}
-  .hero-badge:nth-child(6){--y:78px}
-  .hero-badge:nth-child(7){--y:112px}
-  .hero-badge:nth-child(8){--y:112px;left:auto;right:3%}
+  .hero-badge{min-height:32px;font-size:8px;padding:5px 5px}
+  .hero-badge:nth-child(1){--y:250px}
+  .hero-badge:nth-child(2){--y:195px}
+  .hero-badge:nth-child(3){--y:195px}
+  .hero-badge:nth-child(4){--y:140px}
+  .hero-badge:nth-child(5){--y:140px}
+  .hero-badge:nth-child(6){--y:140px}
+  .hero-badge:nth-child(7){--y:85px}
+  .hero-badge:nth-child(8){--y:85px}
 }
-@media(max-width:359px){
-  .hero-badge:nth-child(8){font-size:9px;padding:7px 9px;letter-spacing:.05em}
+@media(max-width:380px){
+  .hero-badge{font-size:8px;padding:6px 4px;min-height:32px}
 }
 @media(prefers-reduced-motion:reduce){
-  .hero-badge{animation:none;opacity:1;transform:translate3d(0,0,0)}
-  .hero-badge-dot{animation:none}
+  .hero-badge{animation:none;opacity:1;transform:translateX(-50%) rotate(var(--rot,0deg))}
 }
 
 .hero-inner{position:relative;z-index:5;width:100%;display:grid;grid-template-columns:1fr;gap:40px;align-items:center}
@@ -486,14 +507,14 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
 <div class="hero-ghost">СКУЛЬПТОР</div>
 
 <div class="hero-badges" aria-label="Популярные услуги">
-  <button class="hero-badge" data-service="lpg" type="button"><span class="hero-badge-dot"></span>LPG массаж</button>
-  <button class="hero-badge" data-service="laserWomen" type="button"><span class="hero-badge-dot"></span>Лазерная эпиляция</button>
-  <button class="hero-badge" data-service="lashes" type="button"><span class="hero-badge-dot"></span>Ресницы</button>
-  <button class="hero-badge" data-service="rf" type="button"><span class="hero-badge-dot"></span>RF-лифтинг</button>
-  <button class="hero-badge" data-service="hairWomen" type="button"><span class="hero-badge-dot"></span>Женские стрижки</button>
-  <button class="hero-badge" data-service="hairMen" type="button"><span class="hero-badge-dot"></span>Мужские стрижки</button>
-  <button class="hero-badge" data-service="combo" type="button"><span class="hero-badge-dot"></span>Комбо</button>
-  <button class="hero-badge" data-service="care" type="button"><span class="hero-badge-dot"></span>Массаж и уход</button>
+  <button class="hero-badge" data-service="lpg" type="button">LPG</button>
+  <button class="hero-badge" data-service="laserWomen" type="button">Лазер</button>
+  <button class="hero-badge" data-service="lashes" type="button">Ресницы</button>
+  <button class="hero-badge" data-service="rf" type="button">RF-лифтинг</button>
+  <button class="hero-badge" data-service="hairWomen" type="button">Женские</button>
+  <button class="hero-badge" data-service="hairMen" type="button">Мужские</button>
+  <button class="hero-badge" data-service="combo" type="button">Комбо</button>
+  <button class="hero-badge" data-service="care" type="button">Массаж</button>
 </div>
 
 <div class="container hero-inner">
