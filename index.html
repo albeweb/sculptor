@@ -32,8 +32,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="preload" as="image" href="images/Atest.webp">
-<link rel="preload" as="image" href="images/Btest.webp">
+<link rel="preload" as="image" href="images/video-poster.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -120,13 +119,14 @@ body.menu-open header,body.menu-open header.scrolled{z-index:120;background:tran
 .hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;overflow:hidden;padding:84px 0 60px;background:var(--bg)}
 @media(min-width:900px){.hero{padding:100px 0 80px}}
 .hero-video-bg{position:absolute;inset:0;overflow:hidden;z-index:0;pointer-events:none;background:#131416}
-.hero-video-bg iframe{position:absolute;top:50%;left:50%;width:100vw;height:56.25vw;min-height:100svh;min-width:177.77svh;transform:translate(-50%,-50%);pointer-events:none}
-.hero-video-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(19,20,22,.85) 0%,rgba(19,20,22,.4) 50%,rgba(19,20,22,.95) 100%);z-index:1;pointer-events:none}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse at 50% 45%,#000 15%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at 50% 45%,#000 15%,transparent 70%);pointer-events:none;z-index:2}
+.hero-video-bg iframe{position:absolute;top:50%;left:50%;width:100vw;height:56.25vw;min-height:100svh;min-width:177.77svh;transform:translate(-50%,-50%);pointer-events:none;z-index:1}
+.hero-video-poster{position:absolute;top:50%;left:50%;width:100vw;height:56.25vw;min-height:100svh;min-width:177.77svh;transform:translate(-50%,-50%);object-fit:cover;pointer-events:none;z-index:2;transition:opacity 1s ease}
+.hero-video-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(19,20,22,.85) 0%,rgba(19,20,22,.4) 50%,rgba(19,20,22,.95) 100%);z-index:3;pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse at 50% 45%,#000 15%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at 50% 45%,#000 15%,transparent 70%);pointer-events:none;z-index:4}
 @media(min-width:900px){.hero-grid{background-size:80px 80px}}
-.hero-ghost{position:absolute;bottom:8%;left:50%;transform:translateX(-50%);font-family:var(--ff-serif);font-weight:500;font-size:min(18vw,120px);line-height:1;color:transparent;-webkit-text-stroke:.8px rgba(143,150,157,.15);white-space:nowrap;pointer-events:none;user-select:none;z-index:1;letter-spacing:.02em;opacity:.9;text-transform:uppercase}
+.hero-ghost{position:absolute;bottom:8%;left:50%;transform:translateX(-50%);font-family:var(--ff-serif);font-weight:500;font-size:min(18vw,120px);line-height:1;color:transparent;-webkit-text-stroke:.8px rgba(143,150,157,.15);white-space:nowrap;pointer-events:none;user-select:none;z-index:4;letter-spacing:.02em;opacity:.9;text-transform:uppercase}
 @media(min-width:900px){.hero-ghost{top:50%;bottom:auto;transform:translate(-50%,-50%);font-size:clamp(80px,16vw,240px);-webkit-text-stroke:1px rgba(143,150,157,.12);opacity:1}}
-.hero-inner{position:relative;z-index:3;width:100%;display:grid;grid-template-columns:1fr;gap:40px;align-items:center}
+.hero-inner{position:relative;z-index:5;width:100%;display:grid;grid-template-columns:1fr;gap:40px;align-items:center}
 @media(min-width:1000px){.hero-inner{grid-template-columns:1.2fr 1fr;gap:70px}}
 .hero-content{max-width:760px}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:20px;padding:9px 16px 9px 12px;border:1px solid rgba(255,0,102,.35);background:rgba(27,29,33,.6);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);line-height:1;font-weight:500}
@@ -165,23 +165,93 @@ body.menu-open header,body.menu-open header.scrolled{z-index:120;background:tran
 @media(min-width:640px){.hero-trust{font-size:13px;gap:18px}.hero-trust .stars svg{width:14px;height:14px}.hero-trust .sep{height:18px}}
 .hero-visual{display:none;position:relative}
 @media(min-width:1000px){.hero-visual{display:flex;justify-content:flex-end;align-items:center}}
-.hero-card{position:relative;height:min(58svh,520px);aspect-ratio:4/5;max-width:100%;overflow:hidden;background:linear-gradient(160deg,#26292E 0%,#1B1D21 55%,#131416 100%);box-shadow:0 40px 80px -40px rgba(0,0,0,.6),0 0 0 1px var(--silver),0 0 60px -20px rgba(255,255,255,.08)}
-.hero-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 25% 30%,rgba(255,255,255,.12) 0%,transparent 45%),radial-gradient(circle at 80% 80%,rgba(143,150,157,.15) 0%,transparent 55%)}
-.hero-card-badge{position:absolute;top:20px;left:20px;padding:9px 15px;background:rgba(19,20,22,.82);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid var(--silver);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--silver);z-index:4;line-height:1;font-weight:600}
-.hero-card-meta{position:absolute;bottom:20px;left:20px;right:20px;display:flex;justify-content:space-between;align-items:flex-end;z-index:4;gap:12px}
-.hero-card-meta-text{background:rgba(19,20,22,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);padding:14px 18px;max-width:220px}
-.hero-card-meta-text strong{display:block;font-family:var(--ff-serif);font-size:20px;font-weight:500;line-height:1.15;color:var(--ink);margin-bottom:2px}
-.hero-card-meta-text span{font-size:10px;letter-spacing:.08em;color:var(--ink-soft)}
-.hero-card-circle{width:60px;height:60px;flex-shrink:0;background:var(--btn-grad);color:#FFF;display:flex;align-items:center;justify-content:center;font-family:var(--ff-serif);font-size:22px;font-style:italic;font-weight:600;box-shadow:0 12px 30px -8px rgba(255,0,102,.5)}
-.hero-card--ba{cursor:ew-resize;background:#1B1D21}
-.hero-card--ba::before{display:none}
-.hero-card--ba .ba-img{position:absolute;inset:0;background-size:cover;background-position:center;pointer-events:none}
-.hero-card--ba .ba-before{background-color:#1B1D21;background-image:url('images/Atest.webp')}
-.hero-card--ba .ba-after{background-color:#131416;background-image:url('images/Btest.webp');clip-path:inset(0 0 0 50%)}
-.hero-card--ba .ba-handle{pointer-events:none;z-index:2}
-.hero-card--ba .ba-label{position:absolute;top:16px;padding:9px 15px;background:rgba(19,20,22,.88);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid var(--silver);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#FFF;font-weight:600;line-height:1;z-index:3}
-.hero-card--ba .ba-label.left{left:16px;border-left:2px solid var(--accent)}
-.hero-card--ba .ba-label.right{right:16px;border-right:2px solid var(--accent)}
+
+/* === Карусель видео в hero === */
+.hero-video-carousel{
+  position:relative;
+  height:min(76vh,720px);
+  aspect-ratio:547/1000;
+  max-width:100%;
+  border:2px solid var(--accent);
+  box-shadow:
+    0 0 0 1px rgba(255,0,102,.25),
+    0 0 60px -10px rgba(255,0,102,.5),
+    0 40px 80px -40px rgba(0,0,0,.7);
+  overflow:hidden;
+  background:#0A0B0C;
+  pointer-events:none;
+  flex-shrink:0;
+}
+.hero-video-carousel .carousel-poster{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:1;
+  pointer-events:none;
+}
+.hero-video-carousel iframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity 1.2s cubic-bezier(.4,0,.2,1);
+  z-index:2;
+  background:transparent;
+}
+.hero-video-carousel iframe.active{
+  opacity:1;
+  z-index:3;
+}
+.hero-video-carousel .carousel-badge{
+  position:absolute;
+  top:16px;
+  left:16px;
+  padding:8px 14px;
+  background:rgba(12,12,12,.85);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border:1px solid var(--accent);
+  font-size:10px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--accent-deep);
+  font-weight:600;
+  line-height:1;
+  z-index:4;
+}
+.hero-video-carousel .carousel-dots{
+  position:absolute;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:10px;
+  z-index:4;
+}
+.hero-video-carousel .carousel-dots .dot{
+  width:8px;
+  height:8px;
+  background:rgba(255,255,255,.35);
+  transition:all .4s cubic-bezier(.2,.8,.3,1);
+}
+.hero-video-carousel .carousel-dots .dot.active{
+  background:var(--accent);
+  box-shadow:0 0 12px var(--accent);
+  transform:scale(1.4);
+}
+@media(max-height:800px){
+  .hero-video-carousel{height:min(72vh,600px)}
+}
+@media(max-width:1100px){
+  .hero-video-carousel{height:min(72vh,560px)}
+}
+/* === /Карусель видео === */
+
 @media(max-height:700px) and (max-width:899px){.hero{padding:76px 0 28px}.hero-eyebrow{margin-bottom:14px}.hero h1{margin-bottom:14px}.hero p.lead{margin-bottom:20px}.hero-actions{margin-bottom:22px}.hero-trust{padding-top:16px}}
 @media(max-height:600px) and (max-width:899px){.hero-eyebrow{display:none}.hero-trust .sep,.hero-trust .hide-mobile{display:none}}
 section{padding:72px 0;position:relative}
@@ -381,7 +451,14 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
 
 <section class="hero">
 <div class="hero-video-bg" aria-hidden="true">
-<iframe src="https://kinescope.io/embed/0Gm2EFhbQYdZ8A1hRWb6pp?autoplay=true&muted=true&loop=true&controls=false&ui=false" frameborder="0" allow="autoplay; fullscreen; picture-in-picture;" tabindex="-1"></iframe>
+    <img class="hero-video-poster" src="images/video-poster.webp" alt="Студия красоты СКУЛЬПТОР" fetchpriority="high">
+    <iframe 
+        loading="eager"
+        src="https://kinescope.io/embed/0Gm2EFhbQYdZ8A1hRWb6pp?autoplay=true&muted=true&loop=true&controls=false&ui=false&preload=auto" 
+        frameborder="0" 
+        allow="autoplay; fullscreen; picture-in-picture;" 
+        tabindex="-1">
+    </iframe>
 </div>
 <div class="hero-video-overlay" aria-hidden="true"></div>
 <div class="hero-grid"></div>
@@ -413,18 +490,20 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
 </div>
 </div>
 <div class="hero-visual">
-<div class="hero-card hero-card--ba" id="heroBa" aria-label="Результат до и после LPG массажа">
-<div class="hero-card-badge">Результат · LPG</div>
-<div class="ba-img ba-before"></div>
-<div class="ba-img ba-after" id="heroBaAfter"></div>
-<span class="ba-label left">До</span>
-<span class="ba-label right">После</span>
-<div class="ba-handle" id="heroBaHandle"></div>
-<div class="hero-card-meta">
-<div class="hero-card-meta-text"><strong>LPG массаж</strong><span>Курс из 5 процедур</span></div>
-<div class="hero-card-circle">↗</div>
-</div>
-</div>
+  <div class="hero-video-carousel" id="heroVideoCarousel" aria-label="Карусель видео студии">
+    <img class="carousel-poster" src="images/video-poster.webp" alt="">
+    <div class="carousel-badge">Видео · Студия</div>
+    <iframe data-src="https://kinescope.io/embed/jqcLkNeNEjAUHSvTwRXywa?autoplay=true&muted=true&loop=true&controls=false&ui=false&preload=auto" src="https://kinescope.io/embed/jqcLkNeNEjAUHSvTwRXywa?autoplay=true&muted=true&loop=true&controls=false&ui=false&preload=auto" allow="autoplay; fullscreen; picture-in-picture;" frameborder="0" tabindex="-1" class="active" loading="eager"></iframe>
+    <iframe data-src="https://kinescope.io/embed/m3zUbzN3629fwicqoQgSxS?autoplay=true&muted=true&loop=true&controls=false&ui=false&preload=auto" allow="autoplay; fullscreen; picture-in-picture;" frameborder="0" tabindex="-1" loading="eager"></iframe>
+    <iframe data-src="https://kinescope.io/embed/hPUFaWG6xR49PtkMwwJ8uo?autoplay=true&muted=true&loop=true&controls=false&ui=false&preload=auto" allow="autoplay; fullscreen; picture-in-picture;" frameborder="0" tabindex="-1" loading="eager"></iframe>
+    <iframe data-src="https://kinescope.io/embed/tN6w467YVrSRGojJGo8XWU?autoplay=true&muted=true&loop=true&controls=false&ui=false&preload=auto" allow="autoplay; fullscreen; picture-in-picture;" frameborder="0" tabindex="-1" loading="eager"></iframe>
+    <div class="carousel-dots" aria-hidden="true">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </div>
 </div>
 </div>
 </section>
@@ -728,6 +807,99 @@ var $=function(s){return document.querySelector(s)},
     on=function(el,ev,fn,opt){el.addEventListener(ev,fn,opt||false)},
     header=$('#header'),sticky=$('#stickyCta'),hero=$('.hero'),footer=$('footer'),
     burger=$('#burger'),menu=$('#mobileMenu'),menuOpen=false;
+
+// Плавное скрытие постера фонового видео
+var poster = $('.hero-video-poster');
+var bgIframe = $('.hero-video-bg iframe');
+if (poster && bgIframe) {
+    var hidePoster = function() {
+        if (!poster) return;
+        poster.style.opacity = '0';
+        setTimeout(function() { poster.style.display = 'none'; }, 1000);
+    };
+    bgIframe.addEventListener('load', function() { setTimeout(hidePoster, 800); });
+    setTimeout(hidePoster, 3000);
+}
+
+// === Карусель видео: перезагрузка src для гарантированного автоплея ===
+var carousel = $('#heroVideoCarousel');
+if (carousel) {
+    var carouselIframes = carousel.querySelectorAll('iframe');
+    var carouselDots = carousel.querySelectorAll('.carousel-dots .dot');
+    var currentIndex = 0;
+    var CAROUSEL_INTERVAL = 8000;
+    var carouselTimer = null;
+    var switching = false;
+
+    // Функция активации слайда с принудительной перезагрузкой iframe
+    function activateSlide(index) {
+        if (switching) return;
+        switching = true;
+
+        carouselIframes.forEach(function(f, i) {
+            var isActive = (i === index);
+            if (isActive) {
+                var src = f.getAttribute('data-src');
+                // Первый слайд уже загружен изначально, дальше — перезагружаем для autoplay
+                if (f.src && f.src !== 'about:blank' && f.src !== window.location.href) {
+                    // Очищаем src, чтобы браузер выгрузил плеер
+                    f.src = 'about:blank';
+                    // Через два requestAnimationFrame ставим src заново — гарантированный autoplay
+                    requestAnimationFrame(function() {
+                        requestAnimationFrame(function() {
+                            f.src = src;
+                            setTimeout(function() { switching = false; }, 600);
+                        });
+                    });
+                } else {
+                    f.src = src;
+                    setTimeout(function() { switching = false; }, 600);
+                }
+                f.classList.add('active');
+            } else {
+                f.classList.remove('active');
+            }
+        });
+
+        carouselDots.forEach(function(d, i) {
+            d.classList.toggle('active', i === index);
+        });
+
+        currentIndex = index;
+    }
+
+    function nextSlide() {
+        var next = (currentIndex + 1) % carouselIframes.length;
+        activateSlide(next);
+    }
+
+    function startCarousel() {
+        if (carouselIframes.length < 2 || carouselTimer) return;
+        carouselTimer = setInterval(nextSlide, CAROUSEL_INTERVAL);
+    }
+
+    function stopCarousel() {
+        if (carouselTimer) {
+            clearInterval(carouselTimer);
+            carouselTimer = null;
+        }
+    }
+
+    // Запускаем / останавливаем карусель по видимости
+    if ('IntersectionObserver' in window) {
+        var carouselObs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) startCarousel();
+                else stopCarousel();
+            });
+        }, { threshold: 0.15 });
+        carouselObs.observe(carousel);
+    } else {
+        startCarousel();
+    }
+}
+// === /Карусель ===
+
 on(window,'scroll',function(){
   var y=window.scrollY;
   header.classList.toggle('scrolled',y>20);
@@ -785,27 +957,6 @@ function setupBA(wrap,after,handle){
   on(window,'touchend',end);
 }
 setupBA($('#baWrap'),$('#baAfter'),$('#baHandle'));
-var hBa=$('#heroBa'),hBaAfter=$('#heroBaAfter'),hBaHandle=$('#heroBaHandle');
-setupBA(hBa,hBaAfter,hBaHandle);
-if(hBa&&hBaAfter&&hBaHandle){
-  var tick=0,total=36,stopped=false;
-  function stopHint(){
-    if(stopped)return;
-    stopped=true;
-    clearInterval(hintInterval);
-    hBaAfter.style.clipPath='inset(0 0 0 50%)';
-    hBaHandle.style.left='50%';
-  }
-  var hintInterval=setInterval(function(){
-    tick++;
-    var p=.5+.18*Math.sin(tick*.35);
-    hBaAfter.style.clipPath='inset(0 0 0 '+(p*100)+'%)';
-    hBaHandle.style.left=(p*100)+'%';
-    if(tick>=total)stopHint();
-  },60);
-  on(hBa,'mousedown',stopHint,{once:true});
-  on(hBa,'touchstart',stopHint,{once:true,passive:true});
-}
 })();
 </script>
 
