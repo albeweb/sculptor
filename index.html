@@ -124,119 +124,109 @@ body.menu-open header,body.menu-open header.scrolled{z-index:120;background:tran
 .mobile-menu-footer .contact-line{font-size:14px;color:#9BA1A8;line-height:1.7}
 .mobile-menu-footer .contact-line a{color:var(--accent-deep);text-decoration:none;font-family:var(--ff-serif);font-size:22px;display:block;margin-bottom:8px}
 .mobile-menu-footer .btn{width:100%}
-.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;overflow:hidden;padding:84px 0 60px;background:var(--bg);contain:layout style paint}
-@media(min-width:900px){.hero{padding:100px 0 80px}}
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;overflow:hidden;padding:84px 0 120px;background:var(--bg);contain:layout style paint}
+@media(min-width:900px){.hero{padding:100px 0 140px}}
 .hero-video-bg{position:absolute;inset:0;overflow:hidden;z-index:0;pointer-events:none;background:#131416}
 .hero-video-bg iframe{position:absolute;top:50%;left:50%;width:100vw;height:56.25vw;min-height:100svh;min-width:177.77svh;transform:translate(-50%,-50%);pointer-events:none;z-index:1}
 .hero-video-poster{position:absolute;top:50%;left:50%;width:100vw;height:56.25vw;min-height:100svh;min-width:177.77svh;transform:translate(-50%,-50%);object-fit:cover;pointer-events:none;z-index:2;transition:opacity 1s ease}
 .hero-video-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(19,20,22,.85) 0%,rgba(19,20,22,.4) 50%,rgba(19,20,22,.95) 100%);z-index:3;pointer-events:none}
 .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse at 50% 45%,#000 15%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at 50% 45%,#000 15%,transparent 70%);pointer-events:none;z-index:4}
 @media(min-width:900px){.hero-grid{background-size:80px 80px}}
-.hero-ghost{position:absolute;bottom:8%;left:50%;transform:translateX(-50%);font-family:var(--ff-serif);font-weight:500;font-size:min(18vw,120px);line-height:1;color:transparent;-webkit-text-stroke:.8px rgba(143,150,157,.15);white-space:nowrap;pointer-events:none;user-select:none;z-index:4;letter-spacing:.02em;opacity:.9;text-transform:uppercase}
-@media(min-width:900px){.hero-ghost{top:50%;bottom:auto;transform:translate(-50%,-50%);font-size:clamp(80px,16vw,240px);-webkit-text-stroke:1px rgba(143,150,157,.12);opacity:1}}
 
-/* ===== БУКВА А ИЗ БЕЙДЖЕЙ-БЛОКОВ ===== */
+/* ===== ТОПОВАЯ КАЛЛИГРАФИЯ "СА" ===== */
+.hero-logo-art{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:min(75vw, 550px);
+  height:min(75vw, 550px);
+  z-index:2;
+  pointer-events:none;
+  opacity:.95;
+  filter:drop-shadow(0 0 20px rgba(255,0,102,.4));
+}
+.hero-logo-art svg{width:100%;height:100%;overflow:visible}
+.hero-logo-art path{
+  fill:none;
+  stroke:url(#pinkGrad);
+  stroke-width:10;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-dasharray:2000;
+  stroke-dashoffset:2000;
+  animation:drawLogo 4s cubic-bezier(.2,.8,.2,1) forwards;
+}
+.hero-logo-art .path-c{animation-delay:0.2s}
+.hero-logo-art .path-a-1{animation-delay:1.2s}
+.hero-logo-art .path-a-2{animation-delay:2.2s}
+
+@keyframes drawLogo{
+  0%{stroke-dashoffset:2000}
+  100%{stroke-dashoffset:0}
+}
+
+/* ===== ГОРИЗОНТАЛЬНАЯ ПОЛОСА ИЗ БЕЙДЖЕЙ (С ПАДЕНИЕМ) ===== */
 .hero-badges{
   position:absolute;
-  top:0;
-  bottom:0;
-  right:8%;
-  width:min(500px,40vw);
+  bottom:40px;
+  left:0;right:0;
   z-index:6;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
+  padding:0 var(--pad);
   pointer-events:none;
-  overflow:visible;
 }
 .hero-badge{
-  position:absolute;
-  left:var(--x,50%);
-  bottom:var(--y,100px);
-  width:32%;
-  min-height:44px;
-  display:flex;align-items:center;justify-content:center;
-  padding:10px 8px;
-  background:rgba(20,21,24,.95);
-  border:1px solid rgba(143,150,157,.55);
+  display:inline-flex;align-items:center;gap:9px;
+  padding:11px 18px;
+  background:rgba(20,21,24,.88);
+  border:1px solid rgba(143,150,157,.45);
   color:#F2F4F7;
   font-family:var(--ff-sans);
-  font-size:11px;font-weight:500;letter-spacing:.04em;
-  text-transform:uppercase;line-height:1.2;text-align:center;
-  white-space:normal;
+  font-size:11px;font-weight:500;letter-spacing:.1em;
+  text-transform:uppercase;line-height:1;
   cursor:pointer;pointer-events:auto;
-  opacity:1;
-  transform:translateX(-50%) translate3d(0,0,0) rotate(var(--rot,0deg));
-  transform-origin:center center;
-  animation:badgeFall 2.8s cubic-bezier(.4,0,.2,1) backwards;
-  animation-delay:var(--delay,0s);
-  transition:background .25s ease,border-color .25s ease,box-shadow .25s ease;
-  -webkit-backface-visibility:hidden;
-  backface-visibility:hidden;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  transition:all .3s ease;
+  opacity:0;
+  transform:translateY(-100vh);
+  animation:badgeDrop 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
+/* Каскадная задержка для падения */
+.hero-badge:nth-child(1){animation-delay:.1s}
+.hero-badge:nth-child(2){animation-delay:.2s}
+.hero-badge:nth-child(3){animation-delay:.3s}
+.hero-badge:nth-child(4){animation-delay:.4s}
+.hero-badge:nth-child(5){animation-delay:.5s}
+.hero-badge:nth-child(6){animation-delay:.6s}
+.hero-badge:nth-child(7){animation-delay:.7s}
+.hero-badge:nth-child(8){animation-delay:.8s}
+
+@keyframes badgeDrop{
+  0%{opacity:0;transform:translateY(-100vh)}
+  30%{opacity:1}
+  100%{opacity:1;transform:translateY(0)}
+}
+
 .hero-badge:hover{
-  background:rgba(255,0,102,.25);
+  transform:translateY(-3px) !important;
   border-color:var(--accent);
-  box-shadow:0 0 0 1px var(--accent),0 12px 30px -8px rgba(255,0,102,.5);
+  background:rgba(255,0,102,.15);
+  box-shadow:0 8px 20px -8px rgba(255,0,102,.3);
 }
-.hero-badge:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-@keyframes badgeFall{
-  0%{opacity:0;transform:translateX(-50%) translate3d(0,-100vh,0) rotate(var(--startRot,0deg))}
-  14%{opacity:1}
-  100%{opacity:1;transform:translateX(-50%) translate3d(0,0,0) rotate(var(--rot,0deg))}
+.hero-badge-dot{
+  width:5px;height:5px;
+  background:var(--accent);
+  transform:rotate(45deg);
+  flex-shrink:0;
 }
-
-/* ==== ДЕСКТОП: БУКВА А ==== */
-/* 1 — вершина */
-.hero-badge:nth-child(1){--x:50%;--y:380px;--rot:0deg;--startRot:-25deg;--delay:.2s}
-/* 2 — левая верхняя ножка */
-.hero-badge:nth-child(2){--x:33%;--y:300px;--rot:-3deg;--startRot:-40deg;--delay:.4s}
-/* 3 — правая верхняя ножка */
-.hero-badge:nth-child(3){--x:67%;--y:300px;--rot:3deg;--startRot:35deg;--delay:.6s}
-/* 4 — левая середина (перекладина) */
-.hero-badge:nth-child(4){--x:17%;--y:220px;--rot:-1deg;--startRot:-35deg;--delay:.8s}
-/* 5 — центр перекладины */
-.hero-badge:nth-child(5){--x:50%;--y:220px;--rot:0deg;--startRot:20deg;--delay:1s}
-/* 6 — правая середина (перекладина) */
-.hero-badge:nth-child(6){--x:83%;--y:220px;--rot:1deg;--startRot:35deg;--delay:1.2s}
-/* 7 — левая нижняя ножка */
-.hero-badge:nth-child(7){--x:16%;--y:140px;--rot:-4deg;--startRot:-45deg;--delay:1.4s}
-/* 8 — правая нижняя ножка */
-.hero-badge:nth-child(8){--x:84%;--y:140px;--rot:4deg;--startRot:45deg;--delay:1.6s}
-
-/* ==== МОБИЛЬНЫЕ ==== */
 @media(max-width:767px){
-  .hero-badges{right:3%;width:94%;max-width:none}
-  .hero-badge{
-    width:30%;
-    min-height:36px;
-    padding:7px 6px;
-    font-size:9px;
-    letter-spacing:.03em;
-    animation-duration:2.5s;
-  }
-  .hero-badge:nth-child(1){--x:50%;--y:280px;--delay:.2s}
-  .hero-badge:nth-child(2){--x:33%;--y:220px;--delay:.35s}
-  .hero-badge:nth-child(3){--x:67%;--y:220px;--delay:.5s}
-  .hero-badge:nth-child(4){--x:17%;--y:160px;--delay:.65s}
-  .hero-badge:nth-child(5){--x:50%;--y:160px;--delay:.8s}
-  .hero-badge:nth-child(6){--x:83%;--y:160px;--delay:.95s}
-  .hero-badge:nth-child(7){--x:16%;--y:100px;--delay:1.1s}
-  .hero-badge:nth-child(8){--x:84%;--y:100px;--delay:1.25s}
-}
-@media(max-width:767px) and (max-height:700px){
-  .hero-badge{min-height:32px;font-size:8px;padding:5px 5px}
-  .hero-badge:nth-child(1){--y:250px}
-  .hero-badge:nth-child(2){--y:195px}
-  .hero-badge:nth-child(3){--y:195px}
-  .hero-badge:nth-child(4){--y:140px}
-  .hero-badge:nth-child(5){--y:140px}
-  .hero-badge:nth-child(6){--y:140px}
-  .hero-badge:nth-child(7){--y:85px}
-  .hero-badge:nth-child(8){--y:85px}
-}
-@media(max-width:380px){
-  .hero-badge{font-size:8px;padding:6px 4px;min-height:32px}
-}
-@media(prefers-reduced-motion:reduce){
-  .hero-badge{animation:none;opacity:1;transform:translateX(-50%) rotate(var(--rot,0deg))}
+  .hero-badges{bottom:24px;gap:8px}
+  .hero-badge{font-size:9.5px;padding:8px 12px;gap:6px}
+  .hero-logo-art{width:90vw;height:90vw}
+  .hero{padding:84px 0 100px}
 }
 
 .hero-inner{position:relative;z-index:5;width:100%;display:grid;grid-template-columns:1fr;gap:40px;align-items:center}
@@ -276,7 +266,7 @@ body.menu-open header,body.menu-open header.scrolled{z-index:120;background:tran
 .hero-trust .sep{width:1px;height:16px;background:var(--line)}
 .hero-trust strong{color:var(--ink);font-weight:500}
 @media(min-width:640px){.hero-trust{font-size:13px;gap:18px}.hero-trust .stars svg{width:14px;height:14px}.hero-trust .sep{height:18px}}
-@media(max-height:700px) and (max-width:899px){.hero{padding:76px 0 28px}.hero-eyebrow{margin-bottom:14px}.hero h1{margin-bottom:14px}.hero p.lead{margin-bottom:20px}.hero-actions{margin-bottom:22px}.hero-trust{padding-top:16px}}
+@media(max-height:700px) and (max-width:899px){.hero{padding:76px 0 90px}.hero-eyebrow{margin-bottom:14px}.hero h1{margin-bottom:14px}.hero p.lead{margin-bottom:20px}.hero-actions{margin-bottom:22px}.hero-trust{padding-top:16px}}
 @media(max-height:600px) and (max-width:899px){.hero-eyebrow{display:none}.hero-trust .sep,.hero-trust .hide-mobile{display:none}}
 section{padding:72px 0;position:relative}
 @media(min-width:900px){section{padding:110px 0}}
@@ -504,17 +494,33 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
 </div>
 <div class="hero-video-overlay" aria-hidden="true"></div>
 <div class="hero-grid"></div>
-<div class="hero-ghost">СКУЛЬПТОР</div>
 
-<div class="hero-badges" aria-label="Популярные услуги">
-  <button class="hero-badge" data-service="lpg" type="button">LPG</button>
-  <button class="hero-badge" data-service="laserWomen" type="button">Лазер</button>
-  <button class="hero-badge" data-service="lashes" type="button">Ресницы</button>
-  <button class="hero-badge" data-service="rf" type="button">RF-лифтинг</button>
-  <button class="hero-badge" data-service="hairWomen" type="button">Женские</button>
-  <button class="hero-badge" data-service="hairMen" type="button">Мужские</button>
-  <button class="hero-badge" data-service="combo" type="button">Комбо</button>
-  <button class="hero-badge" data-service="care" type="button">Массаж</button>
+<!-- Анимированный логотип СА по центру -->
+<div class="hero-logo-art" aria-hidden="true">
+  <svg viewBox="0 0 500 500">
+    <defs>
+      <linearGradient id="pinkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#FF4D94" />
+        <stop offset="100%" stop-color="#FF0066" />
+      </linearGradient>
+    </defs>
+    
+    <!-- Каллиграфическая "С" -->
+    <path class="path-c" d="M 380 90 
+             C 220 30, 90 130, 90 280 
+             C 90 430, 230 470, 350 430 
+             C 380 420, 400 400, 410 380" />
+             
+    <!-- Каллиграфическая "А" (левая и правая вертикали) -->
+    <path class="path-a-1" d="M 320 440 
+             C 330 340, 340 230, 380 180 
+             C 400 155, 430 155, 450 190 
+             C 460 210, 460 230, 460 460" />
+             
+    <!-- Каллиграфическая перекладина "А" -->
+    <path class="path-a-2" d="M 270 390 
+             C 340 410, 400 380, 490 320" />
+  </svg>
 </div>
 
 <div class="container hero-inner">
@@ -544,6 +550,19 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
 </div>
 </div>
 </div>
+
+<!-- Горизонтальная полоса бейджей с падением -->
+<div class="hero-badges" aria-label="Популярные услуги">
+  <button class="hero-badge" data-service="lpg" type="button"><span class="hero-badge-dot"></span>LPG массаж</button>
+  <button class="hero-badge" data-service="laserWomen" type="button"><span class="hero-badge-dot"></span>Лазерная эпиляция</button>
+  <button class="hero-badge" data-service="lashes" type="button"><span class="hero-badge-dot"></span>Ресницы</button>
+  <button class="hero-badge" data-service="rf" type="button"><span class="hero-badge-dot"></span>RF-лифтинг</button>
+  <button class="hero-badge" data-service="hairWomen" type="button"><span class="hero-badge-dot"></span>Женские стрижки</button>
+  <button class="hero-badge" data-service="hairMen" type="button"><span class="hero-badge-dot"></span>Мужские стрижки</button>
+  <button class="hero-badge" data-service="combo" type="button"><span class="hero-badge-dot"></span>Комбо</button>
+  <button class="hero-badge" data-service="care" type="button"><span class="hero-badge-dot"></span>Массаж и уход</button>
+</div>
+
 </section>
 
 <div class="wv" style="background:#131416;color:#F8F8F6"><svg><use href="#i-wv"/></svg></div>
