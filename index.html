@@ -33,6 +33,8 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" as="image" href="images/video-poster.webp">
+<link rel="preload" as="image" href="images/AAtest.webp">
+<link rel="preload" as="image" href="images/BBtest.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -163,95 +165,6 @@ body.menu-open header,body.menu-open header.scrolled{z-index:120;background:tran
 .hero-trust .sep{width:1px;height:16px;background:var(--line)}
 .hero-trust strong{color:var(--ink);font-weight:500}
 @media(min-width:640px){.hero-trust{font-size:13px;gap:18px}.hero-trust .stars svg{width:14px;height:14px}.hero-trust .sep{height:18px}}
-.hero-visual{display:none;position:relative}
-@media(min-width:1000px){.hero-visual{display:flex;justify-content:flex-end;align-items:center}}
-
-/* === Карусель видео в hero === */
-.hero-video-carousel{
-  position:relative;
-  height:min(76vh,720px);
-  aspect-ratio:547/1000;
-  max-width:100%;
-  border:2px solid var(--accent);
-  box-shadow:
-    0 0 0 1px rgba(255,0,102,.25),
-    0 0 60px -10px rgba(255,0,102,.5),
-    0 40px 80px -40px rgba(0,0,0,.7);
-  overflow:hidden;
-  background:#0A0B0C;
-  pointer-events:none;
-  flex-shrink:0;
-}
-.hero-video-carousel .carousel-poster{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  z-index:1;
-  pointer-events:none;
-}
-.hero-video-carousel iframe{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  border:0;
-  pointer-events:none;
-  opacity:0;
-  transition:opacity 1.2s cubic-bezier(.4,0,.2,1);
-  z-index:2;
-  background:transparent;
-}
-.hero-video-carousel iframe.active{
-  opacity:1;
-  z-index:3;
-}
-.hero-video-carousel .carousel-badge{
-  position:absolute;
-  top:16px;
-  left:16px;
-  padding:8px 14px;
-  background:rgba(12,12,12,.85);
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
-  border:1px solid var(--accent);
-  font-size:10px;
-  letter-spacing:.22em;
-  text-transform:uppercase;
-  color:var(--accent-deep);
-  font-weight:600;
-  line-height:1;
-  z-index:4;
-}
-.hero-video-carousel .carousel-dots{
-  position:absolute;
-  bottom:20px;
-  left:50%;
-  transform:translateX(-50%);
-  display:flex;
-  gap:10px;
-  z-index:4;
-}
-.hero-video-carousel .carousel-dots .dot{
-  width:8px;
-  height:8px;
-  background:rgba(255,255,255,.35);
-  transition:all .4s cubic-bezier(.2,.8,.3,1);
-}
-.hero-video-carousel .carousel-dots .dot.active{
-  background:var(--accent);
-  box-shadow:0 0 12px var(--accent);
-  transform:scale(1.4);
-}
-@media(max-height:800px){
-  .hero-video-carousel{height:min(72vh,600px)}
-}
-@media(max-width:1100px){
-  .hero-video-carousel{height:min(72vh,560px)}
-}
-/* === /Карусель видео === */
-
 @media(max-height:700px) and (max-width:899px){.hero{padding:76px 0 28px}.hero-eyebrow{margin-bottom:14px}.hero h1{margin-bottom:14px}.hero p.lead{margin-bottom:20px}.hero-actions{margin-bottom:22px}.hero-trust{padding-top:16px}}
 @media(max-height:600px) and (max-width:899px){.hero-eyebrow{display:none}.hero-trust .sep,.hero-trust .hide-mobile{display:none}}
 section{padding:72px 0;position:relative}
@@ -488,22 +401,6 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
 <span class="sep hide-mobile"></span>
 <span class="hide-mobile">Рыбацкое · СПб</span>
 </div>
-</div>
-<div class="hero-visual">
-  <div class="hero-video-carousel" id="heroVideoCarousel" aria-label="Карусель видео студии">
-    <img class="carousel-poster" src="images/video-poster.webp" alt="">
-    <div class="carousel-badge">Видео · Студия</div>
-    <iframe data-src="https://kinescope.io/embed/jqcLkNeNEjAUHSvTwRXywa?autoplay=true&muted=true&loop=true&controls=false&ui=false&preload=auto" src="https://kinescope.io/embed/jqcLkNeNEjAUHSvTwRXywa?autoplay=true&muted=true&loop=true&controls=false&ui=false&preload=auto" allow="autoplay; fullscreen; picture-in-picture;" frameborder="0" tabindex="-1" class="active" loading="eager"></iframe>
-    <iframe data-src="https://kinescope.io/embed/m3zUbzN3629fwicqoQgSxS?autoplay=true&muted=true&loop=true&controls=false&ui=false&preload=auto" allow="autoplay; fullscreen; picture-in-picture;" frameborder="0" tabindex="-1" loading="eager"></iframe>
-    <iframe data-src="https://kinescope.io/embed/hPUFaWG6xR49PtkMwwJ8uo?autoplay=true&muted=true&loop=true&controls=false&ui=false&preload=auto" allow="autoplay; fullscreen; picture-in-picture;" frameborder="0" tabindex="-1" loading="eager"></iframe>
-    <iframe data-src="https://kinescope.io/embed/tN6w467YVrSRGojJGo8XWU?autoplay=true&muted=true&loop=true&controls=false&ui=false&preload=auto" allow="autoplay; fullscreen; picture-in-picture;" frameborder="0" tabindex="-1" loading="eager"></iframe>
-    <div class="carousel-dots" aria-hidden="true">
-      <span class="dot active"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-    </div>
-  </div>
 </div>
 </div>
 </section>
@@ -808,97 +705,17 @@ var $=function(s){return document.querySelector(s)},
     header=$('#header'),sticky=$('#stickyCta'),hero=$('.hero'),footer=$('footer'),
     burger=$('#burger'),menu=$('#mobileMenu'),menuOpen=false;
 
-// Плавное скрытие постера фонового видео
 var poster = $('.hero-video-poster');
-var bgIframe = $('.hero-video-bg iframe');
-if (poster && bgIframe) {
+var iframe = $('.hero-video-bg iframe');
+if (poster && iframe) {
     var hidePoster = function() {
         if (!poster) return;
         poster.style.opacity = '0';
         setTimeout(function() { poster.style.display = 'none'; }, 1000);
     };
-    bgIframe.addEventListener('load', function() { setTimeout(hidePoster, 800); });
+    iframe.addEventListener('load', function() { setTimeout(hidePoster, 800); });
     setTimeout(hidePoster, 3000);
 }
-
-// === Карусель видео: перезагрузка src для гарантированного автоплея ===
-var carousel = $('#heroVideoCarousel');
-if (carousel) {
-    var carouselIframes = carousel.querySelectorAll('iframe');
-    var carouselDots = carousel.querySelectorAll('.carousel-dots .dot');
-    var currentIndex = 0;
-    var CAROUSEL_INTERVAL = 8000;
-    var carouselTimer = null;
-    var switching = false;
-
-    // Функция активации слайда с принудительной перезагрузкой iframe
-    function activateSlide(index) {
-        if (switching) return;
-        switching = true;
-
-        carouselIframes.forEach(function(f, i) {
-            var isActive = (i === index);
-            if (isActive) {
-                var src = f.getAttribute('data-src');
-                // Первый слайд уже загружен изначально, дальше — перезагружаем для autoplay
-                if (f.src && f.src !== 'about:blank' && f.src !== window.location.href) {
-                    // Очищаем src, чтобы браузер выгрузил плеер
-                    f.src = 'about:blank';
-                    // Через два requestAnimationFrame ставим src заново — гарантированный autoplay
-                    requestAnimationFrame(function() {
-                        requestAnimationFrame(function() {
-                            f.src = src;
-                            setTimeout(function() { switching = false; }, 600);
-                        });
-                    });
-                } else {
-                    f.src = src;
-                    setTimeout(function() { switching = false; }, 600);
-                }
-                f.classList.add('active');
-            } else {
-                f.classList.remove('active');
-            }
-        });
-
-        carouselDots.forEach(function(d, i) {
-            d.classList.toggle('active', i === index);
-        });
-
-        currentIndex = index;
-    }
-
-    function nextSlide() {
-        var next = (currentIndex + 1) % carouselIframes.length;
-        activateSlide(next);
-    }
-
-    function startCarousel() {
-        if (carouselIframes.length < 2 || carouselTimer) return;
-        carouselTimer = setInterval(nextSlide, CAROUSEL_INTERVAL);
-    }
-
-    function stopCarousel() {
-        if (carouselTimer) {
-            clearInterval(carouselTimer);
-            carouselTimer = null;
-        }
-    }
-
-    // Запускаем / останавливаем карусель по видимости
-    if ('IntersectionObserver' in window) {
-        var carouselObs = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) {
-                if (entry.isIntersecting) startCarousel();
-                else stopCarousel();
-            });
-        }, { threshold: 0.15 });
-        carouselObs.observe(carousel);
-    } else {
-        startCarousel();
-    }
-}
-// === /Карусель ===
 
 on(window,'scroll',function(){
   var y=window.scrollY;
