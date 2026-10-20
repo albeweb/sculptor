@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<meta name="theme-color" content="#0C0C0C" />
+<meta name="theme-color" content="#131416" />
 
 <title>Студия красоты СКУЛЬПТОР в Рыбацком — стрижки, LPG, лазерная эпиляция | СПб</title>
 <meta name="description" content="Студия красоты СКУЛЬПТОР в Рыбацком рядом с метро Рыбацкое. Стрижки, LPG массаж, лазерная эпиляция, ламинирование ресниц. Запись онлайн. Советский пр., 16." />
@@ -101,32 +101,53 @@
 
 <style>
   :root{
-    --bg: #0C0C0C;
-    --bg-soft: #1A1A1C;
-    --bg-deep: #000000;
-    --card: #1A1A1C;
-    --card-hover: #242427;
-    --ink: #FFFFFF;
-    --ink-soft: #B0B3B8;
-    --ink-faint: #6E7174;
-    --line: #33363A;
-    --line-strong: #4A4D52;
-    --accent: #00ADEF;
-    --accent-deep: #33BEF2;
-    --silver: #A7A8AA;
-    --chrome-gradient: linear-gradient(135deg, #FFFFFF 0%, #C7CACE 55%, #A7A8AA 100%);
-    --chrome-gradient-hover: linear-gradient(135deg, #FFFFFF 0%, #D8DBDE 55%, #B8BABD 100%);
+    /* ТЁМНАЯ ТЕМА — МОКРЫЙ АСФАЛЬТ (MERCEDES STYLE) */
+    --bg: #131416;
+    --bg-soft: #1B1D21;
+    --bg-deep: #0A0B0C;
+    --card: #1E2024;
+    --card-hover: #26292E;
+    --ink: #F2F4F7;
+    --ink-soft: #9BA1A8;
+    --ink-faint: #646A72;
+    --line: #2C3035;
+    --line-strong: #40454A;
     
-    /* Уменьшенные отступы для мобильных */
+    /* НАСЫЩЕННЫЙ РОЗОВЫЙ АКЦЕНТ */
+    --accent: #FF0066; 
+    --accent-deep: #FF4D94; 
+    
+    /* РОЗОВЫЙ ГРАДИЕНТ ДЛЯ КНОПОК (вместо серебра) */
+    --btn-gradient: linear-gradient(135deg, #FF4D94 0%, #FF0066 100%);
+    --btn-gradient-hover: linear-gradient(135deg, #FF6BA5 0%, #FF1A7A 100%);
+    
+    --silver: #8F969D;
+    
     --pad: 16px;
     
     --radius: 0px;
     --radius-lg: 0px;
-    --shadow-sm: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
-    --shadow-md: 0 24px 70px -30px rgba(0,0,0,.8);
+    --shadow-sm: 0 1px 2px rgba(0,0,0,.5), 0 8px 24px -12px rgba(0,0,0,.7);
+    --shadow-md: 0 24px 70px -30px rgba(0,0,0,.9);
   }
   @media(min-width:640px){ :root{--pad:24px} }
   @media(min-width:1024px){ :root{--pad:40px} }
+
+  /* СВЕТЛАЯ ТЕМА (ЧЕРЕДОВАНИЕ) */
+  .theme-light {
+    --bg: #F8F8F6;
+    --bg-soft: #F8F8F6;
+    --bg-deep: #EAEAE5;
+    --card: #FFFFFF;
+    --card-hover: #FDFDFC;
+    --ink: #1A1A1C;
+    --ink-soft: #5A5C60;
+    --ink-faint: #9A9C9F;
+    --line: #E2E2DC;
+    --line-strong: #C8C8C2;
+    --silver: #5A5C60;
+    color: var(--ink);
+  }
 
   *{box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent}
   html{scroll-behavior:smooth; -webkit-text-size-adjust:100%}
@@ -136,6 +157,7 @@
     line-height:1.6; font-size:16px;
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
+    transition: background 0.3s ease, color 0.3s ease;
   }
   body.menu-open{ overflow:hidden; }
   h1,h2,h3,.serif{font-family:'Cormorant Garamond', serif; font-weight:400; letter-spacing:-0.01em; line-height:1.08; color:var(--ink)}
@@ -146,7 +168,7 @@
   @media(min-width:1600px){ .container{max-width:1800px} }
 
   /* ============================================================
-     ВОЛНЫ — уменьшены и стали более пологими
+     ВОЛНЫ
      ============================================================ */
   .wave-divider{
     width:100%;
@@ -168,7 +190,7 @@
     display:block;
   }
 
-  /* Стильный разделитель вместо черной полосы */
+  /* Стильный разделитель */
   .elegant-divider {
     display: flex;
     align-items: center;
@@ -184,14 +206,14 @@
   .divider-line {
     flex: 1;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(167,168,170,0.2), rgba(0,173,239,0.6), rgba(167,168,170,0.2), transparent);
+    background: linear-gradient(90deg, transparent, var(--line), var(--accent), var(--line), transparent);
   }
   .divider-dot {
     width: 6px;
     height: 6px;
     background: var(--accent);
     transform: rotate(45deg);
-    box-shadow: 0 0 16px rgba(0,173,239,0.9);
+    box-shadow: 0 0 16px var(--accent);
     flex-shrink: 0;
   }
 
@@ -201,11 +223,11 @@
     padding:18px 0; transition:all .4s ease;
   }
   header.scrolled{
-    background:rgba(12,12,12,.82);
+    background:rgba(19,20,22,.85);
     backdrop-filter:blur(24px) saturate(1.4);
     -webkit-backdrop-filter:blur(24px) saturate(1.4);
     padding:12px 0;
-    border-bottom:1px solid var(--line);
+    border-bottom:1px solid rgba(255,255,255,0.08);
   }
   body.menu-open header, body.menu-open header.scrolled{
     z-index:120; background:transparent;
@@ -216,13 +238,13 @@
   .logo{
     font-family:'Cormorant Garamond', serif;
     font-size:22px; letter-spacing:.18em; font-weight:600;
-    color:var(--ink); text-decoration:none; line-height:1;
+    color:#F2F4F7; text-decoration:none; line-height:1;
     text-transform:uppercase;
   }
   @media(min-width:900px){ .logo{font-size:26px} }
   .nav-links{display:none; gap:38px}
   .nav-links a{
-    color:var(--ink-soft); text-decoration:none; font-size:11px;
+    color:#9BA1A8; text-decoration:none; font-size:11px;
     letter-spacing:.18em; text-transform:uppercase; font-weight:400;
     transition:color .3s; position:relative;
   }
@@ -237,8 +259,8 @@
 
   .nav-cta{
     display:none; padding:12px 24px;
-    border:1px solid var(--silver); border-radius:0;
-    color:var(--ink); text-decoration:none; font-size:10px;
+    border:1px solid #8F969D; border-radius:0;
+    color:#F2F4F7; text-decoration:none; font-size:10px;
     letter-spacing:.2em; text-transform:uppercase;
     transition:all .4s cubic-bezier(.2,.8,.3,1); line-height:1;
     white-space:nowrap; background:transparent; cursor:pointer;
@@ -246,9 +268,9 @@
     font-weight:500;
   }
   .nav-cta:hover{
-    background:var(--chrome-gradient); color:#0C0C0C;
+    background:var(--btn-gradient); color:#FFFFFF;
     border-color:transparent;
-    box-shadow:0 12px 30px -10px rgba(255,255,255,.25);
+    box-shadow:0 12px 30px -10px rgba(255,0,102,.5);
   }
   @media(min-width:900px){ a.nav-cta{display:inline-flex} }
   .burger{
@@ -259,7 +281,7 @@
     position:relative; z-index:130;
   }
   .burger span{
-    display:block; height:1.5px; background:var(--ink);
+    display:block; height:1.5px; background:#F2F4F7;
     border-radius:0; transition:all .4s cubic-bezier(.2,.8,.3,1);
     transform-origin:center;
   }
@@ -274,7 +296,7 @@
 
   /* ================= MOBILE MENU ================= */
   .mobile-menu{
-    position:fixed; inset:0; background:var(--bg);
+    position:fixed; inset:0; background:#131416;
     z-index:110; display:flex; flex-direction:column;
     padding:100px var(--pad) 40px;
     opacity:0; visibility:hidden;
@@ -286,7 +308,7 @@
     content:''; position:absolute;
     top:-20%; right:-30%;
     width:80vw; height:80vw;
-    background:radial-gradient(circle at center, rgba(0,173,239,.08) 0%, transparent 65%);
+    background:radial-gradient(circle at center, rgba(255,0,102,.08) 0%, transparent 65%);
     filter:blur(40px); pointer-events:none;
   }
   .mobile-menu-inner{position:relative; display:flex; flex-direction:column; height:100%}
@@ -294,7 +316,7 @@
   .mobile-menu-nav a{
     font-family:'Cormorant Garamond', serif;
     font-size:42px; line-height:1.15;
-    color:var(--ink); text-decoration:none;
+    color:#F2F4F7; text-decoration:none;
     padding:6px 0; letter-spacing:-.01em;
     opacity:0; transform:translateY(20px);
     transition:all .6s cubic-bezier(.2,.8,.3,1);
@@ -311,13 +333,13 @@
   }
   .mobile-menu-footer{
     margin-top:auto; padding-top:32px;
-    border-top:1px solid var(--line);
+    border-top:1px solid #2C3035;
     display:flex; flex-direction:column; gap:24px;
     opacity:0; transform:translateY(20px);
     transition:all .6s cubic-bezier(.2,.8,.3,1) .42s;
   }
   .mobile-menu.open .mobile-menu-footer{opacity:1; transform:translateY(0)}
-  .mobile-menu-footer .contact-line{font-size:14px; color:var(--ink-soft); line-height:1.7}
+  .mobile-menu-footer .contact-line{font-size:14px; color:#9BA1A8; line-height:1.7}
   .mobile-menu-footer .contact-line a{
     color:var(--accent-deep); text-decoration:none;
     font-family:'Cormorant Garamond', serif;
@@ -334,7 +356,6 @@
   }
   @media(min-width:900px){ .hero{min-height:100svh; padding:100px 0 80px} }
   
-  /* Фоновое свечение */
   .hero-bg{position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none}
   .hero-bg::before{
     content:''; position:absolute;
@@ -342,7 +363,7 @@
     width:90vw; height:90vw;
     max-width:900px; max-height:900px;
     background:radial-gradient(circle at center,
-      rgba(0,173,239,.10) 0%, rgba(0,173,239,.02) 40%, transparent 65%);
+      rgba(255,0,102,.12) 0%, rgba(255,0,102,.03) 40%, transparent 65%);
     filter:blur(50px); animation:float 18s ease-in-out infinite;
   }
   .hero-bg::after{
@@ -351,7 +372,7 @@
     width:80vw; height:80vw;
     max-width:800px; max-height:800px;
     background:radial-gradient(circle at center,
-      rgba(167,168,170,.08) 0%, rgba(167,168,170,.02) 45%, transparent 70%);
+      rgba(143,150,157,.08) 0%, rgba(143,150,157,.02) 45%, transparent 70%);
     filter:blur(60px); animation:float 24s ease-in-out infinite reverse;
   }
   @keyframes float{
@@ -379,7 +400,7 @@
     font-weight:500;
     font-size:min(18vw, 120px); line-height:1;
     color:transparent;
-    -webkit-text-stroke:.8px rgba(167,168,170,.15);
+    -webkit-text-stroke:.8px rgba(143,150,157,.15);
     white-space:nowrap; pointer-events:none; user-select:none;
     z-index:0; letter-spacing:.02em; opacity:.9;
     text-transform:uppercase;
@@ -389,7 +410,7 @@
       top:50%; bottom:auto;
       transform:translate(-50%,-50%);
       font-size:clamp(80px, 16vw, 240px);
-      -webkit-text-stroke:1px rgba(167,168,170,.12); opacity:1;
+      -webkit-text-stroke:1px rgba(143,150,157,.12); opacity:1;
     }
   }
   .hero-inner{
@@ -404,22 +425,22 @@
     font-size:10px; letter-spacing:.26em; text-transform:uppercase;
     color:var(--accent-deep); margin-bottom:20px;
     padding:9px 16px 9px 12px;
-    border:1px solid rgba(0,173,239,.35);
+    border:1px solid rgba(255,0,102,.35);
     border-radius:0;
-    background:rgba(26,26,28,.6);
+    background:rgba(27,29,33,.6);
     backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
     line-height:1; font-weight:500;
   }
   .hero-eyebrow .dot{
     width:6px; height:6px; border-radius:0;
     background:var(--accent);
-    box-shadow:0 0 0 4px rgba(0,173,239,.2);
+    box-shadow:0 0 0 4px rgba(255,0,102,.2);
     animation:pulse 2.5s ease-in-out infinite;
     flex-shrink:0;
   }
   @keyframes pulse{
-    0%,100%{box-shadow:0 0 0 4px rgba(0,173,239,.2)}
-    50%{box-shadow:0 0 0 8px rgba(0,173,239,.05)}
+    0%,100%{box-shadow:0 0 0 4px rgba(255,0,102,.2)}
+    50%{box-shadow:0 0 0 8px rgba(255,0,102,.05)}
   }
   .hero h1{
     font-size:clamp(44px, 13.5vw, 68px);
@@ -479,28 +500,28 @@
   .btn svg{transition:transform .4s cubic-bezier(.2,.8,.3,1); flex-shrink:0}
 
   .btn-primary{
-    background:var(--chrome-gradient);
-    color:#0C0C0C;
+    background:var(--btn-gradient);
+    color:#FFFFFF;
     box-shadow:
-      inset 0 1px 0 rgba(255,255,255,.6),
+      inset 0 1px 0 rgba(255,255,255,.35),
       inset 0 -1px 0 rgba(0,0,0,.1),
-      0 14px 34px -12px rgba(255,255,255,.15);
+      0 14px 34px -12px rgba(255,0,102,.45);
   }
   .btn-primary::before{
     content:''; position:absolute; inset:0;
-    background:linear-gradient(120deg, transparent 30%, rgba(255,255,255,.7) 50%, transparent 70%);
+    background:linear-gradient(120deg, transparent 30%, rgba(255,255,255,.4) 50%, transparent 70%);
     transform:translateX(-100%);
     transition:transform .8s cubic-bezier(.2,.8,.3,1);
     pointer-events:none;
   }
   .btn-primary:hover::before{transform:translateX(100%)}
   .btn-primary:hover{
-    background:var(--chrome-gradient-hover);
+    background:var(--btn-gradient-hover);
     transform:translateY(-2px);
     box-shadow:
-      inset 0 1px 0 rgba(255,255,255,.8),
+      inset 0 1px 0 rgba(255,255,255,.5),
       inset 0 -1px 0 rgba(0,0,0,.1),
-      0 22px 44px -14px rgba(255,255,255,.25);
+      0 22px 44px -14px rgba(255,0,102,.6);
   }
   .btn-primary:hover svg{transform:translateX(4px)}
 
@@ -512,7 +533,7 @@
   .btn-ghost:hover{
     border-color:var(--accent);
     color:var(--accent-deep);
-    background:rgba(0,173,239,.06);
+    background:rgba(255,0,102,.06);
     transform:translateY(-2px);
   }
 
@@ -538,7 +559,7 @@
     position:relative; height:min(58svh, 520px);
     aspect-ratio:4/5; max-width:100%;
     border-radius:0; overflow:hidden;
-    background:linear-gradient(160deg, #242427 0%, #1A1A1C 55%, #0C0C0C 100%);
+    background:linear-gradient(160deg, #26292E 0%, #1B1D21 55%, #131416 100%);
     box-shadow:
       0 40px 80px -40px rgba(0,0,0,.6),
       0 0 0 1px var(--silver),
@@ -548,12 +569,12 @@
     content:''; position:absolute; inset:0;
     background:
       radial-gradient(circle at 25% 30%, rgba(255,255,255,.12) 0%, transparent 45%),
-      radial-gradient(circle at 80% 80%, rgba(167,168,170,.15) 0%, transparent 55%);
+      radial-gradient(circle at 80% 80%, rgba(143,150,157,.15) 0%, transparent 55%);
   }
   .hero-card-badge{
     position:absolute; top:20px; left:20px;
     padding:9px 15px;
-    background:rgba(12,12,12,.82);
+    background:rgba(19,20,22,.82);
     backdrop-filter:blur(12px);
     -webkit-backdrop-filter:blur(12px);
     border:1px solid var(--silver);
@@ -568,7 +589,7 @@
     align-items:flex-end; z-index:4; gap:12px;
   }
   .hero-card-meta-text{
-    background:rgba(12,12,12,.85);
+    background:rgba(19,20,22,.85);
     backdrop-filter:blur(14px);
     -webkit-backdrop-filter:blur(14px);
     border:1px solid var(--line);
@@ -584,17 +605,17 @@
   .hero-card-circle{
     width:60px; height:60px; flex-shrink:0;
     border-radius:0;
-    background:var(--chrome-gradient);
-    color:#0C0C0C;
+    background:var(--btn-gradient);
+    color:#FFFFFF;
     display:flex; align-items:center; justify-content:center;
     font-family:'Cormorant Garamond', serif;
     font-size:22px; font-style:italic; font-weight:600;
-    box-shadow:0 12px 30px -8px rgba(255,255,255,.2);
+    box-shadow:0 12px 30px -8px rgba(255,0,102,.5);
   }
 
   .hero-card--ba{
     cursor:ew-resize;
-    background:#1A1A1C;
+    background:#1B1D21;
   }
   .hero-card--ba::before{ display:none }
   .hero-card--ba .ba-img{
@@ -603,11 +624,11 @@
     pointer-events:none;
   }
   .hero-card--ba .ba-before{
-    background-color:#1A1A1C;
+    background-color:#1B1D21;
     background-image:url('images/Atest.webp');
   }
   .hero-card--ba .ba-after{
-    background-color:#0C0C0C;
+    background-color:#131416;
     background-image:url('images/Btest.webp');
     clip-path:inset(0 0 0 50%);
   }
@@ -661,7 +682,7 @@
   .seo-block h3:first-child{margin-top:0}
   .seo-block p{margin-bottom:12px}
   .seo-block strong{color:var(--ink); font-weight:500}
-  .seo-block a{color:var(--accent-deep); text-decoration:none}
+  .seo-block a{color:var(--accent); text-decoration:none}
   .seo-block a:hover{text-decoration:underline}
 
   /* ================= PHILOSOPHY ================= */
@@ -674,7 +695,7 @@
     margin-bottom:48px; text-wrap:balance; letter-spacing:-.01em;
   }
   @media(min-width:900px){ .philosophy-manifest{font-size:clamp(28px, 3.5vw, 44px); margin-bottom:80px} }
-  .philosophy-manifest span{color:var(--accent-deep)}
+  .philosophy-manifest span{color:var(--accent)}
   .principles{display:grid; grid-template-columns:1fr; gap:0; border-top:1px solid var(--line)}
   .principle{
     display:flex; align-items:flex-start; gap:18px;
@@ -730,9 +751,9 @@
   }
   @media(min-width:900px){ .chip{padding:12px 24px; font-size:12px} }
   .chip.active{
-    background:var(--chrome-gradient); color:#0C0C0C;
+    background:var(--btn-gradient); color:#FFFFFF;
     border-color:transparent;
-    box-shadow:0 8px 20px -10px rgba(255,255,255,.25);
+    box-shadow:0 8px 20px -10px rgba(255,0,102,.5);
   }
   .chip:hover:not(.active){border-color:var(--silver); color:var(--ink)}
 
@@ -753,7 +774,7 @@
   .service-card::before{
     content:''; position:absolute; top:0; right:0;
     width:180px; height:180px;
-    background:radial-gradient(circle at top right, rgba(0,173,239,.06), transparent 70%);
+    background:radial-gradient(circle at top right, rgba(255,0,102,.06), transparent 70%);
     pointer-events:none;
   }
   .service-card:hover{
@@ -762,13 +783,23 @@
     border-color:var(--silver);
     background:var(--card-hover);
   }
+  
+  /* УВЕЛИЧЕННЫЕ ЦИФРЫ */
   .service-num{
     font-family:'Cormorant Garamond', serif;
-    font-size:14px; color:var(--accent);
-    letter-spacing:.18em; margin-bottom:20px;
-    font-weight:500; position:relative; z-index:1;
-    font-style:italic;
+    font-size: 36px;
+    line-height: 1;
+    color:var(--accent);
+    letter-spacing: 0;
+    margin-bottom: 12px;
+    font-weight: 600;
+    position:relative; z-index:1;
+    font-style: italic;
   }
+  @media(min-width:900px){
+    .service-num{font-size: 42px; margin-bottom: 16px;}
+  }
+
   .service-card h3{
     font-size:26px; line-height:1.12;
     letter-spacing:-.01em; margin-bottom:0;
@@ -853,23 +884,32 @@
   }
 
   .service-card--accent{
-    background:#151517;
+    background:#1A1C1F;
     border-color:var(--silver);
     position:relative;
   }
+  .theme-light .service-card--accent {
+    background: linear-gradient(145deg, #FFFFFF 0%, #F8F8F6 100%);
+    border-color: var(--accent);
+  }
+  
   .service-card--accent::before{
-    background:radial-gradient(circle at 20% 20%, rgba(0,173,239,.08) 0%, transparent 55%);
+    background:radial-gradient(circle at 20% 20%, rgba(255,0,102,.08) 0%, transparent 55%);
   }
   .service-card--accent::after{
     content:''; position:absolute; inset:0;
     border-radius:0;
     padding:1px;
-    background:linear-gradient(135deg, rgba(255,255,255,.35), transparent 40%, rgba(0,173,239,.2));
+    background:linear-gradient(135deg, rgba(255,255,255,.35), transparent 40%, rgba(255,0,102,.2));
     -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite:xor; mask-composite:exclude;
     pointer-events:none;
   }
-  .service-card--accent .service-num{color:var(--silver)}
+  .theme-light .service-card--accent::after {
+    background:linear-gradient(135deg, var(--accent), transparent 60%, var(--accent-deep));
+  }
+  
+  .service-card--accent .service-num{color:var(--accent)}
   .service-card--accent .price-list{border-top-color:var(--line)}
   .service-card--accent .price-list li{border-bottom-color:var(--line)}
   .service-card--accent .price-list li span{color:var(--ink-soft)}
@@ -900,11 +940,11 @@
   }
 
   .ba-wrap .ba-before{
-    background-color:#1A1A1C;
+    background-color:#1B1D21;
     background-image:url('images/AAtest.webp');
   }
   .ba-wrap .ba-after{
-    background-color:#0C0C0C;
+    background-color:#131416;
     background-image:url('images/BBtest.webp');
     clip-path:inset(0 0 0 50%);
   }
@@ -920,26 +960,27 @@
     content:''; position:absolute; top:50%; left:50%;
     transform:translate(-50%,-50%);
     width:64px; height:64px;
-    background:#fff; border-radius:0;
-    box-shadow:0 8px 24px rgba(0,0,0,.35);
+    background:var(--accent); border-radius:0;
+    border: 2px solid #FFFFFF;
+    box-shadow:0 8px 24px rgba(255,0,102,.5);
   }
   @media(min-width:900px){ .ba-handle::after{width:56px; height:56px} }
   .ba-handle::before{
     content:'‹ ›'; position:absolute; top:50%; left:50%;
     transform:translate(-50%,-50%);
-    z-index:2; color:#0C0C0C;
+    z-index:2; color:#FFFFFF;
     font-size:22px; letter-spacing:2px;
     font-family:serif;
   }
   .ba-label{
     position:absolute; top:16px;
     padding:9px 15px;
-    background:rgba(12,12,12,.88);
+    background:rgba(19,20,22,.88);
     backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
     border:1px solid var(--silver);
     border-radius:0;
     font-size:10px; letter-spacing:.22em;
-    text-transform:uppercase; color:var(--ink);
+    text-transform:uppercase; color:#FFFFFF;
     font-weight:600; line-height:1;
   }
   @media(min-width:900px){ .ba-label{top:24px; padding:11px 20px; font-size:11px} }
@@ -999,7 +1040,7 @@
   /* ================= CTA BAND ================= */
   .cta-band{
     background:
-      radial-gradient(ellipse at 50% 0%, rgba(0,173,239,.06) 0%, transparent 60%),
+      radial-gradient(ellipse at 50% 0%, rgba(255,0,102,.08) 0%, transparent 60%),
       var(--bg);
     text-align:center;
   }
@@ -1028,7 +1069,6 @@
     font-size:14px;
     border-top:1px solid var(--line);
   }
-  /* Увеличенный отступ снизу для мобильных, чтобы кнопка не перекрывала контент */
   @media(max-width:899px) {
     footer { padding-bottom: 100px; }
   }
@@ -1106,11 +1146,11 @@
   .sticky-cta.show{transform:translateY(0); pointer-events:auto}
   .sticky-cta .btn{
     width:100%;
-    background:var(--chrome-gradient);
-    color:#0C0C0C;
+    background:var(--btn-gradient);
+    color:#FFFFFF;
     box-shadow:
-      inset 0 1px 0 rgba(255,255,255,.6),
-      0 20px 44px -12px rgba(255,255,255,.15);
+      inset 0 1px 0 rgba(255,255,255,.35),
+      0 20px 44px -12px rgba(255,0,102,.5);
     min-height:56px; font-size:11px;
   }
   @media(min-width:900px){ .sticky-cta{display:none} }
@@ -1169,7 +1209,7 @@
   </div>
 </header>
 
-<!-- ===== HERO ===== -->
+<!-- ===== HERO (ТЁМНЫЙ) ===== -->
 <section class="hero">
   <div class="hero-bg"></div>
 
@@ -1235,16 +1275,16 @@
   </div>
 </section>
 
-<!-- ===== WAVE ①: Hero (#0C0C0C) → Philosophy (#1A1A1C) ===== -->
-<div class="wave-divider" style="background:#0C0C0C; color:#1A1A1C;" aria-hidden="true">
+<!-- ===== WAVE: Hero (#131416) → Philosophy (#F8F8F6) ===== -->
+<div class="wave-divider" style="background:#131416; color:#F8F8F6;" aria-hidden="true">
   <svg viewBox="0 0 1440 40" preserveAspectRatio="none">
     <path d="M0,40 L0,25 C300,25 420,5 720,5 C1020,5 1140,25 1440,25 L1440,40 Z" fill="currentColor"/>
-    <path d="M0,25 C300,25 420,5 720,5 C1020,5 1140,25 1440,25" fill="none" stroke="rgba(167,168,170,0.35)" stroke-width="1" vector-effect="non-scaling-stroke"/>
+    <path d="M0,25 C300,25 420,5 720,5 C1020,5 1140,25 1440,25" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="1" vector-effect="non-scaling-stroke"/>
   </svg>
 </div>
 
-<!-- ===== PHILOSOPHY ===== -->
-<section class="philosophy" id="philosophy">
+<!-- ===== PHILOSOPHY (СВЕТЛЫЙ) ===== -->
+<section class="philosophy theme-light" id="philosophy">
   <div class="container">
     <div class="eyebrow reveal">О студии</div>
     <p class="philosophy-manifest reveal">
@@ -1293,15 +1333,15 @@
   </div>
 </section>
 
-<!-- ===== WAVE ②: Philosophy (#1A1A1C) → Services (#0C0C0C) ===== -->
-<div class="wave-divider" style="background:#1A1A1C; color:#0C0C0C;" aria-hidden="true">
+<!-- ===== WAVE: Philosophy (#F8F8F6) → Services (#131416) ===== -->
+<div class="wave-divider" style="background:#F8F8F6; color:#131416;" aria-hidden="true">
   <svg viewBox="0 0 1440 40" preserveAspectRatio="none">
     <path d="M0,40 L0,25 C300,25 420,5 720,5 C1020,5 1140,25 1440,25 L1440,40 Z" fill="currentColor"/>
-    <path d="M0,25 C300,25 420,5 720,5 C1020,5 1140,25 1440,25" fill="none" stroke="rgba(167,168,170,0.35)" stroke-width="1" vector-effect="non-scaling-stroke"/>
+    <path d="M0,25 C300,25 420,5 720,5 C1020,5 1140,25 1440,25" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="1" vector-effect="non-scaling-stroke"/>
   </svg>
 </div>
 
-<!-- ===== SERVICES ===== -->
+<!-- ===== SERVICES (ТЁМНЫЙ) ===== -->
 <section id="services">
   <div class="container">
     <div class="section-head reveal">
@@ -1490,16 +1530,16 @@
   </div>
 </section>
 
-<!-- ===== WAVE ③: Services (#0C0C0C) → Transform (#1A1A1C) ===== -->
-<div class="wave-divider" style="background:#0C0C0C; color:#1A1A1C;" aria-hidden="true">
+<!-- ===== WAVE: Services (#131416) → Transform (#F8F8F6) ===== -->
+<div class="wave-divider" style="background:#131416; color:#F8F8F6;" aria-hidden="true">
   <svg viewBox="0 0 1440 40" preserveAspectRatio="none">
     <path d="M0,40 L0,25 C300,25 420,5 720,5 C1020,5 1140,25 1440,25 L1440,40 Z" fill="currentColor"/>
-    <path d="M0,25 C300,25 420,5 720,5 C1020,5 1140,25 1440,25" fill="none" stroke="rgba(167,168,170,0.35)" stroke-width="1" vector-effect="non-scaling-stroke"/>
+    <path d="M0,25 C300,25 420,5 720,5 C1020,5 1140,25 1440,25" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="1" vector-effect="non-scaling-stroke"/>
   </svg>
 </div>
 
-<!-- ===== SEO CONTENT + BEFORE/AFTER (Объединены в один блок) ===== -->
-<section class="transform">
+<!-- ===== SEO CONTENT + BEFORE/AFTER (СВЕТЛЫЙ) ===== -->
+<section class="transform theme-light">
   <div class="container" style="padding-top: 80px; padding-bottom: 40px;">
     <div class="seo-block reveal">
       <h3>Студия красоты в Рыбацком — СКУЛЬПТОР</h3>
@@ -1521,7 +1561,7 @@
     </div>
   </div>
 
-  <!-- Элегантный разделитель вместо черной полосы -->
+  <!-- Элегантный разделитель -->
   <div class="elegant-divider reveal" aria-hidden="true">
     <span class="divider-line"></span>
     <span class="divider-dot"></span>
@@ -1546,15 +1586,15 @@
   </div>
 </section>
 
-<!-- ===== WAVE ④: Transform (#1A1A1C) → Process (#0C0C0C) ===== -->
-<div class="wave-divider" style="background:#1A1A1C; color:#0C0C0C;" aria-hidden="true">
+<!-- ===== WAVE: Transform (#F8F8F6) → Process (#131416) ===== -->
+<div class="wave-divider" style="background:#F8F8F6; color:#131416;" aria-hidden="true">
   <svg viewBox="0 0 1440 40" preserveAspectRatio="none">
     <path d="M0,40 L0,25 C300,25 420,5 720,5 C1020,5 1140,25 1440,25 L1440,40 Z" fill="currentColor"/>
-    <path d="M0,25 C300,25 420,5 720,5 C1020,5 1140,25 1440,25" fill="none" stroke="rgba(167,168,170,0.35)" stroke-width="1" vector-effect="non-scaling-stroke"/>
+    <path d="M0,25 C300,25 420,5 720,5 C1020,5 1140,25 1440,25" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="1" vector-effect="non-scaling-stroke"/>
   </svg>
 </div>
 
-<!-- ===== PROCESS ===== -->
+<!-- ===== PROCESS (ТЁМНЫЙ) ===== -->
 <section id="process">
   <div class="container">
     <div class="section-head reveal">
@@ -1595,16 +1635,16 @@
   </div>
 </section>
 
-<!-- ===== WAVE ⑤: Process (#0C0C0C) → Reviews (#1A1A1C) ===== -->
-<div class="wave-divider" style="background:#0C0C0C; color:#1A1A1C;" aria-hidden="true">
+<!-- ===== WAVE: Process (#131416) → Reviews (#F8F8F6) ===== -->
+<div class="wave-divider" style="background:#131416; color:#F8F8F6;" aria-hidden="true">
   <svg viewBox="0 0 1440 40" preserveAspectRatio="none">
     <path d="M0,40 L0,25 C300,25 420,5 720,5 C1020,5 1140,25 1440,25 L1440,40 Z" fill="currentColor"/>
-    <path d="M0,25 C300,25 420,5 720,5 C1020,5 1140,25 1440,25" fill="none" stroke="rgba(167,168,170,0.35)" stroke-width="1" vector-effect="non-scaling-stroke"/>
+    <path d="M0,25 C300,25 420,5 720,5 C1020,5 1140,25 1440,25" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="1" vector-effect="non-scaling-stroke"/>
   </svg>
 </div>
 
-<!-- ===== REVIEWS ===== -->
-<section class="reviews" id="reviews">
+<!-- ===== REVIEWS (СВЕТЛЫЙ) ===== -->
+<section class="reviews theme-light" id="reviews">
   <div class="container">
     <div class="section-head reveal">
       <div class="eyebrow">Отзывы</div>
@@ -1619,15 +1659,15 @@
   </div>
 </section>
 
-<!-- ===== WAVE ⑥: Reviews (#1A1A1C) → CTA (#0C0C0C) ===== -->
-<div class="wave-divider" style="background:#1A1A1C; color:#0C0C0C;" aria-hidden="true">
+<!-- ===== WAVE: Reviews (#F8F8F6) → CTA (#131416) ===== -->
+<div class="wave-divider" style="background:#F8F8F6; color:#131416;" aria-hidden="true">
   <svg viewBox="0 0 1440 40" preserveAspectRatio="none">
     <path d="M0,40 L0,25 C300,25 420,5 720,5 C1020,5 1140,25 1440,25 L1440,40 Z" fill="currentColor"/>
-    <path d="M0,25 C300,25 420,5 720,5 C1020,5 1140,25 1440,25" fill="none" stroke="rgba(167,168,170,0.35)" stroke-width="1" vector-effect="non-scaling-stroke"/>
+    <path d="M0,25 C300,25 420,5 720,5 C1020,5 1140,25 1440,25" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="1" vector-effect="non-scaling-stroke"/>
   </svg>
 </div>
 
-<!-- ===== CTA BAND ===== -->
+<!-- ===== CTA BAND (ТЁМНЫЙ) ===== -->
 <section class="cta-band" id="contact">
   <div class="container">
     <div class="cta-inner reveal">
@@ -1642,11 +1682,11 @@
   </div>
 </section>
 
-<!-- ===== WAVE ⑦: CTA (#0C0C0C) → Footer (#000000) ===== -->
-<div class="wave-divider" style="background:#0C0C0C; color:#000000;" aria-hidden="true">
+<!-- ===== WAVE: CTA (#131416) → Footer (#0A0B0C) ===== -->
+<div class="wave-divider" style="background:#131416; color:#0A0B0C;" aria-hidden="true">
   <svg viewBox="0 0 1440 40" preserveAspectRatio="none">
     <path d="M0,40 L0,25 C300,25 420,5 720,5 C1020,5 1140,25 1440,25 L1440,40 Z" fill="currentColor"/>
-    <path d="M0,25 C300,25 420,5 720,5 C1020,5 1140,25 1440,25" fill="none" stroke="rgba(167,168,170,0.4)" stroke-width="1" vector-effect="non-scaling-stroke"/>
+    <path d="M0,25 C300,25 420,5 720,5 C1020,5 1140,25 1440,25" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1" vector-effect="non-scaling-stroke"/>
   </svg>
 </div>
 
@@ -1704,7 +1744,6 @@
     const y = window.scrollY;
     header.classList.toggle('scrolled', y > 20);
     
-    // Показываем кнопку только когда прокрутили hero и НЕ дошли до подвала
     const heroH = hero.offsetHeight;
     const isAtFooter = (y + window.innerHeight) > (document.body.scrollHeight - footer.offsetHeight - 100);
     
