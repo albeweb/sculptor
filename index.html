@@ -133,38 +133,6 @@ body.menu-open header,body.menu-open header.scrolled{z-index:120;background:tran
 .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse at 50% 45%,#000 15%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at 50% 45%,#000 15%,transparent 70%);pointer-events:none;z-index:4}
 @media(min-width:900px){.hero-grid{background-size:80px 80px}}
 
-/* ===== ТОПОВАЯ КАЛЛИГРАФИЯ "СА" ===== */
-.hero-logo-art{
-  position:absolute;
-  top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  width:min(75vw, 550px);
-  height:min(75vw, 550px);
-  z-index:2;
-  pointer-events:none;
-  opacity:.95;
-  filter:drop-shadow(0 0 20px rgba(255,0,102,.4));
-}
-.hero-logo-art svg{width:100%;height:100%;overflow:visible}
-.hero-logo-art path{
-  fill:none;
-  stroke:url(#pinkGrad);
-  stroke-width:10;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-  stroke-dasharray:2000;
-  stroke-dashoffset:2000;
-  animation:drawLogo 4s cubic-bezier(.2,.8,.2,1) forwards;
-}
-.hero-logo-art .path-c{animation-delay:0.2s}
-.hero-logo-art .path-a-1{animation-delay:1.2s}
-.hero-logo-art .path-a-2{animation-delay:2.2s}
-
-@keyframes drawLogo{
-  0%{stroke-dashoffset:2000}
-  100%{stroke-dashoffset:0}
-}
-
 /* ===== ГОРИЗОНТАЛЬНАЯ ПОЛОСА ИЗ БЕЙДЖЕЙ (С ПАДЕНИЕМ) ===== */
 .hero-badges{
   position:absolute;
@@ -225,7 +193,6 @@ body.menu-open header,body.menu-open header.scrolled{z-index:120;background:tran
 @media(max-width:767px){
   .hero-badges{bottom:24px;gap:8px}
   .hero-badge{font-size:9.5px;padding:8px 12px;gap:6px}
-  .hero-logo-art{width:90vw;height:90vw}
   .hero{padding:84px 0 100px}
 }
 
@@ -494,34 +461,6 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
 </div>
 <div class="hero-video-overlay" aria-hidden="true"></div>
 <div class="hero-grid"></div>
-
-<!-- Анимированный логотип СА по центру -->
-<div class="hero-logo-art" aria-hidden="true">
-  <svg viewBox="0 0 500 500">
-    <defs>
-      <linearGradient id="pinkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#FF4D94" />
-        <stop offset="100%" stop-color="#FF0066" />
-      </linearGradient>
-    </defs>
-    
-    <!-- Каллиграфическая "С" -->
-    <path class="path-c" d="M 380 90 
-             C 220 30, 90 130, 90 280 
-             C 90 430, 230 470, 350 430 
-             C 380 420, 400 400, 410 380" />
-             
-    <!-- Каллиграфическая "А" (левая и правая вертикали) -->
-    <path class="path-a-1" d="M 320 440 
-             C 330 340, 340 230, 380 180 
-             C 400 155, 430 155, 450 190 
-             C 460 210, 460 230, 460 460" />
-             
-    <!-- Каллиграфическая перекладина "А" -->
-    <path class="path-a-2" d="M 270 390 
-             C 340 410, 400 380, 490 320" />
-  </svg>
-</div>
 
 <div class="container hero-inner">
 <div class="hero-content">
