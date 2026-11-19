@@ -1,16 +1,77 @@
+# ============================================================
+#  Студия красоты СКУЛЬПТОР · sculptorspb.ru
+#  https://sculptorspb.ru/robots.txt
+#  Обновлено: 2026-11-19
+# ============================================================
+
+# ------------------------------------------------------------
+#  Все поисковые роботы (правила по умолчанию)
+# ------------------------------------------------------------
 User-agent: *
 Allow: /
 
+# Служебные страницы — не индексируем
+Disallow: /404.html
+Disallow: /privacy.html$
+
+# Технические файлы и служебные пути
 Disallow: /*.json$
 Disallow: /*.xml$
+Disallow: /cgi-bin/
+Disallow: /tmp/
 
-Sitemap: https://sculptorspb.ru/sitemap.xml
-Host: https://sculptorspb.ru
+# Исключения — эти файлы обходить можно
+Allow: /sitemap.xml
+Allow: /robots.txt
 
-# Основные поисковые системы
+# ------------------------------------------------------------
+#  Яндекс
+# ------------------------------------------------------------
 User-agent: Yandex
 Allow: /
-Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content&yclid&gclid
+Disallow: /404.html
+Disallow: /privacy.html$
+Disallow: /*.json$
+Disallow: /*.xml$
+Allow: /sitemap.xml
+Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content&yclid&gclid&fbclid&referrer
 
+# ------------------------------------------------------------
+#  Google
+# ------------------------------------------------------------
 User-agent: Googlebot
 Allow: /
+Disallow: /404.html
+Disallow: /*.json$
+Disallow: /*.xml$
+Allow: /sitemap.xml
+
+# Google Image — индексируем фото из блога
+User-agent: Googlebot-Image
+Allow: /
+
+# ------------------------------------------------------------
+#  Bing
+# ------------------------------------------------------------
+User-agent: Bingbot
+Allow: /
+
+# ------------------------------------------------------------
+#  Социальные сети — для превью ссылок
+# ------------------------------------------------------------
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: VKShare
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+# ------------------------------------------------------------
+#  Sitemap (глобальная директива — для всех роботов)
+# ------------------------------------------------------------
+Sitemap: https://sculptorspb.ru/sitemap.xml
