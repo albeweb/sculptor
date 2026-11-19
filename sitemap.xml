@@ -1,9 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Главная -->
   <url>
     <loc>https://sculptorspb.ru/</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://sculptorspb.ru/og-image.jpg</image:loc>
+      <image:title>Студия красоты СКУЛЬПТОР в Рыбацком</image:title>
+      <image:caption>Стрижки, LPG-массаж, лазерная эпиляция, ламинирование ресниц, RF-лифтинг</image:caption>
+    </image:image>
   </url>
+
+  <!-- Блог -->
+  <url>
+    <loc>https://sculptorspb.ru/blog/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sculptorspb.ru/blog/b1.webp</image:loc>
+      <image:title>LPG-массаж — студия СКУЛЬПТОР, Рыбацкое</image:title>
+      <image:caption>Аппаратный LPG-массаж тела в студии красоты СКУЛЬПТОР в Рыбацком</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sculptorspb.ru/blog/b2.webp</image:loc>
+      <image:title>Лазерная эпиляция — студия СКУЛЬПТОР, Рыбацкое</image:title>
+      <image:caption>Лазерная эпиляция диодным лазером в Невском районе СПб</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sculptorspb.ru/blog/b3.webp</image:loc>
+      <image:title>Ламинирование ресниц — студия СКУЛЬПТОР, Рыбацкое</image:title>
+      <image:caption>Ламинирование ресниц в Рыбацком — студия красоты СКУЛЬПТОР</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sculptorspb.ru/blog/b4.webp</image:loc>
+      <image:title>RF-лифтинг — студия СКУЛЬПТОР, Рыбацкое</image:title>
+      <image:caption>RF-лифтинг лица в студии СКУЛЬПТОР в Рыбацком, СПб</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sculptorspb.ru/blog/b5.webp</image:loc>
+      <image:title>Кератиновое выпрямление — студия СКУЛЬПТОР, Рыбацкое</image:title>
+      <image:caption>Кератиновое выпрямление волос в Рыбацком — студия СКУЛЬПТОР</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Политика конфиденциальности -->
+  <url>
+    <loc>https://sculptorspb.ru/privacy.html</loc>
+    <lastmod>2026-01-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
 </urlset>
