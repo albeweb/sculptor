@@ -404,14 +404,14 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
 .promo-stage{
   position:relative;
   width:100%;
-  max-width:560px;
+  max-width:680px;
   margin:0 auto;
   height:calc(var(--slide-h) + 70px);
   overflow:hidden;
   touch-action:pan-y;
   cursor:grab;
-  --slide-h:425px;
-  --tx-adj:92%;
+  --slide-h:470px;
+  --tx-adj:96%;
   --tx-far:200%;
   --scale-adj:.78;
   --scale-far:.6;
@@ -421,17 +421,17 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
 .promo-stage:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 .promo-stage.is-dragging{cursor:grabbing}
 @media(min-width:640px){
-  .promo-stage{max-width:720px;--slide-h:460px;--tx-adj:95%}
+  .promo-stage{max-width:920px;--slide-h:580px;--tx-adj:98%}
 }
 @media(min-width:1024px){
-  .promo-stage{max-width:1000px;--slide-h:600px;--tx-adj:100%}
+  .promo-stage{max-width:1280px;--slide-h:740px;--tx-adj:100%}
 }
 .promo-slide{
   position:absolute;
   top:50%;
   left:50%;
   height:var(--slide-h);
-  width:calc(var(--slide-h) * .8);
+  width:min(calc(var(--slide-h) * .8), calc(100vw - 40px));
   overflow:hidden;
   background:var(--card);
   border:1px solid var(--line);
@@ -487,6 +487,7 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
 .promo-prev{left:8px}
 .promo-next{right:8px}
 @media(min-width:900px){.promo-prev{left:-23px}.promo-next{right:-23px}}
+@media(max-width:767px){.promo-nav{display:none}}
 .promo-dots{display:flex;justify-content:center;gap:10px;margin-top:28px;flex-wrap:wrap}
 .promo-dot{width:8px;height:8px;background:var(--line-strong);border:none;cursor:pointer;transform:rotate(45deg);transition:all .3s;padding:0;flex-shrink:0}
 .promo-dot:hover{background:var(--silver)}
@@ -500,6 +501,8 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
   .promo-slide{transition:opacity .2s ease !important}
   .promo-slide img{transition:none !important}
 }
+
+section[id]{scroll-margin-top:84px}
 </style>
 </head>
 <body>
@@ -980,513 +983,479 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
 
 <script>
 (function(){
-var $=function(s){return document.querySelector(s)},
-    $$=function(s){return document.querySelectorAll(s)},
-    on=function(el,ev,fn,opt){el.addEventListener(ev,fn,opt||false)},
-    header=$('#header'),sticky=$('#stickyCta'),hero=$('.hero'),footer=$('footer'),
-    burger=$('#burger'),menu=$('#mobileMenu'),menuOpen=false;
+'use strict';
 
-var CONSENT_KEY='skulptorCookieConsent';
-var consentState=null;
-try{consentState=localStorage.getItem(CONSENT_KEY)}catch(e){}
+var $  = function(s,c){return (c||document).querySelector(s)},
+    $$ = function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))},
+    on = function(el,ev,fn,opt){ if(el) el.addEventListener(ev,fn,opt||false); };
 
-function loadWidgets(){
-  var iframes=$$('iframe[data-src]');
-  if(!iframes.length)return;
-  iframes.forEach(function(ifr){
-    ifr.src=ifr.getAttribute('data-src');
-    ifr.removeAttribute('data-src');
-    ifr.style.display='';
-    var panel=ifr.closest('.reviews-map-panel');
-    if(panel){
-      var ph=panel.querySelector('[data-widget-placeholder]');
-      if(ph)ph.remove();
-    }
-  });
-}
+var header  = $('#header'),
+    sticky  = $('#stickyCta'),
+    hero    = $('.hero'),
+    burger  = $('#burger'),
+    menu    = $('#mobileMenu'),
+    menuOpen = false;
 
-function saveConsent(choice){
-  try{localStorage.setItem(CONSENT_KEY,choice)}catch(e){}
-  consentState=choice;
-  if(choice==='all')loadWidgets();
-}
-
-function initCookieBanner(){
-  var cookieBanner=$('#cookieBanner');
-  if(!cookieBanner)return;
-  if(!consentState){
-    cookieBanner.classList.add('show');
-    cookieBanner.setAttribute('aria-hidden','false');
-  }else if(consentState==='all'){
-    loadWidgets();
+/* ---------- HEADER / STICKY CTA ---------- */
+function onScroll(){
+  var y = window.pageYOffset || document.documentElement.scrollTop;
+  if(header) header.classList.toggle('scrolled', y > 20);
+  if(sticky){
+    var trigger = hero ? hero.offsetHeight * 0.6 : 400;
+    sticky.classList.toggle('show', y > trigger);
   }
-  function hideBanner(){
-    cookieBanner.classList.remove('show');
-    cookieBanner.setAttribute('aria-hidden','true');
-  }
-  var cookieAccept=$('#cookieAccept'),cookieNecessary=$('#cookieNecessary');
-  if(cookieAccept)on(cookieAccept,'click',function(){saveConsent('all');hideBanner()});
-  if(cookieNecessary)on(cookieNecessary,'click',function(){saveConsent('necessary');hideBanner()});
 }
-if(document.readyState==='loading'){
-  document.addEventListener('DOMContentLoaded',initCookieBanner,{once:true});
-}else{
-  initCookieBanner();
-}
+on(window,'scroll',onScroll,{passive:true});
+onScroll();
 
-$$('[data-load-widgets]').forEach(function(btn){
-  on(btn,'click',function(){
-    saveConsent('all');
-    var banner=$('#cookieBanner');
-    if(banner){banner.classList.remove('show');banner.setAttribute('aria-hidden','true')}
-  });
+/* ---------- MOBILE MENU ---------- */
+function setMenu(open){
+  menuOpen = open;
+  if(burger){
+    burger.classList.toggle('active', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  if(menu) menu.classList.toggle('open', open);
+  document.body.classList.toggle('menu-open', open);
+}
+on(burger,'click',function(){ setMenu(!menuOpen); });
+$$('#mobileMenu a').forEach(function(a){
+  on(a,'click',function(){ setMenu(false); });
 });
 
-/* Hero video: defer Kinescope */
-(function(){
-  var iframe=document.querySelector('.hero-video-bg iframe[data-video-src]');
-  if(!iframe)return;
-  var conn=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
-  if(conn&&(conn.saveData===true||/^(slow-2g|2g|3g)$/.test(conn.effectiveType||'')))return;
-  if(window.matchMedia('(max-width:768px)').matches)return;
-  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  function loadVideo(){
-    var src=iframe.getAttribute('data-video-src');
-    if(src&&!iframe.getAttribute('src')){
-      iframe.setAttribute('src',src);
-      iframe.removeAttribute('data-video-src');
-    }
-  }
-  function whenInView(){
-    if('IntersectionObserver' in window){
-      var vidIO=new IntersectionObserver(function(entries){
-        if(entries[0].isIntersecting){vidIO.disconnect();loadVideo();}
-      },{rootMargin:'200px'});
-      vidIO.observe(iframe);
-    }else{loadVideo();}
-  }
-  function schedule(){
-    if('requestIdleCallback' in window){requestIdleCallback(whenInView,{timeout:2500});}
-    else{setTimeout(whenInView,1500);}
-  }
-  if(document.readyState==='complete'){schedule();}
-  else{window.addEventListener('load',schedule,{once:true});}
-})();
-
-/* Lazy BG gallery */
-(function(){
-  var lazy=document.querySelectorAll('.ba-img[data-bg]');
-  if(!lazy.length)return;
-  function setBg(el){
-    var bg=el.getAttribute('data-bg');
-    if(bg){el.style.backgroundImage="url('"+bg+"')";el.removeAttribute('data-bg');}
-  }
-  if('IntersectionObserver' in window){
-    var bgIO=new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(entry.isIntersecting){setBg(entry.target);bgIO.unobserve(entry.target);}
-      });
-    },{rootMargin:'400px'});
-    lazy.forEach(function(el){bgIO.observe(el)});
-  }else{lazy.forEach(setBg);}
-})();
-
-
-var servicesData={
-  lpg:{title:'LPG массаж и аппаратные процедуры',items:[
-    {name:'LPG тела · 35–40 мин · антицеллюлитный',price:'2 000 ₽'},
-    {name:'LPG тела · 1 зона · 25 мин',price:'1 300 ₽'},
-    {name:'LPG лица · 35–40 мин · ручной массаж + маска',price:'1 700 ₽'},
-    {name:'RF-лифтинг лица · 40 мин · ручной массаж + маска',price:'2 000 ₽'},
-    {name:'Расслабляющий массаж + микротоковая терапия лица · 40 мин',price:'2 000 ₽'},
-    {name:'Массаж ШВЗ · 30 мин · ручной + аппаратный',price:'1 700 ₽'}
+/* ---------- SERVICES DATA (для модалки) ---------- */
+var SERVICES = {
+  lpg:{ title:'LPG массаж', items:[
+    ['LPG тела · 35–40 мин','2 000 ₽'],
+    ['LPG тела · 1 зона · 25 мин','1 300 ₽'],
+    ['LPG лица · 35–40 мин','1 700 ₽'],
+    ['RF-лифтинг лица · 40 мин','2 000 ₽'],
+    ['Расслабляющий массаж + микротоки · 40 мин','2 000 ₽'],
+    ['Массаж ШВЗ · 30 мин','1 700 ₽']
   ]},
-  laserWomen:{title:'Лазерная эпиляция · девушки',items:[
-    {name:'Подмышки',price:'600 ₽'},
-    {name:'Ягодицы',price:'1 000 ₽'},
-    {name:'Голени + колени',price:'1 300 ₽'},
-    {name:'Ноги полностью',price:'2 100 ₽'},
-    {name:'Поясница (большая зона)',price:'600 ₽'},
-    {name:'Поясница (малая зона)',price:'400 ₽'},
-    {name:'Руки полностью',price:'1 000 ₽'},
-    {name:'Руки до локтя',price:'700 ₽'},
-    {name:'Живот (белая линия)',price:'500 ₽'},
-    {name:'Живот полностью',price:'1 000 ₽'},
-    {name:'Спина полностью',price:'1 000 ₽'},
-    {name:'Спина (лопатки)',price:'500 ₽'}
+  laserWomen:{ title:'Лазерная эпиляция · девушки', items:[
+    ['Подмышки','600 ₽'],['Ягодицы','1 000 ₽'],['Голени + колени','1 300 ₽'],
+    ['Ноги полностью','2 100 ₽'],['Поясница (большая зона)','600 ₽'],
+    ['Поясница (малая зона)','400 ₽'],['Руки полностью','1 000 ₽'],
+    ['Руки до локтя','700 ₽'],['Живот (белая линия)','500 ₽'],
+    ['Живот полностью','1 000 ₽'],['Спина полностью','1 000 ₽'],['Спина (лопатки)','500 ₽']
   ]},
-  lashes:{title:'Ламинирование ресниц',items:[
-    {name:'Ламинирование',price:'1 500 ₽'},
-    {name:'Ламинирование + ботокс',price:'1 800 ₽'},
-    {name:'Ламинирование + окрашивание',price:'1 900 ₽'},
-    {name:'Комплекс: ламинирование + ботокс + окрашивание',price:'2 200 ₽'}
+  laserMen:{ title:'Лазерная эпиляция · парни', items:[
+    ['Подмышки','600 ₽'],['Ягодицы','1 300 ₽'],['Голени + колени','1 300 ₽'],
+    ['Ноги полностью','2 100 ₽'],['Поясница (большая зона)','600 ₽'],
+    ['Поясница (малая зона)','400 ₽'],['Руки полностью','1 200 ₽'],
+    ['Руки до локтя','900 ₽'],['Живот (белая линия)','700 ₽'],
+    ['Живот полностью','1 200 ₽'],['Спина полностью','1 500 ₽'],['Спина (лопатки)','700 ₽']
   ]},
-  rf:{title:'RF-лифтинг лица',items:[
-    {name:'RF-лифтинг · 40 мин · ручной массаж + маска',price:'1 700 ₽'}
+  lashes:{ title:'Ламинирование ресниц', items:[
+    ['Ламинирование','1 500 ₽'],
+    ['Ламинирование + ботокс','1 800 ₽'],
+    ['Ламинирование + окрашивание','1 900 ₽'],
+    ['Комплекс: ламинирование + ботокс + окрашивание','2 200 ₽']
   ]},
-  hairWomen:{title:'Женский зал · стрижки, окрашивание, уход',items:[
-    {name:'Стрижка · короткий волос',price:'1 000 ₽'},
-    {name:'Стрижка · средний волос',price:'1 200–1 500 ₽'},
-    {name:'Стрижка · длинный волос',price:'2 000–2 500 ₽'},
-    {name:'Ровный срез',price:'1 000 ₽'},
-    {name:'Чёлка',price:'500 ₽'},
-    {name:'Окрашивание корней · короткий (без красителя)',price:'1 500 ₽'},
-    {name:'Окрашивание корней · средний (без красителя)',price:'2 000 ₽'},
-    {name:'Окрашивание корней · длинный (без красителя)',price:'2 500 ₽'},
-    {name:'Мелирование · короткие (без красителей)',price:'2 000 ₽'},
-    {name:'Мелирование · средние (без красителей)',price:'3 000 ₽'},
-    {name:'Мелирование · длинные (без красителей)',price:'6 000 ₽'},
-    {name:'Биозавивка (без учёта состава)',price:'от 3 000 ₽'},
-    {name:'Кератин, ботокс',price:'от 3 500 ₽'},
-    {name:'Наращивание волос · 1 капсула',price:'45 ₽'}
+  rf:{ title:'RF-лифтинг лица', items:[
+    ['RF-лифтинг лица · 40 мин','2 000 ₽'],
+    ['Расслабляющий массаж + микротоки · 40 мин','2 000 ₽']
   ]},
-  hairMen:{title:'Мужской зал · стрижки и борода',items:[
-    {name:'Стрижка насадками',price:'500–600 ₽'},
-    {name:'Модельная стрижка',price:'1 000 ₽'},
-    {name:'Оформление бороды',price:'1 500 ₽'},
-    {name:'Дети от 1 года до 6 лет',price:'500 ₽'},
-    {name:'Дети от 6 до 12 лет',price:'700 ₽'}
+  hairWomen:{ title:'Женский зал', items:[
+    ['Стрижка · короткий волос','1 000 ₽'],
+    ['Стрижка · средний волос','1 200–1 500 ₽'],
+    ['Стрижка · длинный волос','2 000–2 500 ₽'],
+    ['Ровный срез','1 000 ₽'],
+    ['Чёлка','500 ₽'],
+    ['Окрашивание корней · короткий','1 500 ₽'],
+    ['Окрашивание корней · средний','2 000 ₽'],
+    ['Окрашивание корней · длинный','2 500 ₽'],
+    ['Мелирование · короткие','2 000 ₽'],
+    ['Мелирование · средние','3 000 ₽'],
+    ['Мелирование · длинные','6 000 ₽'],
+    ['Биозавивка','от 3 000 ₽'],
+    ['Кератин / ботокс','от 3 500 ₽']
   ]},
-  combo:{title:'Комбо и абонементы',items:[
-    {name:'Комбо 1 · подмышки + голени',price:'1 600 ₽'},
-    {name:'Комбо 2 · подмышки + голени + 2 малые зоны',price:'2 000 ₽'},
-    {name:'Комбо 3 · ноги полностью + подмышки + бикини',price:'3 700 ₽'},
-    {name:'Абонемент LPG · 5 процедур',price:'8 000 ₽'},
-    {name:'Абонемент LPG · 10 процедур',price:'15 000 ₽'}
+  hairMen:{ title:'Мужской зал', items:[
+    ['Стрижка насадками','500–600 ₽'],
+    ['Модельная стрижка','1 000 ₽'],
+    ['Оформление бороды','1 500 ₽'],
+    ['Детская стрижка · 1–6 лет','500 ₽'],
+    ['Детская стрижка · 6–12 лет','700 ₽']
   ]},
-  care:{title:'Массаж и уход',items:[
-    {name:'Расслабляющий массаж + микротоковая терапия лица · 40 мин',price:'2 000 ₽'},
-    {name:'Массаж ШВЗ · 30 мин · ручной + аппаратный',price:'1 700 ₽'},
-    {name:'Кератиновое выпрямление / ботокс для волос',price:'от 3 500 ₽'}
+  combo:{ title:'Абонементы и комбо', items:[
+    ['Комбо 1 · подмышки + голени','1 600 ₽'],
+    ['Комбо 2 · подмышки + голени + 2 малые зоны','2 000 ₽'],
+    ['Комбо 3 · ноги полностью + подмышки + бикини total','3 700 ₽'],
+    ['LPG · 5 процедур','8 000 ₽'],
+    ['LPG · 10 процедур','15 000 ₽']
   ]},
-  hairExtensions:{title:'Наращивание волос',items:[
-    {name:'Наращивание волос',price:'от 900 ₽'}
+  hairExtensions:{ title:'Наращивание волос', items:[
+    ['Наращивание · за 1 капсулу','45 ₽'],
+    ['Наращивание волос (комплекс)','от 900 ₽']
+  ]},
+  care:{ title:'Массаж и уход', items:[
+    ['Массаж ШВЗ · 30 мин','1 700 ₽'],
+    ['Расслабляющий массаж + микротоки · 40 мин','2 000 ₽'],
+    ['LPG лица · 35–40 мин','1 700 ₽'],
+    ['Кератин / ботокс для волос','от 3 500 ₽']
   ]}
 };
 
-var modal=$('#serviceModal'),modalTitle=$('#modalTitle'),modalPrices=$('#modalPrices'),modalClose=$('#modalClose'),lastFocused=null;
+/* ---------- OVERLAYS: общий лок ---------- */
+var procOverlay = $('#proceduresOverlay'),
+    modalOverlay = $('#serviceModal');
 
-function lockScroll(){document.body.style.overflowY='hidden';}
-function unlockScroll(){document.body.style.overflowY='';}
+function syncBodyLock(){
+  var lock = menuOpen ||
+    (procOverlay && procOverlay.classList.contains('open')) ||
+    (modalOverlay && modalOverlay.classList.contains('open'));
+  document.body.classList.toggle('menu-open', lock);
+}
 
-function openServiceModal(key,trigger){
-  var data=servicesData[key];
-  if(!data)return;
-  modalTitle.textContent=data.title;
-  modalPrices.innerHTML=data.items.map(function(i){
-    return '<li><span>'+i.name+'</span><strong>'+i.price+'</strong></li>';
+/* ---------- PROCEDURES OVERLAY ---------- */
+var procBtn = $('#proceduresBtn'), procClose = $('#proceduresClose');
+
+function openProc(){
+  if(!procOverlay) return;
+  procOverlay.classList.add('open');
+  procOverlay.setAttribute('aria-hidden','false');
+  syncBodyLock();
+}
+function closeProc(){
+  if(!procOverlay) return;
+  procOverlay.classList.remove('open');
+  procOverlay.setAttribute('aria-hidden','true');
+  syncBodyLock();
+}
+on(procBtn,'click',openProc);
+on(procClose,'click',closeProc);
+on(procOverlay,'click',function(e){ if(e.target === procOverlay) closeProc(); });
+
+/* ---------- SERVICE MODAL ---------- */
+var modalTitle = $('#modalTitle'),
+    modalPrices = $('#modalPrices'),
+    modalClose = $('#modalClose');
+
+function openService(key){
+  var data = SERVICES[key];
+  if(!data || !modalOverlay) return;
+
+  modalTitle.textContent = data.title;
+  modalPrices.innerHTML = data.items.map(function(it){
+    return '<li><span>' + it[0] + '</span><strong>' + it[1] + '</strong></li>';
   }).join('');
-  lastFocused=trigger||document.activeElement;
-  lockScroll();
-  modal.classList.add('open');
-  modal.setAttribute('aria-hidden','false');
-  setTimeout(function(){modalClose.focus();},100);
-}
-function closeServiceModal(){
-  modal.classList.remove('open');
-  modal.setAttribute('aria-hidden','true');
-  unlockScroll();
-  if(lastFocused&&lastFocused.focus)lastFocused.focus();
-}
 
-$$('.hero-badge').forEach(function(badge){
-  on(badge,'click',function(){openServiceModal(badge.dataset.service,badge)});
-});
-on(modalClose,'click',closeServiceModal);
-on(modal,'click',function(e){if(e.target===modal)closeServiceModal();});
+  if(procOverlay){ procOverlay.classList.remove('open'); procOverlay.setAttribute('aria-hidden','true'); }
 
-var proceduresBtn=$('#proceduresBtn'),
-    proceduresOverlay=$('#proceduresOverlay'),
-    proceduresClose=$('#proceduresClose');
+  modalOverlay.classList.add('open');
+  modalOverlay.setAttribute('aria-hidden','false');
+  syncBodyLock();
+  if(modalClose) modalClose.focus({preventScroll:true});
+}
+function closeService(){
+  if(!modalOverlay) return;
+  modalOverlay.classList.remove('open');
+  modalOverlay.setAttribute('aria-hidden','true');
+  syncBodyLock();
+}
+on(modalClose,'click',closeService);
+on(modalOverlay,'click',function(e){ if(e.target === modalOverlay) closeService(); });
 
-function openProcedures(){
-  if(!proceduresOverlay)return;
-  proceduresOverlay.classList.add('open');
-  proceduresOverlay.setAttribute('aria-hidden','false');
-  lockScroll();
-  setTimeout(function(){if(proceduresClose)proceduresClose.focus();},100);
-}
-function closeProcedures(){
-  if(!proceduresOverlay)return;
-  proceduresOverlay.classList.remove('open');
-  proceduresOverlay.setAttribute('aria-hidden','true');
-  unlockScroll();
-  if(proceduresBtn)proceduresBtn.focus();
-}
-if(proceduresBtn)on(proceduresBtn,'click',openProcedures);
-if(proceduresClose)on(proceduresClose,'click',closeProcedures);
-if(proceduresOverlay)on(proceduresOverlay,'click',function(e){if(e.target===proceduresOverlay)closeProcedures();});
-$$('.procedures-chip').forEach(function(chip){
-  on(chip,'click',function(){
-    closeProcedures();
-    openServiceModal(chip.dataset.service,proceduresBtn);
-  });
+/* все кнопки с data-service — и в hero-badges, и в оверлее */
+$$('[data-service]').forEach(function(btn){
+  on(btn,'click',function(){ openService(btn.getAttribute('data-service')); });
 });
 
-/* Hide hero poster after video load */
-var poster=$('.hero-video-poster'),heroIframe=$('.hero-video-bg iframe');
-if(poster){
-  var hidePoster=function(){poster.style.opacity='0';setTimeout(function(){poster.style.display='none';},1000);};
-  if(heroIframe){
-    heroIframe.addEventListener('load',function(){setTimeout(hidePoster,800);},{once:true});
-  }
-}
-
-on(window,'scroll',function(){
-  var y=window.scrollY;
-  header.classList.toggle('scrolled',y>20);
-  var atFooter=(y+window.innerHeight)>(document.body.scrollHeight-footer.offsetHeight-100);
-  sticky.classList.toggle('show',y>hero.offsetHeight*.75&&!atFooter);
-},{passive:true});
-function toggleMenu(open){
-  menuOpen=typeof open==='boolean'?open:!menuOpen;
-  burger.classList.toggle('active',menuOpen);
-  menu.classList.toggle('open',menuOpen);
-  burger.setAttribute('aria-expanded',menuOpen);
-  document.body.classList.toggle('menu-open',menuOpen);
-}
-on(burger,'click',function(){toggleMenu()});
-$$('#mobileMenu a').forEach(function(a){on(a,'click',function(){toggleMenu(false)})});
-$$('[data-close-menu]').forEach(function(b){on(b,'click',function(){toggleMenu(false)})});
+/* ESC закрывает всё */
 on(document,'keydown',function(e){
-  if(e.key!=='Escape')return;
-  if(modal.classList.contains('open'))closeServiceModal();
-  if(proceduresOverlay&&proceduresOverlay.classList.contains('open'))closeProcedures();
-  if(menuOpen)toggleMenu(false);
+  if(e.key !== 'Escape' && e.keyCode !== 27) return;
+  if(modalOverlay && modalOverlay.classList.contains('open')) closeService();
+  else if(procOverlay && procOverlay.classList.contains('open')) closeProc();
+  else if(menuOpen) setMenu(false);
 });
-var io=new IntersectionObserver(function(entries){
-  entries.forEach(function(e){
-    if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}
-  });
-},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
-$$('.reveal').forEach(function(el){io.observe(el)});
-var chips=$$('.chip'),cards=$$('.service-card');
-chips.forEach(function(chip){
+
+/* ---------- FILTERS ---------- */
+$$('.chip').forEach(function(chip){
   on(chip,'click',function(){
-    chips.forEach(function(c){c.classList.remove('active')});
+    $$('.chip').forEach(function(c){ c.classList.remove('active'); });
     chip.classList.add('active');
-    var f=chip.dataset.filter;
-    cards.forEach(function(card){
-      card.style.display=(f==='all'||card.dataset.cat===f)?'':'none';
+    var f = chip.getAttribute('data-filter');
+    $$('.service-card').forEach(function(card){
+      var show = (f === 'all' || card.getAttribute('data-cat') === f);
+      card.style.display = show ? '' : 'none';
+      if(show) card.classList.add('in');
     });
   });
 });
-function setupBA(wrap){
-  if(!wrap)return;
-  var after=wrap.querySelector('.ba-after'),
-      handle=wrap.querySelector('.ba-handle');
-  if(!after||!handle)return;
-  var dragging=false;
-  function setPos(x){
-    var r=wrap.getBoundingClientRect(),p=Math.max(.05,Math.min(.95,(x-r.left)/r.width));
-    after.style.clipPath='inset(0 0 0 '+(p*100)+'%)';
-    handle.style.left=(p*100)+'%';
+
+/* ---------- REVEAL ---------- */
+(function(){
+  var items = $$('.reveal');
+  if(!items.length) return;
+  if(!('IntersectionObserver' in window)){
+    items.forEach(function(el){ el.classList.add('in'); });
+    return;
   }
-  function start(e){dragging=true;setPos(e.touches?e.touches[0].clientX:e.clientX)}
-  function move(e){
-    if(!dragging)return;
-    setPos(e.touches?e.touches[0].clientX:e.clientX);
-    if(e.cancelable)e.preventDefault();
-  }
-  function end(){dragging=false}
-  on(wrap,'mousedown',start);
-  on(window,'mousemove',move);
-  on(window,'mouseup',end);
-  on(wrap,'touchstart',start,{passive:true});
-  on(window,'touchmove',move,{passive:false});
-  on(window,'touchend',end);
-}
-$$('.ba-wrap').forEach(function(w){setupBA(w)});
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){
+        en.target.classList.add('in');
+        io.unobserve(en.target);
+      }
+    });
+  }, {rootMargin:'0px 0px -8% 0px', threshold:0.08});
+  items.forEach(function(el){ io.observe(el); });
 })();
 
-/* ============================================================
-   PROMO CAROUSEL — CENTER MODE
-   ============================================================ */
+/* ---------- BEFORE / AFTER ---------- */
+$$('.ba-wrap').forEach(function(wrap){
+  var after  = $('.ba-after', wrap),
+      handle = $('.ba-handle', wrap);
+  if(!after || !handle) return;
+
+  /* ленивая подстановка фонов */
+  $$('.ba-img', wrap).forEach(function(img){
+    var bg = img.getAttribute('data-bg');
+    if(bg){
+      img.style.backgroundImage = 'url("' + bg + '")';
+      img.removeAttribute('data-bg');
+    }
+  });
+
+  var dragging = false;
+
+  function setPos(clientX){
+    var r = wrap.getBoundingClientRect();
+    if(!r.width) return;
+    var p = (clientX - r.left) / r.width;
+    p = Math.max(0, Math.min(1, p));
+    var pct = p * 100;
+    after.style.clipPath = 'inset(0 0 0 ' + pct + '%)';
+    handle.style.left = pct + '%';
+  }
+
+  on(wrap,'pointerdown',function(e){
+    dragging = true;
+    if(wrap.setPointerCapture){ try{ wrap.setPointerCapture(e.pointerId); }catch(err){} }
+    setPos(e.clientX);
+    e.preventDefault();
+  });
+  on(wrap,'pointermove',function(e){ if(dragging) setPos(e.clientX); });
+  on(wrap,'pointerup',function(){ dragging = false; });
+  on(wrap,'pointercancel',function(){ dragging = false; });
+  on(wrap,'pointerleave',function(){ if(dragging) dragging = false; });
+
+  /* начальное положение — по центру */
+  handle.style.left = '50%';
+});
+
+/* ---------- PROMO SLIDER (CENTER MODE) ---------- */
 (function(){
-  var slider = document.getElementById('promoSlider');
-  if (!slider) return;
-  var stage = document.getElementById('promoStage');
-  if (!stage) return;
-  var slides = Array.prototype.slice.call(stage.querySelectorAll('.promo-slide'));
-  var prevBtn = slider.querySelector('.promo-prev');
-  var nextBtn = slider.querySelector('.promo-next');
-  var dotsWrap = document.getElementById('promoDots');
-  var counterCur = document.getElementById('promoCounterCur');
-  var counterTotal = document.getElementById('promoCounterTotal');
-  var total = slides.length;
-  var activeIndex = 0;
+  var stage = $('#promoStage');
+  if(!stage) return;
 
-  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  var slides = $$('.promo-slide', stage);
+  var n = slides.length;
+  if(!n) return;
 
-  function buildDots() {
-    dotsWrap.innerHTML = '';
-    for (var i = 0; i < total; i++) {
-      var btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'promo-dot';
-      btn.dataset.index = i;
-      btn.setAttribute('aria-label', 'Слайд ' + (i + 1));
-      dotsWrap.appendChild(btn);
-    }
-    if (counterTotal) counterTotal.textContent = pad(total);
+  var dotsWrap = $('#promoDots'),
+      curEl    = $('#promoCounterCur'),
+      totalEl  = $('#promoCounterTotal'),
+      prevBtn  = $('.promo-prev'),
+      nextBtn  = $('.promo-next');
+
+  var index = 0;
+  var dots = [];
+  var dragged = false;
+
+  if(totalEl) totalEl.textContent = (n < 10 ? '0' : '') + n;
+
+  /* точки */
+  if(dotsWrap){
+    slides.forEach(function(_, i){
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'promo-dot' + (i === 0 ? ' active' : '');
+      b.setAttribute('aria-label','Слайд ' + (i + 1));
+      on(b,'click',function(){ goTo(i); });
+      dotsWrap.appendChild(b);
+      dots.push(b);
+    });
   }
 
-  function updateSlides() {
-    slides.forEach(function(slide, i) {
-      var offset = i - activeIndex;
-      if (offset > total / 2) offset -= total;
-      if (offset < -total / 2) offset += total;
+  function layout(){
+    var half = n / 2;
+    slides.forEach(function(s, i){
+      var off = i - index;
+      if(off >  half) off -= n;
+      if(off < -half) off += n;
 
-      var isActive = offset === 0;
-      var isAdj = Math.abs(offset) === 1;
-      var s, o, z;
+      var abs = Math.abs(off), tx, sc, op, z;
 
-      if (isActive) {
-        s = 1; o = 1; z = 10;
-        slide.style.setProperty('--tx', '0%');
-      } else if (isAdj) {
-        s = 0.78; o = 0.55; z = 5;
-        slide.style.setProperty('--tx', 'calc(' + offset + ' * var(--tx-adj))');
+      if(abs === 0){
+        tx = '0%'; sc = '1'; op = '1'; z = '10';
+      } else if(abs === 1){
+        tx = 'calc(var(--tx-adj) * ' + off + ')';
+        sc = 'var(--scale-adj)'; op = 'var(--op-adj)'; z = '5';
       } else {
-        s = 0.6; o = 0; z = 1;
-        slide.style.setProperty('--tx', 'calc(' + offset + ' * var(--tx-far))');
+        tx = 'calc(var(--tx-far) * ' + (off > 0 ? 1 : -1) + ')';
+        sc = 'var(--scale-far)'; op = '0'; z = '1';
       }
-      slide.style.setProperty('--s', s);
-      slide.style.setProperty('--o', o);
-      slide.style.setProperty('--z', z);
 
-      slide.classList.toggle('is-active', isActive);
-      slide.classList.toggle('is-adj', isAdj);
-      slide.classList.toggle('is-far', !isActive && !isAdj);
-      slide.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+      s.style.setProperty('--tx', tx);
+      s.style.setProperty('--s',  sc);
+      s.style.setProperty('--o',  op);
+      s.style.setProperty('--z',  z);
+      s.style.setProperty('--drag','0px');
+
+      s.classList.toggle('is-active', abs === 0);
+      s.classList.toggle('is-adj',    abs === 1);
+      s.classList.toggle('is-far',    abs > 1);
     });
 
-    var dots = dotsWrap.children;
-    for (var j = 0; j < dots.length; j++) {
-      dots[j].classList.toggle('active', j === activeIndex);
-    }
-    if (counterCur) counterCur.textContent = pad(activeIndex + 1);
+    if(curEl) curEl.textContent = (index + 1 < 10 ? '0' : '') + (index + 1);
+    dots.forEach(function(d, i){ d.classList.toggle('active', i === index); });
   }
 
-  function goTo(index) {
-    index = ((index % total) + total) % total;
-    if (index === activeIndex) return;
-    activeIndex = index;
-    updateSlides();
+  function goTo(i){
+    index = ((i % n) + n) % n;
+    layout();
   }
-  function goNext() { goTo(activeIndex + 1); }
-  function goPrev() { goTo(activeIndex - 1); }
+  function next(){ goTo(index + 1); }
+  function prev(){ goTo(index - 1); }
 
-  prevBtn.addEventListener('click', goPrev);
-  nextBtn.addEventListener('click', goNext);
-  dotsWrap.addEventListener('click', function(e) {
-    var t = e.target.closest('.promo-dot');
-    if (t) goTo(parseInt(t.dataset.index, 10));
+  on(nextBtn,'click',next);
+  on(prevBtn,'click',prev);
+
+  /* клавиатура */
+  on(stage,'keydown',function(e){
+    if(e.key === 'ArrowRight'){ e.preventDefault(); next(); }
+    else if(e.key === 'ArrowLeft'){ e.preventDefault(); prev(); }
   });
 
-  var suppressClick = false;
-
-  slides.forEach(function(slide, i) {
-    slide.addEventListener('click', function(e) {
-      if (suppressClick) return;
-      if (slide.classList.contains('is-adj')) {
-        var offset = i - activeIndex;
-        if (offset > total / 2) offset -= total;
-        if (offset < -total / 2) offset += total;
-        if (offset === 1) goNext();
-        else if (offset === -1) goPrev();
-      }
+  /* клик по боковой карточке */
+  slides.forEach(function(s, i){
+    on(s,'click',function(){
+      if(dragged) return;
+      if(i !== index) goTo(i);
     });
   });
 
-  stage.addEventListener('keydown', function(e) {
-    if (e.key === 'ArrowLeft') { e.preventDefault(); goPrev(); }
-    else if (e.key === 'ArrowRight') { e.preventDefault(); goNext(); }
-    else if (e.key === 'Home') { e.preventDefault(); goTo(0); }
-    else if (e.key === 'End') { e.preventDefault(); goTo(total - 1); }
-  });
+  /* drag / swipe */
+  var startX = 0, dx = 0, dragging = false, pid = null;
 
-  var isDragging = false;
-  var dragStartX = 0;
-  var dragStartY = 0;
-  var dragDelta = 0;
-  var directionLock = null;
-
-  stage.addEventListener('pointerdown', function(e) {
-    if (e.target.closest('button')) return;
-    if (e.button !== undefined && e.button !== 0) return;
-    isDragging = true;
-    dragStartX = e.clientX;
-    dragStartY = e.clientY;
-    dragDelta = 0;
-    directionLock = null;
+  on(stage,'pointerdown',function(e){
+    if(e.pointerType === 'mouse' && e.button !== 0) return;
+    dragging = true; dragged = false; dx = 0; startX = e.clientX; pid = e.pointerId;
     stage.classList.add('is-dragging');
-    try { stage.setPointerCapture(e.pointerId); } catch (err) {}
+    if(stage.setPointerCapture){ try{ stage.setPointerCapture(pid); }catch(err){} }
   });
 
-  stage.addEventListener('pointermove', function(e) {
-    if (!isDragging) return;
-    var dx = e.clientX - dragStartX;
-    var dy = e.clientY - dragStartY;
-
-    if (!directionLock) {
-      if (Math.abs(dx) > 8 || Math.abs(dy) > 8) {
-        directionLock = Math.abs(dx) > Math.abs(dy) ? 'h' : 'v';
-      }
-    }
-    if (directionLock === 'v') return;
-
-    dragDelta = dx;
-    if (e.cancelable) e.preventDefault();
-    slides.forEach(function(s) {
-      s.style.setProperty('--drag', dx + 'px');
-    });
+  on(stage,'pointermove',function(e){
+    if(!dragging) return;
+    dx = e.clientX - startX;
+    if(Math.abs(dx) > 6) dragged = true;
+    slides.forEach(function(s){ s.style.setProperty('--drag', dx + 'px'); });
   });
 
-  function endDrag() {
-    if (!isDragging) return;
-    isDragging = false;
+  function endDrag(){
+    if(!dragging) return;
+    dragging = false;
     stage.classList.remove('is-dragging');
 
-    if (directionLock === 'h') {
-      var threshold = Math.max(40, stage.offsetWidth * 0.1);
-      if (dragDelta < -threshold) { suppressClick = true; goNext(); }
-      else if (dragDelta > threshold) { suppressClick = true; goPrev(); }
-    }
+    var threshold = 55;
+    if(dx <= -threshold) next();
+    else if(dx >= threshold) prev();
+    else layout();
 
-    slides.forEach(function(s) { s.style.removeProperty('--drag'); });
-
-    setTimeout(function() { suppressClick = false; }, 30);
-
-    dragDelta = 0;
-    directionLock = null;
+    slides.forEach(function(s){ s.style.setProperty('--drag','0px'); });
+    dx = 0;
+    setTimeout(function(){ dragged = false; }, 0);
   }
 
-  stage.addEventListener('pointerup', endDrag);
-  stage.addEventListener('pointercancel', endDrag);
+  on(stage,'pointerup',endDrag);
+  on(stage,'pointercancel',endDrag);
+  on(stage,'pointerleave',function(){ if(dragging) endDrag(); });
 
-  stage.addEventListener('dragstart', function(e) { e.preventDefault(); });
+  layout();
+})();
 
-  stage.addEventListener('click', function(e) {
-    if (suppressClick) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-  }, true);
+/* ---------- COOKIE CONSENT + LAZY WIDGETS ---------- */
+var CONSENT_KEY = 'skulptorCookieConsent';
 
-  buildDots();
-  updateSlides();
+function getConsent(){
+  try{ return localStorage.getItem(CONSENT_KEY); }catch(e){ return null; }
+}
+function setConsent(v){
+  try{ localStorage.setItem(CONSENT_KEY, v); }catch(e){}
+}
+
+/* загрузка iframe'ов по data-src */
+function loadWidgets(){
+  $$('iframe[data-src]').forEach(function(fr){
+    var src = fr.getAttribute('data-src');
+    if(!src || fr.getAttribute('src')) return;
+    fr.setAttribute('src', src);
+    fr.style.display = '';
+  });
+  $$('[data-widget-placeholder]').forEach(function(ph){ ph.style.display = 'none'; });
+
+  /* hero-видео */
+  $$('iframe[data-video-src]').forEach(function(fr){
+    var src = fr.getAttribute('data-video-src');
+    if(!src || fr.getAttribute('src')) return;
+    fr.setAttribute('src', src);
+  });
+  var poster = $('.hero-video-poster');
+  if(poster) poster.style.opacity = '0';
+}
+
+/* кнопки «Показать отзывы/карту» = согласие на эти виджеты */
+$$('[data-load-widgets]').forEach(function(btn){
+  on(btn,'click',function(){
+    loadWidgets();
+    if(!getConsent()) setConsent('widgets');
+  });
+});
+
+/* баннер */
+function buildCookieBanner(){
+  if($('.cookie-banner')) return;
+
+  var b = document.createElement('div');
+  b.className = 'cookie-banner';
+  b.setAttribute('role','dialog');
+  b.setAttribute('aria-label','Использование cookie');
+  b.innerHTML =
+    '<p><strong>Мы используем cookie</strong>' +
+    'Чтобы сайт работал корректно, а также чтобы показывать карту и отзывы, мы используем cookie. ' +
+    'Подробнее — в <a href="privacy.html">политике конфиденциальности</a>.</p>' +
+    '<div class="cookie-actions">' +
+      '<button type="button" data-consent="necessary">Только необходимые</button>' +
+      '<button type="button" class="primary" data-consent="all">Принять все</button>' +
+    '</div>';
+
+  document.body.appendChild(b);
+  requestAnimationFrame(function(){ b.classList.add('show'); });
+
+  $$('[data-consent]', b).forEach(function(btn){
+    on(btn,'click',function(){
+      var val = btn.getAttribute('data-consent');
+      setConsent(val);
+      b.classList.remove('show');
+      setTimeout(function(){ if(b.parentNode) b.parentNode.removeChild(b); }, 320);
+      if(val === 'all') loadWidgets();
+    });
+  });
+}
+
+(function initConsent(){
+  var c = getConsent();
+  if(c === 'all' || c === 'widgets'){
+    loadWidgets();
+  }
+  if(c === 'all' || c === 'widgets' || c === 'necessary') return;
+  setTimeout(buildCookieBanner, 900);
+})();
+
 })();
 </script>
-
-<script src="https://dikidi.ru/assets/js/widget_record/widget2.min.js?v=1773811740"></script>
-
-<div class="cookie-banner" id="cookieBanner" role="dialog" aria-modal="false" aria-live="polite" aria-label="Настройки cookie">
-<p><strong>Мы используем cookie-файлы</strong>Свои cookie помогают сайту работать и запоминать настройки. Сторонние cookie от <a href="https://yandex.ru/legal/confidential/" target="_blank" rel="noopener noreferrer">Яндекс.Карт</a> (отзывы, карта) и <a href="https://kinescope.io/privacy" target="_blank" rel="noopener noreferrer">Kinescope</a> (видео) загружаются только после вашего согласия. Подробнее — в <a href="privacy.html">политике конфиденциальности</a>.</p>
-<div class="cookie-actions">
-<button type="button" id="cookieNecessary">Только необходимые</button>
-<button type="button" class="primary" id="cookieAccept">Принять</button>
-</div>
-</div>
 </body>
 </html>
