@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -215,16 +214,8 @@ section{padding:72px 0;position:relative}
 @media(min-width:900px){.chip{padding:12px 24px;font-size:12px}}
 .chip.active{background:var(--btn-grad);color:#FFF;border-color:transparent;box-shadow:0 8px 20px -10px rgba(255,0,102,.5)}
 .chip:hover:not(.active){border-color:var(--silver);color:var(--ink)}
-
-/* =====================================================
-   BENTO SERVICES GRID
-   ===================================================== */
 .services-grid{display:grid;grid-template-columns:1fr;gap:16px;align-items:stretch}
-@media(min-width:700px){
-  .services-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
-  .service-card--wide{grid-column:span 2}
-}
-
+@media(min-width:700px){.services-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.service-card--wide{grid-column:span 2}}
 .service-card{background:var(--card);padding:32px 26px;border:1px solid var(--line);transition:all .5s cubic-bezier(.2,.8,.3,1);position:relative;overflow:hidden;display:flex;flex-direction:column}
 @media(min-width:900px){.service-card{padding:36px 32px}}
 .service-card::before{content:'';position:absolute;top:0;right:0;width:180px;height:180px;background:radial-gradient(circle at top right,rgba(255,0,102,.06),transparent 70%);pointer-events:none}
@@ -243,42 +234,17 @@ section{padding:72px 0;position:relative}
 .price-list li .meta-name{display:flex;flex-direction:column;gap:2px}
 .price-list li .meta-name small{font-size:11px;letter-spacing:.08em;color:var(--ink-faint);text-transform:uppercase;font-weight:500}
 .price-note{font-size:11px;letter-spacing:.04em;color:var(--ink-faint);margin-top:8px;line-height:1.5}
-
-/* Wide card heading */
-@media(min-width:900px){
-  .service-card--wide{padding:42px 40px}
-  .service-card--wide h3{font-size:32px}
-  .service-card--wide .service-sub{font-size:26px}
-}
-
-/* Split price list (lashes) */
-@media(min-width:700px){
-  .service-card--wide .price-list--split{
-    display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    column-gap:40px;
-  }
-  .service-card--wide .price-list--split li{padding:11px 0}
-  .service-card--wide .price-list--split li:nth-last-child(-n+2){border-bottom:none;padding-bottom:0}
-}
-
-/* Hall sections (Женский/Мужской зал) */
+@media(min-width:900px){.service-card--wide{padding:42px 40px}.service-card--wide h3{font-size:32px}.service-card--wide .service-sub{font-size:26px}}
+@media(min-width:700px){.service-card--wide .price-list--split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:40px}.service-card--wide .price-list--split li{padding:11px 0}.service-card--wide .price-list--split li:nth-last-child(-n+2){border-bottom:none;padding-bottom:0}}
 .hall-sections{display:grid;grid-template-columns:1fr;gap:22px;margin-top:22px;position:relative;z-index:1}
-@media(min-width:600px){
-  .hall-sections--2{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 32px}
-  .hall-sections--4{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 32px}
-}
-@media(min-width:1200px){
-  .hall-sections--4{grid-template-columns:repeat(4,minmax(0,1fr));gap:24px 28px}
-}
+@media(min-width:600px){.hall-sections--2{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 32px}.hall-sections--4{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 32px}}
+@media(min-width:1200px){.hall-sections--4{grid-template-columns:repeat(4,minmax(0,1fr));gap:24px 28px}}
 .hall-section h4{font-family:var(--ff-serif);font-style:italic;font-weight:500;font-size:19px;color:var(--accent-deep);margin-bottom:6px;letter-spacing:-.005em;line-height:1.2}
 @media(min-width:900px){.hall-section h4{font-size:20px}}
 .hall-section .price-list{margin-top:0;border-top:1px solid var(--line)}
 .hall-section .price-list li{padding:10px 0;font-size:13.5px;gap:12px}
 .hall-section .price-list li:last-child{padding-bottom:0}
 .hall-section .price-list li strong{font-size:17px}
-
-/* Combo list (subscriptions) */
 .combo-list{display:flex;flex-direction:column;gap:0;margin-top:22px;position:relative;z-index:1;border-top:1px solid var(--line)}
 .combo-item{padding:16px 0;border-bottom:1px solid var(--line)}
 .combo-item:last-child{border-bottom:none;padding-bottom:0}
@@ -291,7 +257,6 @@ section{padding:72px 0;position:relative}
 .combo-subsection .price-list{margin-top:0;border-top:none}
 .combo-subsection .price-list li{border-bottom:1px solid var(--line)}
 .combo-subsection .price-list li:last-child{border-bottom:none}
-
 .service-card--accent{background:#1A1C1F;border-color:var(--silver);position:relative}
 .theme-light .service-card--accent{background:linear-gradient(145deg,#FFF 0%,#F8F8F6 100%);border-color:var(--accent)}
 .service-card--accent::before{background:radial-gradient(circle at 20% 20%,rgba(255,0,102,.08) 0%,transparent 55%)}
@@ -302,7 +267,6 @@ section{padding:72px 0;position:relative}
 .service-card--accent .price-list li{border-bottom-color:var(--line)}
 .service-card--accent .combo-list{border-top-color:var(--line)}
 .service-card--accent .combo-item{border-bottom-color:var(--line)}
-
 .transform{background:var(--bg-soft);padding:0}
 .ba-gallery{display:grid;grid-template-columns:1fr;gap:16px}
 @media(min-width:700px){.ba-gallery{grid-template-columns:repeat(2,1fr);gap:20px}}
@@ -434,21 +398,91 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
 .cookie-actions button.primary:hover{background:var(--accent-deep);border-color:var(--accent-deep)}
 @media(max-width:640px){.cookie-banner{left:12px;right:12px;bottom:12px;transform:translateY(18px);width:auto;align-items:stretch;flex-direction:column;gap:16px;padding:19px;border-radius:13px}.cookie-banner.show{transform:translateY(0)}.cookie-banner p{font-size:12px}.cookie-actions{display:grid;grid-template-columns:1fr 1fr}.cookie-actions button{font-size:9px;padding:12px 8px}}
 
-/* ===== PROMO SLIDER ===== */
+/* ===== PROMO SLIDER — CENTER MODE ===== */
 .promos{background:radial-gradient(ellipse at 50% 0%,rgba(255,0,102,.07) 0%,transparent 55%),var(--bg);position:relative;overflow:hidden}
-.promo-slider-wrap{position:relative}
-.promo-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-bottom:4px}
-.promo-track::-webkit-scrollbar{display:none}
-.promo-slide{flex:0 0 100%;position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--card);border:1px solid var(--line);scroll-snap-align:start;transition:border-color .4s}
-.promo-slide:hover{border-color:var(--silver)}
-.promo-slide img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.8,.3,1)}
-.promo-slide:hover img{transform:scale(1.04)}
+.promo-slider-wrap{position:relative;user-select:none;-webkit-user-select:none}
+.promo-stage{
+  position:relative;
+  width:100%;
+  max-width:560px;
+  margin:0 auto;
+  height:calc(var(--slide-h) + 70px);
+  overflow:hidden;
+  touch-action:pan-y;
+  cursor:grab;
+  --slide-h:425px;
+  --tx-adj:92%;
+  --tx-far:200%;
+  --scale-adj:.78;
+  --scale-far:.6;
+  --op-adj:.55;
+}
+.promo-stage:focus{outline:none}
+.promo-stage:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.promo-stage.is-dragging{cursor:grabbing}
+@media(min-width:640px){
+  .promo-stage{max-width:720px;--slide-h:460px;--tx-adj:95%}
+}
+@media(min-width:1024px){
+  .promo-stage{max-width:1000px;--slide-h:600px;--tx-adj:100%}
+}
+.promo-slide{
+  position:absolute;
+  top:50%;
+  left:50%;
+  height:var(--slide-h);
+  width:calc(var(--slide-h) * .8);
+  overflow:hidden;
+  background:var(--card);
+  border:1px solid var(--line);
+  transform:translate(calc(-50% + var(--tx, 0%) + var(--drag, 0px)),-50%) scale(var(--s, 1));
+  opacity:var(--o, 0);
+  z-index:var(--z, 1);
+  transition:transform .72s cubic-bezier(.22,1,.36,1),opacity .6s ease,border-color .4s ease;
+  will-change:transform,opacity;
+  pointer-events:none;
+  cursor:pointer;
+}
+.promo-stage.is-dragging .promo-slide{transition:none}
+.promo-slide img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  pointer-events:none;-webkit-user-drag:none;user-select:none;
+  transition:transform .8s cubic-bezier(.2,.8,.3,1);
+  transform-origin:center;
+}
+.promo-slide:hover img{transform:scale(1.08)}
+.promo-stage.is-dragging .promo-slide img{transition:none}
 .promo-slide::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(10,11,12,.35) 100%);pointer-events:none}
-@media(min-width:640px){.promo-slide{flex-basis:calc(50% - 8px)}}
-@media(min-width:1024px){.promo-slide{flex-basis:calc(33.333% - 10.667px)}}
-.promo-nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;background:rgba(19,20,22,.9);border:1px solid var(--silver);color:#F2F4F7;cursor:pointer;z-index:6;display:flex;align-items:center;justify-content:center;transition:all .3s;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);font-family:inherit;padding:0}
-.promo-nav:hover:not(:disabled){background:var(--btn-grad);border-color:transparent;color:#FFF;box-shadow:0 8px 24px -8px rgba(255,0,102,.5)}
-.promo-nav:disabled{opacity:.35;cursor:default}
+.promo-slide.is-active{
+  pointer-events:auto;
+  border-color:var(--silver);
+  box-shadow:0 30px 70px -30px rgba(0,0,0,.85),0 0 80px -30px rgba(255,0,102,.25);
+  z-index:10;
+}
+.promo-slide.is-active{cursor:grab}
+.promo-stage.is-dragging .promo-slide.is-active{cursor:grabbing}
+.promo-slide.is-adj{pointer-events:auto}
+.promo-slide.is-adj:hover{opacity:calc(var(--op-adj) + .18);border-color:rgba(143,150,157,.6)}
+.promo-slide.is-far{pointer-events:none}
+
+.promo-nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:46px;height:46px;
+  background:rgba(19,20,22,.9);
+  border:1px solid var(--silver);
+  color:#F2F4F7;
+  cursor:pointer;
+  z-index:20;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .3s;
+  -webkit-backdrop-filter:blur(8px);
+  backdrop-filter:blur(8px);
+  font-family:inherit;padding:0;
+}
+.promo-nav:hover{background:var(--btn-grad);border-color:transparent;color:#FFF;box-shadow:0 8px 24px -8px rgba(255,0,102,.5)}
+.promo-nav:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .promo-nav svg{width:16px;height:16px}
 .promo-prev{left:8px}
 .promo-next{right:8px}
@@ -457,9 +491,15 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
 .promo-dot{width:8px;height:8px;background:var(--line-strong);border:none;cursor:pointer;transform:rotate(45deg);transition:all .3s;padding:0;flex-shrink:0}
 .promo-dot:hover{background:var(--silver)}
 .promo-dot.active{background:var(--accent);box-shadow:0 0 14px var(--accent)}
+.promo-dot:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .promo-counter{display:flex;justify-content:center;align-items:baseline;gap:6px;margin-top:16px;font-family:var(--ff-serif);font-style:italic;font-size:18px;color:var(--ink-soft);letter-spacing:.02em}
 .promo-counter strong{color:var(--ink);font-weight:500;font-size:22px}
 .promo-counter .sep{color:var(--accent)}
+
+@media(prefers-reduced-motion:reduce){
+  .promo-slide{transition:opacity .2s ease !important}
+  .promo-slide img{transition:none !important}
+}
 </style>
 </head>
 <body>
@@ -570,9 +610,6 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
 </section>
 <div class="wv" style="background:#F8F8F6;color:#131416"><svg><use href="#i-wv"/></svg></div>
 
-<!-- ============================================================ -->
-<!-- АКЦИИ / PROMO SLIDER                                          -->
-<!-- ============================================================ -->
 <section class="promos" id="promos">
 <div class="container">
 <div class="section-head reveal">
@@ -580,21 +617,20 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
 <h2>Специальные предложения</h2>
 <p>Выгодные комбо, сезонные акции и подарочные сертификаты студии СКУЛЬПТОР в Рыбацком.</p>
 </div>
-<div class="promo-slider-wrap reveal">
-<div class="promo-slider" id="promoSlider">
-<div class="promo-track" id="promoTrack">
-<div class="promo-slide"><img src="images/ac1.webp" alt="Акция СКУЛЬПТОР — 1" loading="lazy" decoding="async"></div>
-<div class="promo-slide"><img src="images/ac10.webp" alt="Акция СКУЛЬПТОР — 10" loading="lazy" decoding="async"></div>
-<div class="promo-slide"><img src="images/ac11.webp" alt="Акция СКУЛЬПТОР — 11" loading="lazy" decoding="async"></div>
-<div class="promo-slide"><img src="images/ac12.webp" alt="Акция СКУЛЬПТОР — 12" loading="lazy" decoding="async"></div>
-<div class="promo-slide"><img src="images/ac2.webp" alt="Акция СКУЛЬПТОР — 2" loading="lazy" decoding="async"></div>
-<div class="promo-slide"><img src="images/ac3.webp" alt="Акция СКУЛЬПТОР — 3" loading="lazy" decoding="async"></div>
-<div class="promo-slide"><img src="images/ac4.webp" alt="Акция СКУЛЬПТОР — 4" loading="lazy" decoding="async"></div>
-<div class="promo-slide"><img src="images/ac5.webp" alt="Акция СКУЛЬПТОР — 5" loading="lazy" decoding="async"></div>
-<div class="promo-slide"><img src="images/ac6.webp" alt="Акция СКУЛЬПТОР — 6" loading="lazy" decoding="async"></div>
-<div class="promo-slide"><img src="images/ac7.webp" alt="Акция СКУЛЬПТОР — 7" loading="lazy" decoding="async"></div>
-<div class="promo-slide"><img src="images/ac8.webp" alt="Акция СКУЛЬПТОР — 8" loading="lazy" decoding="async"></div>
-<div class="promo-slide"><img src="images/ac9.webp" alt="Акция СКУЛЬПТОР — 9" loading="lazy" decoding="async"></div>
+<div class="promo-slider-wrap reveal" id="promoSlider">
+<div class="promo-stage" id="promoStage" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Специальные предложения студии СКУЛЬПТОР">
+<div class="promo-slide" data-index="0"><img src="images/ac1.webp" alt="Акция СКУЛЬПТОР — 1" loading="lazy" decoding="async"></div>
+<div class="promo-slide" data-index="1"><img src="images/ac10.webp" alt="Акция СКУЛЬПТОР — 10" loading="lazy" decoding="async"></div>
+<div class="promo-slide" data-index="2"><img src="images/ac11.webp" alt="Акция СКУЛЬПТОР — 11" loading="lazy" decoding="async"></div>
+<div class="promo-slide" data-index="3"><img src="images/ac12.webp" alt="Акция СКУЛЬПТОР — 12" loading="lazy" decoding="async"></div>
+<div class="promo-slide" data-index="4"><img src="images/ac2.webp" alt="Акция СКУЛЬПТОР — 2" loading="lazy" decoding="async"></div>
+<div class="promo-slide" data-index="5"><img src="images/ac3.webp" alt="Акция СКУЛЬПТОР — 3" loading="lazy" decoding="async"></div>
+<div class="promo-slide" data-index="6"><img src="images/ac4.webp" alt="Акция СКУЛЬПТОР — 4" loading="lazy" decoding="async"></div>
+<div class="promo-slide" data-index="7"><img src="images/ac5.webp" alt="Акция СКУЛЬПТОР — 5" loading="lazy" decoding="async"></div>
+<div class="promo-slide" data-index="8"><img src="images/ac6.webp" alt="Акция СКУЛЬПТОР — 6" loading="lazy" decoding="async"></div>
+<div class="promo-slide" data-index="9"><img src="images/ac7.webp" alt="Акция СКУЛЬПТОР — 7" loading="lazy" decoding="async"></div>
+<div class="promo-slide" data-index="10"><img src="images/ac8.webp" alt="Акция СКУЛЬПТОР — 8" loading="lazy" decoding="async"></div>
+<div class="promo-slide" data-index="11"><img src="images/ac9.webp" alt="Акция СКУЛЬПТОР — 9" loading="lazy" decoding="async"></div>
 </div>
 <button class="promo-nav promo-prev" type="button" aria-label="Предыдущий слайд"><svg><use href="#i-chev-left"/></svg></button>
 <button class="promo-nav promo-next" type="button" aria-label="Следующий слайд"><svg><use href="#i-chev-right"/></svg></button>
@@ -602,9 +638,7 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
 <div class="promo-dots" id="promoDots"></div>
 <div class="promo-counter"><strong id="promoCounterCur">01</strong><span class="sep">/</span><span id="promoCounterTotal">12</span></div>
 </div>
-</div>
 </section>
-<!-- ============================================================ -->
 
 <section id="services">
 <div class="container">
@@ -623,7 +657,6 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
 </div>
 <div class="services-grid">
 
-<!-- 01 LPG -->
 <article class="service-card reveal" data-cat="apparatus">
 <div class="service-num">01</div>
 <h3>LPG массаж<span class="service-sub">аппаратный</span></h3>
@@ -637,7 +670,6 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
 </ul>
 </article>
 
-<!-- 02 Laser women -->
 <article class="service-card reveal" data-cat="laser">
 <div class="service-num">02</div>
 <h3>Лазерная эпиляция<span class="service-sub">девушки</span></h3>
@@ -657,7 +689,6 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
 </ul>
 </article>
 
-<!-- 03 Laser men -->
 <article class="service-card reveal" data-cat="laser">
 <div class="service-num">03</div>
 <h3>Лазерная эпиляция<span class="service-sub">парни</span></h3>
@@ -677,7 +708,6 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
 </ul>
 </article>
 
-<!-- 04 Laser face -->
 <article class="service-card reveal" data-cat="laser">
 <div class="service-num">04</div>
 <h3>Лазерная эпиляция<span class="service-sub">лицо</span></h3>
@@ -688,7 +718,6 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
 </ul>
 </article>
 
-<!-- 05 Lashes — WIDE -->
 <article class="service-card service-card--wide reveal" data-cat="lashes">
 <div class="service-num">05</div>
 <h3>Ламинирование ресниц<span class="service-sub">естественный изгиб и объём</span></h3>
@@ -700,7 +729,6 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
 </ul>
 </article>
 
-<!-- 06 Женский зал — WIDE -->
 <article class="service-card service-card--wide reveal" data-cat="hair">
 <div class="service-num">06</div>
 <h3>Женский зал<span class="service-sub">стрижки · окрашивание · уход</span></h3>
@@ -745,7 +773,6 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
 </div>
 </article>
 
-<!-- 07 Мужской зал — WIDE -->
 <article class="service-card service-card--wide reveal" data-cat="hair">
 <div class="service-num">07</div>
 <h3>Мужской зал<span class="service-sub">стрижки · борода · дети</span></h3>
@@ -768,7 +795,6 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
 </div>
 </article>
 
-<!-- 08 Укладка -->
 <article class="service-card reveal" data-cat="hair">
 <div class="service-num">08</div>
 <h3>Укладка и локоны</h3>
@@ -781,26 +807,14 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
 </ul>
 </article>
 
-<!-- 09 Абонементы -->
 <article class="service-card service-card--accent reveal" data-cat="combo">
 <div class="service-num">09</div>
 <h3>Абонементы</h3>
-<div class="combo-subsection">
-<span class="combo-subtitle">Абонементы на эпиляцию</span>
-</div>
+<div class="combo-subsection"><span class="combo-subtitle">Абонементы на эпиляцию</span></div>
 <div class="combo-list">
-<div class="combo-item">
-<div class="combo-head"><span class="combo-name">Комбо 1</span><span class="combo-price">1 600 ₽</span></div>
-<p class="combo-desc">Подмышки + голени</p>
-</div>
-<div class="combo-item">
-<div class="combo-head"><span class="combo-name">Комбо 2</span><span class="combo-price">2 000 ₽</span></div>
-<p class="combo-desc">Подмышки + голени + 2 малые зоны</p>
-</div>
-<div class="combo-item">
-<div class="combo-head"><span class="combo-name">Комбо 3</span><span class="combo-price">3 700 ₽</span></div>
-<p class="combo-desc">Ноги полностью + подмышки + бикини total</p>
-</div>
+<div class="combo-item"><div class="combo-head"><span class="combo-name">Комбо 1</span><span class="combo-price">1 600 ₽</span></div><p class="combo-desc">Подмышки + голени</p></div>
+<div class="combo-item"><div class="combo-head"><span class="combo-name">Комбо 2</span><span class="combo-price">2 000 ₽</span></div><p class="combo-desc">Подмышки + голени + 2 малые зоны</p></div>
+<div class="combo-item"><div class="combo-head"><span class="combo-name">Комбо 3</span><span class="combo-price">3 700 ₽</span></div><p class="combo-desc">Ноги полностью + подмышки + бикини total</p></div>
 </div>
 <div class="combo-subsection">
 <span class="combo-subtitle">Абонементы LPG</span>
@@ -842,48 +856,12 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
 <p>Потяните ползунок, чтобы увидеть разницу до и после курса.</p>
 </div>
 <div class="ba-gallery">
-<div class="ba-wrap reveal">
-<div class="ba-img ba-before" data-bg="images/AAtest.webp"></div>
-<div class="ba-img ba-after" data-bg="images/BBtest.webp"></div>
-<span class="ba-label left">До</span>
-<span class="ba-label right">После</span>
-<div class="ba-handle"></div>
-</div>
-<div class="ba-wrap reveal">
-<div class="ba-img ba-before" data-bg="images/01.jpg"></div>
-<div class="ba-img ba-after" data-bg="images/02.jpg"></div>
-<span class="ba-label left">До</span>
-<span class="ba-label right">После</span>
-<div class="ba-handle"></div>
-</div>
-<div class="ba-wrap reveal">
-<div class="ba-img ba-before" data-bg="images/001.jpg"></div>
-<div class="ba-img ba-after" data-bg="images/002.jpg"></div>
-<span class="ba-label left">До</span>
-<span class="ba-label right">После</span>
-<div class="ba-handle"></div>
-</div>
-<div class="ba-wrap reveal">
-<div class="ba-img ba-before" data-bg="images/0001.jpg"></div>
-<div class="ba-img ba-after" data-bg="images/0002.jpg"></div>
-<span class="ba-label left">До</span>
-<span class="ba-label right">После</span>
-<div class="ba-handle"></div>
-</div>
-<div class="ba-wrap reveal">
-<div class="ba-img ba-before" data-bg="images/00001.jpg"></div>
-<div class="ba-img ba-after" data-bg="images/00002.jpg"></div>
-<span class="ba-label left">До</span>
-<span class="ba-label right">После</span>
-<div class="ba-handle"></div>
-</div>
-<div class="ba-wrap reveal">
-<div class="ba-img ba-before" data-bg="images/000001.jpg"></div>
-<div class="ba-img ba-after" data-bg="images/000002.jpg"></div>
-<span class="ba-label left">До</span>
-<span class="ba-label right">После</span>
-<div class="ba-handle"></div>
-</div>
+<div class="ba-wrap reveal"><div class="ba-img ba-before" data-bg="images/AAtest.webp"></div><div class="ba-img ba-after" data-bg="images/BBtest.webp"></div><span class="ba-label left">До</span><span class="ba-label right">После</span><div class="ba-handle"></div></div>
+<div class="ba-wrap reveal"><div class="ba-img ba-before" data-bg="images/01.jpg"></div><div class="ba-img ba-after" data-bg="images/02.jpg"></div><span class="ba-label left">До</span><span class="ba-label right">После</span><div class="ba-handle"></div></div>
+<div class="ba-wrap reveal"><div class="ba-img ba-before" data-bg="images/001.jpg"></div><div class="ba-img ba-after" data-bg="images/002.jpg"></div><span class="ba-label left">До</span><span class="ba-label right">После</span><div class="ba-handle"></div></div>
+<div class="ba-wrap reveal"><div class="ba-img ba-before" data-bg="images/0001.jpg"></div><div class="ba-img ba-after" data-bg="images/0002.jpg"></div><span class="ba-label left">До</span><span class="ba-label right">После</span><div class="ba-handle"></div></div>
+<div class="ba-wrap reveal"><div class="ba-img ba-before" data-bg="images/00001.jpg"></div><div class="ba-img ba-after" data-bg="images/00002.jpg"></div><span class="ba-label left">До</span><span class="ba-label right">После</span><div class="ba-handle"></div></div>
+<div class="ba-wrap reveal"><div class="ba-img ba-before" data-bg="images/000001.jpg"></div><div class="ba-img ba-after" data-bg="images/000002.jpg"></div><span class="ba-label left">До</span><span class="ba-label right">После</span><div class="ba-handle"></div></div>
 </div>
 </div>
 </section>
@@ -897,22 +875,10 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
 <h2>Ваш путь к результату</h2>
 </div>
 <div class="process-list">
-<div class="step reveal">
-<div class="step-num">01</div>
-<div class="step-body"><h3>Консультация</h3><p>Обсуждаем цель, подбираем услугу и формат процедуры.</p></div>
-</div>
-<div class="step reveal">
-<div class="step-num">02</div>
-<div class="step-body"><h3>Индивидуальный план</h3><p>Составляем курс процедур или комбо-программу под ваш ритм.</p></div>
-</div>
-<div class="step reveal">
-<div class="step-num">03</div>
-<div class="step-body"><h3>Процедура</h3><p>Комфортное проведение в стерильных условиях студии.</p></div>
-</div>
-<div class="step reveal">
-<div class="step-num">04</div>
-<div class="step-body"><h3>Сопровождение</h3><p>Поддержка мастера и рекомендации по уходу между визитами.</p></div>
-</div>
+<div class="step reveal"><div class="step-num">01</div><div class="step-body"><h3>Консультация</h3><p>Обсуждаем цель, подбираем услугу и формат процедуры.</p></div></div>
+<div class="step reveal"><div class="step-num">02</div><div class="step-body"><h3>Индивидуальный план</h3><p>Составляем курс процедур или комбо-программу под ваш ритм.</p></div></div>
+<div class="step reveal"><div class="step-num">03</div><div class="step-body"><h3>Процедура</h3><p>Комфортное проведение в стерильных условиях студии.</p></div></div>
+<div class="step reveal"><div class="step-num">04</div><div class="step-body"><h3>Сопровождение</h3><p>Поддержка мастера и рекомендации по уходу между визитами.</p></div></div>
 </div>
 </div>
 </section>
@@ -965,28 +931,10 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
 <footer>
 <div class="container">
 <div class="footer-grid">
-<div class="footer-col">
-<div class="logo">СКУЛЬПТОР</div>
-<p>Студия красоты и массажа в Рыбацком с индивидуальным подходом к каждому гостю.</p>
-</div>
-<div class="footer-col">
-<h4>Контакты</h4>
-<a href="tel:+79934819004">+7 993 481 9004</a>
-<a href="mailto:hello@sculptorspb.ru">hello@sculptorspb.ru</a>
-<p>Советский просп., 16</p>
-<p>Рыбацкое, Санкт-Петербург</p>
-</div>
-<div class="footer-col">
-<h4>Часы работы</h4>
-<p>Пн — Пт: 10:00 — 21:00</p>
-<p>Сб — Вс: 11:00 — 20:00</p>
-</div>
-<div class="footer-col">
-<h4>Соцсети</h4>
-<a href="https://vk.com/sculptorspb">ВКонтакте</a>
-<a href="https://t.me/sculptorspb">Telegram</a>
-<a href="#">WhatsApp</a>
-</div>
+<div class="footer-col"><div class="logo">СКУЛЬПТОР</div><p>Студия красоты и массажа в Рыбацком с индивидуальным подходом к каждому гостю.</p></div>
+<div class="footer-col"><h4>Контакты</h4><a href="tel:+79934819004">+7 993 481 9004</a><a href="mailto:hello@sculptorspb.ru">hello@sculptorspb.ru</a><p>Советский просп., 16</p><p>Рыбацкое, Санкт-Петербург</p></div>
+<div class="footer-col"><h4>Часы работы</h4><p>Пн — Пт: 10:00 — 21:00</p><p>Сб — Вс: 11:00 — 20:00</p></div>
+<div class="footer-col"><h4>Соцсети</h4><a href="https://vk.com/sculptorspb">ВКонтакте</a><a href="https://t.me/sculptorspb">Telegram</a><a href="#">WhatsApp</a></div>
 </div>
 <div class="footer-bottom">
 <span>© 2026 Студия красоты СКУЛЬПТОР в Рыбацком. Все права защищены.</span>
@@ -1351,84 +1299,183 @@ function setupBA(wrap){
 $$('.ba-wrap').forEach(function(w){setupBA(w)});
 })();
 
-/* PROMO SLIDER */
+/* ============================================================
+   PROMO CAROUSEL — CENTER MODE
+   ============================================================ */
 (function(){
-  var slider=document.getElementById('promoSlider');
-  if(!slider)return;
-  var track=slider.querySelector('.promo-track');
-  var slides=Array.prototype.slice.call(track.querySelectorAll('.promo-slide'));
-  var prevBtn=slider.querySelector('.promo-prev');
-  var nextBtn=slider.querySelector('.promo-next');
-  var dotsWrap=document.getElementById('promoDots');
-  var counterCur=document.getElementById('promoCounterCur');
-  var counterTotal=document.getElementById('promoCounterTotal');
-  var perView=1,dotCount=slides.length;
+  var slider = document.getElementById('promoSlider');
+  if (!slider) return;
+  var stage = document.getElementById('promoStage');
+  if (!stage) return;
+  var slides = Array.prototype.slice.call(stage.querySelectorAll('.promo-slide'));
+  var prevBtn = slider.querySelector('.promo-prev');
+  var nextBtn = slider.querySelector('.promo-next');
+  var dotsWrap = document.getElementById('promoDots');
+  var counterCur = document.getElementById('promoCounterCur');
+  var counterTotal = document.getElementById('promoCounterTotal');
+  var total = slides.length;
+  var activeIndex = 0;
 
-  function getPerView(){
-    if(window.innerWidth>=1024)return 3;
-    if(window.innerWidth>=640)return 2;
-    return 1;
-  }
-  function pad(n){return n<10?'0'+n:''+n;}
-  function buildDots(){
-    perView=getPerView();
-    dotCount=Math.max(1,slides.length-perView+1);
-    dotsWrap.innerHTML='';
-    for(var i=0;i<dotCount;i++){
-      var btn=document.createElement('button');
-      btn.type='button';
-      btn.className='promo-dot';
-      btn.setAttribute('aria-label','Слайд '+(i+1));
-      btn.dataset.index=i;
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+  function buildDots() {
+    dotsWrap.innerHTML = '';
+    for (var i = 0; i < total; i++) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'promo-dot';
+      btn.dataset.index = i;
+      btn.setAttribute('aria-label', 'Слайд ' + (i + 1));
       dotsWrap.appendChild(btn);
     }
-    if(counterTotal)counterTotal.textContent=pad(dotCount);
+    if (counterTotal) counterTotal.textContent = pad(total);
   }
-  function getActiveIndex(){
-    var trackRect=track.getBoundingClientRect();
-    var min=Infinity,idx=0;
-    for(var i=0;i<slides.length;i++){
-      var d=Math.abs(slides[i].getBoundingClientRect().left-trackRect.left);
-      if(d<min){min=d;idx=i;}
+
+  function updateSlides() {
+    slides.forEach(function(slide, i) {
+      var offset = i - activeIndex;
+      if (offset > total / 2) offset -= total;
+      if (offset < -total / 2) offset += total;
+
+      var isActive = offset === 0;
+      var isAdj = Math.abs(offset) === 1;
+      var s, o, z;
+
+      if (isActive) {
+        s = 1; o = 1; z = 10;
+        slide.style.setProperty('--tx', '0%');
+      } else if (isAdj) {
+        s = 0.78; o = 0.55; z = 5;
+        slide.style.setProperty('--tx', 'calc(' + offset + ' * var(--tx-adj))');
+      } else {
+        s = 0.6; o = 0; z = 1;
+        slide.style.setProperty('--tx', 'calc(' + offset + ' * var(--tx-far))');
+      }
+      slide.style.setProperty('--s', s);
+      slide.style.setProperty('--o', o);
+      slide.style.setProperty('--z', z);
+
+      slide.classList.toggle('is-active', isActive);
+      slide.classList.toggle('is-adj', isAdj);
+      slide.classList.toggle('is-far', !isActive && !isAdj);
+      slide.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+    });
+
+    var dots = dotsWrap.children;
+    for (var j = 0; j < dots.length; j++) {
+      dots[j].classList.toggle('active', j === activeIndex);
     }
-    return Math.min(idx,dotCount-1);
+    if (counterCur) counterCur.textContent = pad(activeIndex + 1);
   }
-  function goTo(idx){
-    idx=Math.max(0,Math.min(idx,dotCount-1));
-    var slide=slides[idx];
-    var trackRect=track.getBoundingClientRect();
-    var slideRect=slide.getBoundingClientRect();
-    var scrollLeft=track.scrollLeft+(slideRect.left-trackRect.left);
-    track.scrollTo({left:scrollLeft,behavior:'smooth'});
+
+  function goTo(index) {
+    index = ((index % total) + total) % total;
+    if (index === activeIndex) return;
+    activeIndex = index;
+    updateSlides();
   }
-  function update(){
-    var idx=getActiveIndex();
-    var dots=dotsWrap.children;
-    for(var i=0;i<dots.length;i++){
-      dots[i].classList.toggle('active',i===idx);
+  function goNext() { goTo(activeIndex + 1); }
+  function goPrev() { goTo(activeIndex - 1); }
+
+  prevBtn.addEventListener('click', goPrev);
+  nextBtn.addEventListener('click', goNext);
+  dotsWrap.addEventListener('click', function(e) {
+    var t = e.target.closest('.promo-dot');
+    if (t) goTo(parseInt(t.dataset.index, 10));
+  });
+
+  var suppressClick = false;
+
+  slides.forEach(function(slide, i) {
+    slide.addEventListener('click', function(e) {
+      if (suppressClick) return;
+      if (slide.classList.contains('is-adj')) {
+        var offset = i - activeIndex;
+        if (offset > total / 2) offset -= total;
+        if (offset < -total / 2) offset += total;
+        if (offset === 1) goNext();
+        else if (offset === -1) goPrev();
+      }
+    });
+  });
+
+  stage.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowLeft') { e.preventDefault(); goPrev(); }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); goNext(); }
+    else if (e.key === 'Home') { e.preventDefault(); goTo(0); }
+    else if (e.key === 'End') { e.preventDefault(); goTo(total - 1); }
+  });
+
+  var isDragging = false;
+  var dragStartX = 0;
+  var dragStartY = 0;
+  var dragDelta = 0;
+  var directionLock = null;
+
+  stage.addEventListener('pointerdown', function(e) {
+    if (e.target.closest('button')) return;
+    if (e.button !== undefined && e.button !== 0) return;
+    isDragging = true;
+    dragStartX = e.clientX;
+    dragStartY = e.clientY;
+    dragDelta = 0;
+    directionLock = null;
+    stage.classList.add('is-dragging');
+    try { stage.setPointerCapture(e.pointerId); } catch (err) {}
+  });
+
+  stage.addEventListener('pointermove', function(e) {
+    if (!isDragging) return;
+    var dx = e.clientX - dragStartX;
+    var dy = e.clientY - dragStartY;
+
+    if (!directionLock) {
+      if (Math.abs(dx) > 8 || Math.abs(dy) > 8) {
+        directionLock = Math.abs(dx) > Math.abs(dy) ? 'h' : 'v';
+      }
     }
-    if(counterCur)counterCur.textContent=pad(idx+1);
-    if(prevBtn)prevBtn.disabled=track.scrollLeft<=4;
-    if(nextBtn)nextBtn.disabled=track.scrollLeft>=(track.scrollWidth-track.clientWidth-4);
+    if (directionLock === 'v') return;
+
+    dragDelta = dx;
+    if (e.cancelable) e.preventDefault();
+    slides.forEach(function(s) {
+      s.style.setProperty('--drag', dx + 'px');
+    });
+  });
+
+  function endDrag() {
+    if (!isDragging) return;
+    isDragging = false;
+    stage.classList.remove('is-dragging');
+
+    if (directionLock === 'h') {
+      var threshold = Math.max(40, stage.offsetWidth * 0.1);
+      if (dragDelta < -threshold) { suppressClick = true; goNext(); }
+      else if (dragDelta > threshold) { suppressClick = true; goPrev(); }
+    }
+
+    slides.forEach(function(s) { s.style.removeProperty('--drag'); });
+
+    setTimeout(function() { suppressClick = false; }, 30);
+
+    dragDelta = 0;
+    directionLock = null;
   }
-  prevBtn.addEventListener('click',function(){goTo(getActiveIndex()-1);});
-  nextBtn.addEventListener('click',function(){goTo(getActiveIndex()+1);});
-  dotsWrap.addEventListener('click',function(e){
-    var t=e.target.closest('.promo-dot');
-    if(t)goTo(parseInt(t.dataset.index,10));
-  });
-  var rafId=null;
-  track.addEventListener('scroll',function(){
-    if(rafId)cancelAnimationFrame(rafId);
-    rafId=requestAnimationFrame(update);
-  },{passive:true});
-  var resizeTimer;
-  window.addEventListener('resize',function(){
-    clearTimeout(resizeTimer);
-    resizeTimer=setTimeout(function(){buildDots();update();},150);
-  });
+
+  stage.addEventListener('pointerup', endDrag);
+  stage.addEventListener('pointercancel', endDrag);
+
+  stage.addEventListener('dragstart', function(e) { e.preventDefault(); });
+
+  stage.addEventListener('click', function(e) {
+    if (suppressClick) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }, true);
+
   buildDots();
-  update();
+  updateSlides();
 })();
 </script>
 
