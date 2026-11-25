@@ -400,7 +400,19 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
 
 /* ===== PROMO SLIDER — CENTER MODE ===== */
 .promos{background:radial-gradient(ellipse at 50% 0%,rgba(255,0,102,.07) 0%,transparent 55%),var(--bg);position:relative;overflow:hidden}
-.promo-slider-wrap{position:relative;user-select:none;-webkit-user-select:none}
+
+/* обёртка: vars вынесены сюда, чтобы --slide-h был доступен и стрелкам */
+.promo-slider-wrap{
+  position:relative;
+  user-select:none;
+  -webkit-user-select:none;
+  --slide-h:470px;
+  --tx-adj:96%;
+  --tx-far:200%;
+  --scale-adj:.78;
+  --scale-far:.6;
+  --op-adj:.55;
+}
 .promo-stage{
   position:relative;
   width:100%;
@@ -410,22 +422,19 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
   overflow:hidden;
   touch-action:pan-y;
   cursor:grab;
-  --slide-h:470px;
-  --tx-adj:96%;
-  --tx-far:200%;
-  --scale-adj:.78;
-  --scale-far:.6;
-  --op-adj:.55;
 }
 .promo-stage:focus{outline:none}
 .promo-stage:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 .promo-stage.is-dragging{cursor:grabbing}
 @media(min-width:640px){
-  .promo-stage{max-width:920px;--slide-h:580px;--tx-adj:98%}
+  .promo-slider-wrap{--slide-h:580px;--tx-adj:98%}
+  .promo-stage{max-width:920px}
 }
 @media(min-width:1024px){
-  .promo-stage{max-width:1280px;--slide-h:740px;--tx-adj:100%}
+  .promo-slider-wrap{--slide-h:740px;--tx-adj:100%}
+  .promo-stage{max-width:1280px}
 }
+
 .promo-slide{
   position:absolute;
   top:50%;
@@ -465,9 +474,10 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
 .promo-slide.is-adj:hover{opacity:calc(var(--op-adj) + .18);border-color:rgba(143,150,157,.6)}
 .promo-slide.is-far{pointer-events:none}
 
+/* Стрелки: десктоп — поверх сцены по бокам, центрируем по высоте stage */
 .promo-nav{
   position:absolute;
-  top:50%;
+  top:calc((var(--slide-h) + 70px) / 2);
   transform:translateY(-50%);
   width:46px;height:46px;
   background:rgba(19,20,22,.9);
@@ -487,8 +497,9 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
 .promo-prev{left:8px}
 .promo-next{right:8px}
 @media(min-width:900px){.promo-prev{left:-23px}.promo-next{right:-23px}}
-@media(max-width:767px){.promo-nav{display:none}}
-.promo-dots{display:flex;justify-content:center;gap:10px;margin-top:28px;flex-wrap:wrap}
+
+/* Точки и счётчик */
+.promo-dots{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:28px}
 .promo-dot{width:8px;height:8px;background:var(--line-strong);border:none;cursor:pointer;transform:rotate(45deg);transition:all .3s;padding:0;flex-shrink:0}
 .promo-dot:hover{background:var(--silver)}
 .promo-dot.active{background:var(--accent);box-shadow:0 0 14px var(--accent)}
@@ -497,8 +508,39 @@ footer .logo{color:var(--ink);margin-bottom:16px;display:block;letter-spacing:.1
 .promo-counter strong{color:var(--ink);font-weight:500;font-size:22px}
 .promo-counter .sep{color:var(--accent)}
 
+/* Мобильная раскладка: стрелки под карточкой, точки между ними, счётчик ниже */
+@media(max-width:767px){
+  .promo-slider-wrap{
+    display:grid;
+    grid-template-columns:auto auto auto;
+    grid-template-areas:
+      "stage stage stage"
+      "prev dots next"
+      "counter counter counter";
+    justify-content:center;
+    align-items:center;
+    gap:18px 16px;
+  }
+  .promo-stage{grid-area:stage;}
+  .promo-prev{grid-area:prev;justify-self:end;}
+  .promo-dots{grid-area:dots;margin-top:0;}
+  .promo-next{grid-area:next;justify-self:start;}
+  .promo-counter{grid-area:counter;margin-top:0;justify-self:center;}
+  .promo-nav{
+    position:static;
+    transform:none;
+    left:auto;
+    right:auto;
+    width:42px;
+    height:42px;
+  }
+  .promo-dots{gap:8px;}
+  .promo-dot{width:7px;height:7px;}
+}
+
 @media(prefers-reduced-motion:reduce){
-  .promo-slide{transition:opacity .2s ease !important}
+  /* слайдер — ключевая навигация: оставляем короткий transform, иначе карточки «прыгают» */
+  .promo-slide{transition:transform .38s ease,opacity .3s ease !important}
   .promo-slide img{transition:none !important}
 }
 
@@ -637,9 +679,9 @@ section[id]{scroll-margin-top:84px}
 </div>
 <button class="promo-nav promo-prev" type="button" aria-label="Предыдущий слайд"><svg><use href="#i-chev-left"/></svg></button>
 <button class="promo-nav promo-next" type="button" aria-label="Следующий слайд"><svg><use href="#i-chev-right"/></svg></button>
-</div>
 <div class="promo-dots" id="promoDots"></div>
 <div class="promo-counter"><strong id="promoCounterCur">01</strong><span class="sep">/</span><span id="promoCounterTotal">12</span></div>
+</div>
 </div>
 </section>
 
@@ -1098,7 +1140,7 @@ var SERVICES = {
   ]}
 };
 
-/* ---------- OVERLAYS: общий лок ---------- */
+/* ---------- OVERLAYS ---------- */
 var procOverlay = $('#proceduresOverlay'),
     modalOverlay = $('#serviceModal');
 
@@ -1158,12 +1200,10 @@ function closeService(){
 on(modalClose,'click',closeService);
 on(modalOverlay,'click',function(e){ if(e.target === modalOverlay) closeService(); });
 
-/* все кнопки с data-service — и в hero-badges, и в оверлее */
 $$('[data-service]').forEach(function(btn){
   on(btn,'click',function(){ openService(btn.getAttribute('data-service')); });
 });
 
-/* ESC закрывает всё */
 on(document,'keydown',function(e){
   if(e.key !== 'Escape' && e.keyCode !== 27) return;
   if(modalOverlay && modalOverlay.classList.contains('open')) closeService();
@@ -1210,7 +1250,6 @@ $$('.ba-wrap').forEach(function(wrap){
       handle = $('.ba-handle', wrap);
   if(!after || !handle) return;
 
-  /* ленивая подстановка фонов */
   $$('.ba-img', wrap).forEach(function(img){
     var bg = img.getAttribute('data-bg');
     if(bg){
@@ -1242,7 +1281,6 @@ $$('.ba-wrap').forEach(function(wrap){
   on(wrap,'pointercancel',function(){ dragging = false; });
   on(wrap,'pointerleave',function(){ if(dragging) dragging = false; });
 
-  /* начальное положение — по центру */
   handle.style.left = '50%';
 });
 
@@ -1324,17 +1362,23 @@ $$('.ba-wrap').forEach(function(wrap){
   on(nextBtn,'click',next);
   on(prevBtn,'click',prev);
 
-  /* клавиатура */
   on(stage,'keydown',function(e){
     if(e.key === 'ArrowRight'){ e.preventDefault(); next(); }
     else if(e.key === 'ArrowLeft'){ e.preventDefault(); prev(); }
   });
 
-  /* клик по боковой карточке */
+  /* клик по боковой карточке — с defer, чтобы transition успел включиться */
   slides.forEach(function(s, i){
     on(s,'click',function(){
       if(dragged) return;
-      if(i !== index) goTo(i);
+      if(i === index) return;
+      if(stage.classList.contains('is-dragging')){
+        requestAnimationFrame(function(){
+          requestAnimationFrame(function(){ goTo(i); });
+        });
+      } else {
+        goTo(i);
+      }
     });
   });
 
@@ -1358,16 +1402,27 @@ $$('.ba-wrap').forEach(function(wrap){
   function endDrag(){
     if(!dragging) return;
     dragging = false;
-    stage.classList.remove('is-dragging');
 
     var threshold = 55;
-    if(dx <= -threshold) next();
-    else if(dx >= threshold) prev();
-    else layout();
-
-    slides.forEach(function(s){ s.style.setProperty('--drag','0px'); });
+    var dir = 0;
+    if(dx <= -threshold) dir = 1;
+    else if(dx >= threshold) dir = -1;
     dx = 0;
-    setTimeout(function(){ dragged = false; }, 0);
+
+    /* 1-й кадр: снимаем is-dragging и флашим стили,
+       чтобы transition снова стал активен ДО изменения значений */
+    requestAnimationFrame(function(){
+      stage.classList.remove('is-dragging');
+      void stage.offsetWidth; /* force reflow */
+
+      /* 2-й кадр: уже с включённым transition плавно едем в новую позицию */
+      requestAnimationFrame(function(){
+        if(dir) goTo(index + dir);
+        else layout();
+      });
+    });
+
+    setTimeout(function(){ dragged = false; }, 50);
   }
 
   on(stage,'pointerup',endDrag);
@@ -1387,7 +1442,6 @@ function setConsent(v){
   try{ localStorage.setItem(CONSENT_KEY, v); }catch(e){}
 }
 
-/* загрузка iframe'ов по data-src */
 function loadWidgets(){
   $$('iframe[data-src]').forEach(function(fr){
     var src = fr.getAttribute('data-src');
@@ -1397,7 +1451,6 @@ function loadWidgets(){
   });
   $$('[data-widget-placeholder]').forEach(function(ph){ ph.style.display = 'none'; });
 
-  /* hero-видео */
   $$('iframe[data-video-src]').forEach(function(fr){
     var src = fr.getAttribute('data-video-src');
     if(!src || fr.getAttribute('src')) return;
@@ -1407,7 +1460,6 @@ function loadWidgets(){
   if(poster) poster.style.opacity = '0';
 }
 
-/* кнопки «Показать отзывы/карту» = согласие на эти виджеты */
 $$('[data-load-widgets]').forEach(function(btn){
   on(btn,'click',function(){
     loadWidgets();
@@ -1415,7 +1467,6 @@ $$('[data-load-widgets]').forEach(function(btn){
   });
 });
 
-/* баннер */
 function buildCookieBanner(){
   if($('.cookie-banner')) return;
 
